@@ -1,0 +1,1870 @@
+definitions:
+  models.AlertMessage:
+    properties:
+      message:
+        type: string
+    type: object
+  models.BadgeCreate:
+    properties:
+      badge_date:
+        type: string
+      badge_type:
+        type: string
+      name:
+        type: string
+      picture:
+        type: string
+    type: object
+  models.BadgeResponse:
+    properties:
+      badge_date:
+        type: string
+      badge_type:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      picture:
+        type: string
+    type: object
+  models.BadgeUpdate:
+    properties:
+      badge_date:
+        type: string
+      badge_type:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      picture:
+        type: string
+    type: object
+  models.Error:
+    properties:
+      message:
+        type: string
+    type: object
+  models.LanguageCreate:
+    properties:
+      name:
+        type: string
+      picture:
+        type: string
+    type: object
+  models.LanguageResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      picture:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.LanguageUpdate:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      picture:
+        type: string
+    type: object
+  models.LessonCreate:
+    properties:
+      lesson_name:
+        type: string
+    type: object
+  models.LessonResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      lesson_name:
+        type: string
+      topic_id:
+        type: integer
+      topic_name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.LessonUpdate:
+    properties:
+      id:
+        type: integer
+      lesson_name:
+        type: string
+    type: object
+  models.LevelCreate:
+    properties:
+      language_id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.LevelResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      language_id:
+        type: integer
+      name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.LevelUpdate:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  models.LoginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    type: object
+  models.LoginResponse:
+    properties:
+      access_token:
+        type: string
+      avatar:
+        type: string
+      bio:
+        type: string
+      birth_day:
+        type: string
+      coint:
+        type: integer
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      refresh_token:
+        type: string
+      score:
+        type: integer
+      username:
+        type: string
+    type: object
+  models.Signup:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  models.SocialCreate:
+    properties:
+      education_name:
+        type: string
+      education_url:
+        type: string
+      instagram_name:
+        type: string
+      instagram_url:
+        type: string
+      linkedin_name:
+        type: string
+      linkedin_url:
+        type: string
+      location_name:
+        type: string
+      location_url:
+        type: string
+      telegram_name:
+        type: string
+      telegram_url:
+        type: string
+      twitter_name:
+        type: string
+      twitter_url:
+        type: string
+      user_id:
+        type: string
+      website_name:
+        type: string
+      website_url:
+        type: string
+      youtube_name:
+        type: string
+      youtube_url:
+        type: string
+    type: object
+  models.SocialResponse:
+    properties:
+      education_name:
+        type: string
+      education_url:
+        type: string
+      instagram_name:
+        type: string
+      instagram_url:
+        type: string
+      linkedin_name:
+        type: string
+      linkedin_url:
+        type: string
+      location_name:
+        type: string
+      location_url:
+        type: string
+      telegram_name:
+        type: string
+      telegram_url:
+        type: string
+      twitter_name:
+        type: string
+      twitter_url:
+        type: string
+      user_id:
+        type: string
+      website_name:
+        type: string
+      website_url:
+        type: string
+      youtube_name:
+        type: string
+      youtube_url:
+        type: string
+    type: object
+  models.SocialUpdate:
+    properties:
+      education_name:
+        type: string
+      education_url:
+        type: string
+      instagram_name:
+        type: string
+      instagram_url:
+        type: string
+      linkedin_name:
+        type: string
+      linkedin_url:
+        type: string
+      location_name:
+        type: string
+      location_url:
+        type: string
+      telegram_name:
+        type: string
+      telegram_url:
+        type: string
+      twitter_name:
+        type: string
+      twitter_url:
+        type: string
+      user_id:
+        type: string
+      website_name:
+        type: string
+      website_url:
+        type: string
+      youtube_name:
+        type: string
+      youtube_url:
+        type: string
+    type: object
+  models.TopicCreate:
+    properties:
+      topic_name:
+        type: string
+    type: object
+  models.TopicResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: integer
+      lesson_name:
+        type: string
+      level_id:
+        type: integer
+      level_name:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.TopicUpdate:
+    properties:
+      id:
+        type: integer
+      topic_name:
+        type: string
+    type: object
+  models.UserBadgeCreate:
+    properties:
+      badge_id:
+        type: string
+      user_id:
+        type: string
+    type: object
+  models.UserBadgeDelete:
+    properties:
+      badge_id:
+        type: string
+      user_id:
+        type: string
+    type: object
+  models.UserResponse:
+    properties:
+      avatar:
+        type: string
+      bio:
+        type: string
+      birth_day:
+        type: string
+      coint:
+        type: integer
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      refresh_token:
+        type: string
+      score:
+        type: integer
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+  models.UserUpdate:
+    properties:
+      avatar:
+        type: string
+      bio:
+        type: string
+      birth_day:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      username:
+        type: string
+    type: object
+  models.VerifyRequest:
+    properties:
+      otp:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: Admin-Monolight
+paths:
+  /v1/badge:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new badge
+      parameters:
+      - description: BadgeCreate Model
+        in: body
+        name: BadgeCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.BadgeCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.BadgeResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create Badge
+      tags:
+      - badges
+    put:
+      consumes:
+      - application/json
+      description: This Api for updating badge
+      parameters:
+      - description: Update BadgeUpdate Model
+        in: body
+        name: BadgeUpdate
+        required: true
+        schema:
+          $ref: '#/definitions/models.BadgeUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.BadgeResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Update Badge
+      tags:
+      - badges
+  /v1/badge/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This Api for deleting badge
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete Badge
+      tags:
+      - badges
+    get:
+      consumes:
+      - application/json
+      description: This Api for get badge
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.BadgeResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Get Badge
+      tags:
+      - badges
+  /v1/badges:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all badges
+      parameters:
+      - description: Page
+        in: query
+        name: page
+        required: true
+        type: integer
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.BadgeResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListBadges
+      tags:
+      - badges
+  /v1/imageupload:
+    post:
+      consumes:
+      - application/json
+      description: File upload
+      parameters:
+      - description: File
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: File upload
+      tags:
+      - file-upload
+  /v1/language:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new language
+      parameters:
+      - description: LanguageCreate Model
+        in: body
+        name: LanguageCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.LanguageCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.LanguageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create Language
+      tags:
+      - languages
+    put:
+      consumes:
+      - application/json
+      description: This Api for updating language
+      parameters:
+      - description: Update LanguageUpdate Model
+        in: body
+        name: LanguageUpdate
+        required: true
+        schema:
+          $ref: '#/definitions/models.LanguageUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LanguageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Update Language
+      tags:
+      - languages
+  /v1/language/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This Api for deleting language
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete Language
+      tags:
+      - languages
+    get:
+      consumes:
+      - application/json
+      description: This Api for get language
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LanguageResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Get Language
+      tags:
+      - languages
+  /v1/languages:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all languages
+      parameters:
+      - description: Page
+        in: query
+        name: page
+        required: true
+        type: integer
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.LanguageResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListLanguages
+      tags:
+      - languages
+  /v1/lesson:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new lesson
+      parameters:
+      - description: LessonCreate Model
+        in: body
+        name: LessonCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.LessonCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.LessonResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create Lesson
+      tags:
+      - lessons
+    put:
+      consumes:
+      - application/json
+      description: This Api for updating lesson
+      parameters:
+      - description: Update LessonUpdate Model
+        in: body
+        name: LessonUpdate
+        required: true
+        schema:
+          $ref: '#/definitions/models.LessonUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LessonResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Update Lesson
+      tags:
+      - lessons
+  /v1/lesson/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This Api for deleting lesson
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete Lesson
+      tags:
+      - lessons
+    get:
+      consumes:
+      - application/json
+      description: This Api for get lesson
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LessonResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Get Lesson
+      tags:
+      - lessons
+  /v1/lessons:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all lessons
+      parameters:
+      - description: Page
+        in: query
+        name: page
+        required: true
+        type: integer
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.LessonResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListLessons
+      tags:
+      - lessons
+  /v1/level:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new level
+      parameters:
+      - description: LevelCreate Model
+        in: body
+        name: LevelCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.LevelCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.LevelResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create Level
+      tags:
+      - levels
+    put:
+      consumes:
+      - application/json
+      description: This Api for updating level
+      parameters:
+      - description: Update LevelUpdate Model
+        in: body
+        name: LevelUpdate
+        required: true
+        schema:
+          $ref: '#/definitions/models.LevelUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LevelResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Update Level
+      tags:
+      - levels
+  /v1/level/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This Api for deleting level
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete Level
+      tags:
+      - levels
+    get:
+      consumes:
+      - application/json
+      description: This Api for get level
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LevelResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Get Level
+      tags:
+      - levels
+  /v1/levels:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all levels
+      parameters:
+      - description: Page
+        in: query
+        name: page
+        required: true
+        type: integer
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.LevelResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListLevels
+      tags:
+      - levels
+  /v1/login:
+    post:
+      consumes:
+      - application/json
+      description: This Api for login users login with email and username
+      parameters:
+      - description: LoginRequest
+        in: body
+        name: login
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Login
+      tags:
+      - Register
+  /v1/pdfupload:
+    post:
+      consumes:
+      - application/json
+      description: File upload
+      parameters:
+      - description: File
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: File upload
+      tags:
+      - file-upload
+  /v1/signup:
+    post:
+      consumes:
+      - application/json
+      description: This Api for sign
+      parameters:
+      - description: Signup
+        in: body
+        name: signup
+        required: true
+        schema:
+          $ref: '#/definitions/models.Signup'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.AlertMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Signup
+      tags:
+      - Register
+  /v1/social:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new social
+      parameters:
+      - description: SocialCreate Model
+        in: body
+        name: SocialCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.SocialCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.SocialResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create Social
+      tags:
+      - social
+    put:
+      consumes:
+      - application/json
+      description: This Api for updating social
+      parameters:
+      - description: Update Social Model
+        in: body
+        name: Social
+        required: true
+        schema:
+          $ref: '#/definitions/models.SocialUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Update Social
+      tags:
+      - social
+  /v1/social/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get social
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SocialResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Get Social
+      tags:
+      - social
+  /v1/soundupload:
+    post:
+      consumes:
+      - application/json
+      description: File upload
+      parameters:
+      - description: File
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: File upload
+      tags:
+      - file-upload
+  /v1/topic:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new topic
+      parameters:
+      - description: TopicCreate Model
+        in: body
+        name: TopicCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.TopicCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.TopicResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create Topic
+      tags:
+      - topics
+    put:
+      consumes:
+      - application/json
+      description: This Api for updating topic
+      parameters:
+      - description: Update TopicUpdate Model
+        in: body
+        name: TopicUpdate
+        required: true
+        schema:
+          $ref: '#/definitions/models.TopicUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TopicResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Update Topic
+      tags:
+      - topics
+  /v1/topic/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This Api for deleting topic
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete Topic
+      tags:
+      - topics
+    get:
+      consumes:
+      - application/json
+      description: This Api for get topic
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TopicResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Get Topic
+      tags:
+      - topics
+  /v1/topics:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all topics
+      parameters:
+      - description: Page
+        in: query
+        name: page
+        required: true
+        type: integer
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.TopicResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListTopics
+      tags:
+      - topics
+  /v1/user:
+    put:
+      consumes:
+      - application/json
+      description: This Api for updating user
+      parameters:
+      - description: Update User Model
+        in: body
+        name: User
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Update User
+      tags:
+      - users
+  /v1/user/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This Api for deleting user
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete User
+      tags:
+      - users
+    get:
+      consumes:
+      - application/json
+      description: This Api for get user
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Get User
+      tags:
+      - users
+  /v1/userbadge:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new userBadge
+      parameters:
+      - description: UserBadgeCreate Model
+        in: body
+        name: UserBadgeCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserBadgeCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create UserBadge
+      tags:
+      - userBadges
+  /v1/userbadge/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This Api for deleting userBadge
+      parameters:
+      - description: UserBadgeDelete Model
+        in: body
+        name: UserBadgeDelete
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserBadgeDelete'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete UserBadge
+      tags:
+      - userBadges
+  /v1/verify:
+    post:
+      consumes:
+      - application/json
+      description: This Api to check OTP
+      parameters:
+      - description: VerifyRequest
+        in: body
+        name: signup
+        required: true
+        schema:
+          $ref: '#/definitions/models.VerifyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Verify Password
+      tags:
+      - Register
+  /v1/videoupload:
+    post:
+      consumes:
+      - application/json
+      description: File upload
+      parameters:
+      - description: File
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: File upload
+      tags:
+      - file-upload
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
