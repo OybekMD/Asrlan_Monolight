@@ -100,3 +100,28 @@ CREATE TABLE lessons (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP DEFAULT NULL
 );
+
+CREATE TABLE contents (
+    id SERIAL PRIMARY KEY,
+    lesson_id INT REFERENCES lessons(id),
+    gentype SMALLINT,
+    title TEXT,
+    question TEXT,
+    text_data TEXT,
+    arr_text TEXT[],
+    correct_answer INTEGER,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT NULL
+);
+
+CREATE TABLE content_files (
+    id SERIAL PRIMARY KEY,
+    content_id INT REFERENCES contents(id),
+    sound_data TEXT,
+    image_data TEXT,
+    video_data TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT NULL
+);

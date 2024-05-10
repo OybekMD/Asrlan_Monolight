@@ -19,33 +19,39 @@ type StorageI interface {
 	Level() repo.LevelStorageI
 	Topic() repo.TopicStorageI
 	Lesson() repo.LessonStorageI
+	Content() repo.ContentStorageI
+	ContentFile() repo.ContentFileStorageI
 }
 
 type storagePg struct {
-	loginRepo     repo.LoginStorageI
-	userRepo      repo.UserStorageI
-	adminRepo     repo.AdminStorageI
-	socialRepo    repo.SocialStorageI
-	badgeRepo     repo.BadgeStorageI
-	userBadgeRepo repo.UserBadgeStorageI
-	languageRepo  repo.LanguageStorageI
-	levelRepo     repo.LevelStorageI
-	topicRepo     repo.TopicStorageI
-	lessonRepo    repo.LessonStorageI
+	loginRepo       repo.LoginStorageI
+	userRepo        repo.UserStorageI
+	adminRepo       repo.AdminStorageI
+	socialRepo      repo.SocialStorageI
+	badgeRepo       repo.BadgeStorageI
+	userBadgeRepo   repo.UserBadgeStorageI
+	languageRepo    repo.LanguageStorageI
+	levelRepo       repo.LevelStorageI
+	topicRepo       repo.TopicStorageI
+	lessonRepo      repo.LessonStorageI
+	contentRepo     repo.ContentStorageI
+	contentFileRepo repo.ContentFileStorageI
 }
 
 func NewStoragePg(db *sqlx.DB) StorageI {
 	return &storagePg{
-		loginRepo:     postgres.NewLogin(db),
-		userRepo:      postgres.NewUser(db),
-		adminRepo:     postgres.NewAdmin(db),
-		socialRepo:    postgres.NewSocial(db),
-		badgeRepo:     postgres.NewBadge(db),
-		userBadgeRepo: postgres.NewUserBadge(db),
-		languageRepo:  postgres.NewLanguage(db),
-		levelRepo:     postgres.NewLevel(db),
-		topicRepo:     postgres.NewTopic(db),
-		lessonRepo:    postgres.NewLesson(db),
+		loginRepo:       postgres.NewLogin(db),
+		userRepo:        postgres.NewUser(db),
+		adminRepo:       postgres.NewAdmin(db),
+		socialRepo:      postgres.NewSocial(db),
+		badgeRepo:       postgres.NewBadge(db),
+		userBadgeRepo:   postgres.NewUserBadge(db),
+		languageRepo:    postgres.NewLanguage(db),
+		levelRepo:       postgres.NewLevel(db),
+		topicRepo:       postgres.NewTopic(db),
+		lessonRepo:      postgres.NewLesson(db),
+		contentRepo:     postgres.NewContent(db),
+		contentFileRepo: postgres.NewContentFile(db),
 	}
 }
 
@@ -87,4 +93,12 @@ func (s *storagePg) Topic() repo.TopicStorageI {
 
 func (s *storagePg) Lesson() repo.LessonStorageI {
 	return s.lessonRepo
+}
+
+func (s *storagePg) Content() repo.ContentStorageI {
+	return s.contentRepo
+}
+
+func (s *storagePg) ContentFile() repo.ContentFileStorageI {
+	return s.contentFileRepo
 }

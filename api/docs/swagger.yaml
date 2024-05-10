@@ -41,6 +41,103 @@ definitions:
       picture:
         type: string
     type: object
+  models.ContentCreate:
+    properties:
+      arr_text:
+        items:
+          type: string
+        type: array
+      correct_answer:
+        type: integer
+      gentype:
+        type: integer
+      lesson_id:
+        type: integer
+      question:
+        type: string
+      text_data:
+        type: string
+      title:
+        type: string
+    type: object
+  models.ContentFileCreate:
+    properties:
+      content_id:
+        type: integer
+      image_data:
+        type: string
+      sound_data:
+        type: string
+      video_data:
+        type: string
+    type: object
+  models.ContentFileResponse:
+    properties:
+      content_id:
+        type: integer
+      created_at:
+        type: string
+      id:
+        type: integer
+      image_data:
+        type: string
+      sound_data:
+        type: string
+      updated_at:
+        type: string
+      video_data:
+        type: string
+    type: object
+  models.ContentResponse:
+    properties:
+      arr_text:
+        items:
+          type: string
+        type: array
+      contentfiles:
+        items:
+          $ref: '#/definitions/repo.ContentFile'
+        type: array
+      correct_answer:
+        type: integer
+      created_at:
+        type: string
+      gentype:
+        type: integer
+      id:
+        type: integer
+      lesson_id:
+        type: integer
+      question:
+        type: string
+      text_data:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.ContentUpdate:
+    properties:
+      arr_text:
+        items:
+          type: string
+        type: array
+      correct_answer:
+        type: integer
+      gentype:
+        type: integer
+      id:
+        type: integer
+      lesson_id:
+        type: integer
+      question:
+        type: string
+      text_data:
+        type: string
+      title:
+        type: string
+    type: object
   models.Error:
     properties:
       message:
@@ -375,9 +472,26 @@ definitions:
       otp:
         type: string
     type: object
+  repo.ContentFile:
+    properties:
+      content_id:
+        type: integer
+      created_at:
+        type: string
+      id:
+        type: integer
+      image_data:
+        type: string
+      sound_data:
+        type: string
+      updated_at:
+        type: string
+      video_data:
+        type: string
+    type: object
 info:
   contact: {}
-  title: Admin-Monolight
+  title: Asrlan-Monolithic
 paths:
   /v1/badge:
     post:
@@ -573,6 +687,304 @@ paths:
       summary: ListBadges
       tags:
       - badges
+  /v1/content:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new content
+      parameters:
+      - description: ContentCreate Model
+        in: body
+        name: ContentCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContentCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.ContentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create Content
+      tags:
+      - contents
+    put:
+      consumes:
+      - application/json
+      description: This Api for updating content
+      parameters:
+      - description: Update ContentUpdate Model
+        in: body
+        name: ContentUpdate
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContentUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ContentResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Update Content
+      tags:
+      - contents
+  /v1/content/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This Api for deleting content
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete Content
+      tags:
+      - contents
+    get:
+      consumes:
+      - application/json
+      description: This Api for get content
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ContentResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Get Content
+      tags:
+      - contents
+  /v1/contentfile:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new contentFile
+      parameters:
+      - description: ContentFileCreate Model
+        in: body
+        name: ContentFileCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContentFileCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.ContentFileResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create ContentFile
+      tags:
+      - contentFiles
+  /v1/contentfile/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This Api for deleting contentFile
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete ContentFile
+      tags:
+      - contentFiles
+    get:
+      consumes:
+      - application/json
+      description: This Api for get contentFile
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ContentFileResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Get ContentFile
+      tags:
+      - contentFiles
+  /v1/contents:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all contents
+      parameters:
+      - description: ID
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.ContentResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListContents
+      tags:
+      - contents
   /v1/imageupload:
     post:
       consumes:

@@ -153,7 +153,7 @@ func (s *topicRepo) GetAll(ctx context.Context, page, limit uint64) ([]*repo.Top
 		topics.updated_at
 	FROM 
 		topics
-	JOIN 
+	JOIN
 		levels ON topics.level_id = levels.id
 	JOIN
 		languages ON levels.language_id = languages.id

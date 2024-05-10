@@ -24,7 +24,7 @@ type Option struct {
 	Enforcer *casbin.Enforcer
 }
 
-// @Title       	Admin-Monolight
+// @Title       	Asrlan-Monolithic
 // @securityDefinitions.apikey BearerAuth
 // @In          	header
 // @Name        	Authorization
@@ -80,13 +80,6 @@ func New(option *Option) *gin.Engine {
 	api.GET("/badge/:id", handlerV1.GetBadge)
 	api.GET("/badges", handlerV1.ListBadges)
 
-	// Students
-	// api.POST("/student", handlerV1.CreateStudent)
-	// api.PUT("/student", handlerV1.UpdateStudent)
-	// api.DELETE("/student/:id", handlerV1.DeleteStudent)
-	// api.GET("/student/:id", handlerV1.GetStudent)
-	// api.GET("/students", handlerV1.ListStudents)
-
 	// Language
 	api.POST("/language", handlerV1.CreateLanguage)
 	api.PUT("/language", handlerV1.UpdateLanguage)
@@ -114,6 +107,18 @@ func New(option *Option) *gin.Engine {
 	api.DELETE("/lesson/:id", handlerV1.DeleteLesson)
 	api.GET("/lesson/:id", handlerV1.GetLesson)
 	api.GET("/lessons", handlerV1.ListLessons)
+
+	// Content
+	api.POST("/content", handlerV1.CreateContent)
+	api.PUT("/content", handlerV1.UpdateContent)
+	api.DELETE("/content/:id", handlerV1.DeleteContent)
+	api.GET("/content/:id", handlerV1.GetContent)
+	api.GET("/contents", handlerV1.ListContents)
+	
+	// ContentFile
+	api.POST("/contentfile", handlerV1.CreateContentFile)
+	api.DELETE("/contentfile/:id", handlerV1.DeleteContentFile)
+	api.GET("/contentfile/:id", handlerV1.GetContentFile)
 
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
