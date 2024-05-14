@@ -121,18 +121,20 @@ func (h *handlerV1) Login(ctx *gin.Context) {
 	// }
 
 	ctx.JSON(http.StatusOK, models.LoginResponse{
-		Id:        response.Id,
-		Name:      response.Name,
-		Username:  response.Username,
-		Bio:       response.Bio,
-		BirthDay:  response.BirthDay,
-		Email:     response.Email,
-		Avatar:    response.Avatar,
-		Coint:     response.Coint,
-		Score:     response.Score,
-		CreatedAt: response.CreatedAt,
-		Access:    accessToken,
-		Refresh:   refreshToken,
+		Id:         response.Id,
+		Name:       response.Name,
+		Username:   response.Username,
+		Bio:        response.Bio,
+		BirthDay:   response.BirthDay,
+		Email:      response.Email,
+		Avatar:     response.Avatar,
+		Coint:      response.Coint,
+		Score:      response.Score,
+		LanguageId: response.LanguageId,
+		LevelId:    response.LevelId,
+		CreatedAt:  response.CreatedAt,
+		Access:     accessToken,
+		Refresh:    refreshToken,
 	})
 }
 
@@ -344,6 +346,35 @@ func (h *handlerV1) Verify(ctx *gin.Context) {
 		Password:     hashPassword,
 		RefreshToken: refreshToken,
 	})
+
+	userLanguage, err := h.storage.UserLanguage().Create(ctxTime, &repo.UserLanguage{
+		UserId:     id.String(),
+		LanguageId: redisUser.Language,
+	})
+
+	if !userLanguage || err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: "Error while creating userLanguage",
+		})
+		log.Println("Error while creating userLanguage:", err.Error())
+		return
+	}
+
+	userLevel, err := h.storage.UserLevel().Create(ctxTime, &repo.UserLevel{
+		UserId:  id.String(),
+		LevelId: redisUser.Level,
+	})
+	
+	if !userLevel || err != nil {
+		fmt.Println("err:", err)
+		fmt.Println("tf:", userLevel)
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: "Error while creating userLevel",
+		})
+		log.Println("Error while creating userLevel:", err.Error())
+		return
+	}
+
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, models.Error{
 			Message: models.NotFoundMessage,
@@ -353,27 +384,210 @@ func (h *handlerV1) Verify(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, models.VerifyResponse{
-		Id:        user.Id,
-		Name:      user.Name,
-		Username:  user.Username,
-		Email:     user.Email,
-		Access:    accessToken,
-		Refresh:   refreshToken,
-		CreatedAt: user.CreatedAt,
+		Id:         user.Id,
+		Name:       user.Name,
+		Username:   user.Username,
+		Email:      user.Email,
+		LanguageId: redisUser.Language,
+		LevelId:    redisUser.Level,
+		Access:     accessToken,
+		Refresh:    refreshToken,
+		CreatedAt:  user.CreatedAt,
 	})
 }
 
-// // @Summary 	  Forgot Password
-// // @Description   This Api for set new password as forgot password
+// @Summary 	  Forgot Password
+// @Description   This Api for set new password as forgot password
+// @Tags 		  Register
+// @Accept 		  json
+// @Produce 	  json
+// @Param 		  reset body models.Forgot true "Forgot"
+// @Success 	  200 {object} models.AlertMessage
+// @Failure 	  500 {object} models.Error
+// @Router 		  /v1/forgot [POST]
+func (h *handlerV1) ForgotPassword(ctx *gin.Context) {
+	var (
+		body        models.Forgot
+		jspbMarshal protojson.MarshalOptions
+	)
+	jspbMarshal.UseProtoNames = true
+
+	err := ctx.ShouldBindJSON(&body)
+	if err != nil {
+		ctx.JSON(http.StatusBadRequest, gin.H{
+			"error": "Failed to bind json",
+		})
+		log.Println("Signup failed ShouldBindJSON: ", err.Error())
+		return
+	}
+
+	otp := email.GenerateCode(6)
+	if err := memory.Set(otp, &body); err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: models.InternalMessage,
+		})
+		log.Println("failed to set code to redisdb", err.Error())
+		return
+	}
+
+	// Generate deep link with OTP and email
+	deepLink := "http://localhost:8080/v1/resetpassword?otp=" + otp + "&email=" + body.Email
+
+	Data := models.ResetData{
+		DeepLink: deepLink,
+	}
+
+	err = email.SendEmailReset([]string{body.Email}, "Asrlan Forgot Password\n", *h.cfg, "./api/helper/email/forgot_password.html", Data)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: models.InternalMessage,
+		})
+		log.Println("failed to sending email", err.Error())
+		return
+	}
+
+	ctx.JSON(http.StatusOK, models.AlertMessage{
+		Message: "We sent otp code to your email. Check your email!",
+	})
+}
+
+// @Summary 	  Reset Password
+// @Description   This Api for login users
+// @Tags 		  Register
+// @Accept 		  json
+// @Produce 	  json
+// @Param         otp query string true "Otp"
+// @Param         email query string true "Email"
+// @Param         newpassword query string true "Email"
+// @Success 	  200 {object} models.LoginResponse
+// @Failure 	  400 {object} models.Error
+// @Failure 	  500 {object} models.Error
+// @Router 		  /v1/resetpassword [POST]
+func (h *handlerV1) ResetPassword(ctx *gin.Context) {
+	otp := ctx.Query("otp")
+	email := ctx.Query("email")
+	newpassword := ctx.Query("newpassword")
+
+	body := models.Reset{
+		Otp:         otp,
+		Email:       email,
+		Newpassword: newpassword,
+	}
+
+	err := body.ValidatePassword()
+	if err != nil {
+		ctx.JSON(http.StatusUnauthorized, "Incorrect password for validation password should have numbers and letters and must me longer than 8")
+		log.Println("Error Incorrect password for validation: ", err.Error())
+		return
+	}
+
+	getRedisReset, err := memory.Get(body.Otp)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: "while getting data from cashe",
+		})
+		log.Println("failed to set code to redisdb", err.Error())
+		return
+	}
+
+	var redisReset models.Reset
+	err = json.Unmarshal([]byte(getRedisReset), &redisReset)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: "Reset Unmarshaling error",
+		})
+		log.Println("Error Unmarshaling value to interface", err.Error())
+		return
+	}
+
+	if redisReset.Email != body.Email {
+		ctx.JSON(http.StatusNotAcceptable, models.Error{
+			Message: "your opt is expired",
+		})
+		log.Println("your opt is expired", err.Error())
+		return
+	}
+
+	hashPassowrd, err := hashing.HashPassword(body.Newpassword)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: models.InternalMessage,
+		})
+		log.Println("failed to hashing password", err.Error())
+		return
+	}
+
+	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: models.InternalMessage,
+		})
+		log.Println("failed to parse timeout", err.Error())
+		return
+	}
+
+	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
+	defer cancel()
+
+	response, err := h.storage.Login().ResetPassword(
+		ctxTime,
+		&repo.ResetPassword{
+			Otp:         body.Otp,
+			Email:       body.Email,
+			NewPassword: hashPassowrd,
+		})
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: models.NotUpdatedMessage,
+		})
+		log.Println("failed to hashing password", err.Error())
+		return
+	}
+
+	ctx.JSON(http.StatusOK, response)
+}
+
+// // @Summary 	  Reset Password
+// // @Description   This Api for login users
 // // @Tags 		  Register
 // // @Accept 		  json
 // // @Produce 	  json
-// // @Param         login path string true "Login"
-// // @Success 	  200 {object} models.Forgot
+// // @Param 		  reset body models.Reset true "Reset"
+// // @Success 	  200 {object} bool
+// // @Failure 	  400 {object} models.Error
 // // @Failure 	  500 {object} models.Error
-// // @Router 		  /v1/forgot/{login} [GET]
-// func (h *handlerV1) ForgotPassword(ctx *gin.Context) {
-// 	login := ctx.Param("login")
+// // @Router 		  /v1/resetpassword [POST]
+// func (h *handlerV1) ResetPassword(ctx *gin.Context) {
+// 	var (
+// 		body        models.Reset
+// 		jspbMarshal protojson.MarshalOptions
+// 	)
+// 	jspbMarshal.UseProtoNames = true
+
+// 	err := ctx.ShouldBindJSON(&body)
+// 	if err != nil {
+// 		ctx.JSON(http.StatusBadRequest, gin.H{
+// 			"error": "Failed to bind json",
+// 		})
+// 		log.Println("Signup failed ShouldBindJSON: ", err.Error())
+// 		return
+// 	}
+
+// 	err = body.ValidatePassword()
+// 	if err != nil {
+// 		ctx.JSON(http.StatusUnauthorized, "Incorrect password for validation password should have numbers and letters and must me longer than 8")
+// 		log.Println("Error Incorrect password for validation: ", err.Error())
+// 		return
+// 	}
+
+// 	hashPassowrd, err := hashing.HashPassword(body.Newpassword)
+// 	if err != nil {
+// 		ctx.JSON(http.StatusInternalServerError, models.Error{
+// 			Message: models.InternalMessage,
+// 		})
+// 		log.Println("failed to hashing password", err.Error())
+// 		return
+// 	}
 
 // 	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
 // 	if err != nil {
@@ -387,57 +601,21 @@ func (h *handlerV1) Verify(ctx *gin.Context) {
 // 	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
 // 	defer cancel()
 
-// 	id, role, err := h.storage.Login().GetUserByLogin(ctxTime, login)
-// 	if err != nil {
-// 		ctx.JSON(http.StatusBadRequest, models.Error{
-// 			Message: models.WrongLoginOrPassword,
+// 	_, err = h.storage.Login().ResetPassword(
+// 		ctxTime,
+// 		&repo.ResetPassword{
+// 			Otp:         body.Otp,
+// 			NewPassword: hashPassowrd,
 // 		})
-// 		log.Println("failed to finding user info by login", err.Error())
-// 		return
-// 	}
-
-// 	var response models.Forgot
-// 	if role == "student" {
-// 		student, err := h.storage.User().Get(ctxTime, id)
-// 		if err != nil {
-// 			ctx.JSON(http.StatusInternalServerError, models.Error{
-// 				Message: models.WrongInfoMessage,
-// 			})
-// 			log.Println("failed to get teacher by login", err.Error())
-// 			return
-// 		}
-// 		response.Email = student.Email
-// 		response.FirstName = student.FirstName
-// 		response.LastName = student.LastName
-// 	} else if role == "admin" {
-// 		response.Email = "admin_email"
-// 		response.FirstName = "Admin First Name"
-// 		response.LastName = "Admin Last Name"
-// 	}
-
-// 	otp := email.GenerateCode(6)
-// 	if err := memory.Set(otp, &response); err != nil {
-// 		ctx.JSON(http.StatusInternalServerError, models.Error{
-// 			Message: models.InternalMessage,
-// 		})
-// 		log.Println("failed to set code to redisdb", err.Error())
-// 		return
-// 	}
-
-// 	Data := models.EmailData{
-// 		Code: cast.ToString(otp),
-// 	}
-
-// 	err = email.SendEmail([]string{response.Email}, "gor Biolog UZ\n", *h.cfg, "./api/helper/email/forgot_password.html", Data)
 // 	if err != nil {
 // 		ctx.JSON(http.StatusInternalServerError, models.Error{
-// 			Message: models.InternalMessage,
+// 			Message: models.NotUpdatedMessage,
 // 		})
-// 		log.Println("failed to sending email", err.Error())
+// 		log.Println("failed to hashing password", err.Error())
 // 		return
 // 	}
 
-// 	ctx.JSON(http.StatusOK, response)
+// 	ctx.JSON(http.StatusOK, true)
 // }
 
 /*

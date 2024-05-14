@@ -61,8 +61,8 @@ func New(option *Option) *gin.Engine {
 	api.POST("/login", handlerV1.Login)
 	api.POST("/signup", handlerV1.Signup)
 	api.POST("/verify", handlerV1.Verify)
-	// api.GET("/forgot/:login", handlerV1.ForgotPassword)
-	// api.PUT("/update-password", handlerV1.UpdatePassword)
+	api.POST("/forgot", handlerV1.ForgotPassword)
+	api.POST("/resetpassword", handlerV1.ResetPassword)
 	// api.GET("/token/:refresh", handlerV1.Token)
 	// api.GET("/users/:login", handlerV1.GetInfo)
 
@@ -72,6 +72,14 @@ func New(option *Option) *gin.Engine {
 	api.POST("/soundupload", handlerV1.UploadSoundFile)
 	api.POST("/videoupload", handlerV1.UploadVideoFile)
 	router.Static("/media", "./media")
+
+	// Dashboard
+	api.GET("/dashboardresponse", handlerV1.GetDashboard)
+
+	// Activity
+	api.POST("/activity", handlerV1.CreateActivity)
+	api.GET("/activitys", handlerV1.GetAllGroupedByMonth)
+	api.GET("/activitysch", handlerV1.GetAllGroupedByChoice)
 
 	// Badge
 	api.POST("/badge", handlerV1.CreateBadge)
@@ -86,6 +94,7 @@ func New(option *Option) *gin.Engine {
 	api.DELETE("/language/:id", handlerV1.DeleteLanguage)
 	api.GET("/language/:id", handlerV1.GetLanguage)
 	api.GET("/languages", handlerV1.ListLanguages)
+	api.GET("/languagesforregister", handlerV1.LanguagesForRegister)
 
 	// Level
 	api.POST("/level", handlerV1.CreateLevel)

@@ -13,7 +13,7 @@ type (
 
 	TopicResponse struct {
 		Id        int64  `json:"id"`
-		Name      string `json:"lesson_name"`
+		Name      string `json:"topic_name"`
 		LevelId   int64  `json:"level_id"`
 		LevelName string `json:"level_name"`
 		CreatedAt string `json:"created_at"`

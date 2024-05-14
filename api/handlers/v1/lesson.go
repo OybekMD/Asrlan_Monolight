@@ -2,7 +2,6 @@ package v1
 
 import (
 	"asrlan-monolight/api/helper/parsing"
-	"asrlan-monolight/api/helper/utils"
 	"context"
 	"log"
 	"net/http"
@@ -215,8 +214,7 @@ func (h *handlerV1) GetLesson(ctx *gin.Context) {
 // @Tags          lessons
 // @Accept        json
 // @Produce       json
-// @Param         page query uint64 true "Page"
-// @Param         limit query uint64 true "Limit"
+// @Param         lesson_id query uint64 true "LessonId"
 // @Success 	  200 {object} []models.LessonResponse
 // @Failure		  400 {object} models.Error
 // @Failure		  401 {object} models.Error
@@ -224,16 +222,7 @@ func (h *handlerV1) GetLesson(ctx *gin.Context) {
 // @Failure       500 {object} models.Error
 // @Router        /v1/lessons [GET]
 func (h *handlerV1) ListLessons(ctx *gin.Context) {
-	queryParams := ctx.Request.URL.Query()
-
-	params, errStr := utils.ParseQueryParams(queryParams)
-	if errStr != nil {
-		ctx.JSON(http.StatusInternalServerError, &models.Error{
-			Message: models.NotFoundMessage,
-		})
-		log.Println("failed to parse query params json" + errStr[0])
-		return
-	}
+	lesson_id := ctx.Param("lesson_id")
 
 	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
 	if err != nil {
@@ -247,7 +236,7 @@ func (h *handlerV1) ListLessons(ctx *gin.Context) {
 	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
 	defer cancel()
 
-	lessons, count, err := h.storage.Lesson().GetAll(ctxTime, uint64(params.Page), uint64(params.Limit))
+	lessons, err := h.storage.Lesson().GetAll(ctxTime, lesson_id)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, &models.Error{
 			Message: models.NotFoundMessage,
@@ -263,6 +252,5 @@ func (h *handlerV1) ListLessons(ctx *gin.Context) {
 
 	ctx.JSON(http.StatusOK, models.LessonListResponse{
 		Lessons: lessons,
-		Count:  count,
 	})
 }

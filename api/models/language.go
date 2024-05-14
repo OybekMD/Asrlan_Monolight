@@ -25,6 +25,10 @@ type (
 		Count     int64 `json:"count"`
 	}
 
+	LanguageForRegisterResponse struct {
+		Languages []*repo.RegisterLanguage
+	}
+
 	LanguageUpdate struct {
 		Id        int64  `json:"id"`
 		Name      string `json:"name"`

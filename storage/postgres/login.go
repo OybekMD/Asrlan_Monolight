@@ -5,9 +5,11 @@ import (
 	"context"
 	"database/sql"
 	"errors"
+	"fmt"
 	"log"
 
 	"github.com/jmoiron/sqlx"
+	"github.com/k0kubun/pp/v3"
 )
 
 type loginRepo struct {
@@ -22,21 +24,28 @@ func NewLogin(db *sqlx.DB) repo.LoginStorageI {
 
 // This function checks who the login and password belong to
 func (l *loginRepo) Login(ctx context.Context, login string) (*repo.LoginResponse, error) {
+	fmt.Println(login)
 	query := `
 	SELECT
-		id, 
-		name, 
-		username,
-		bio, 
-		birth_day, 
-		email,
-		password,
-		avatar, 
-		coint,
-		score,
-		created_at
+		u.id, 
+		u.name, 
+		u.username,
+		u.bio, 
+		u.birth_day, 
+		u.email,
+		u.password,
+		u.avatar, 
+		u.coint,
+		u.score,
+		ul.id AS language_status,
+		lev.id AS level_status,
+		u.created_at
 	FROM
-		users
+		users u
+	LEFT JOIN
+		user_language ul ON u.id = ul.user_id AND ul.status = TRUE
+	LEFT JOIN
+		user_level lev ON u.id = lev.user_id AND lev.status = TRUE
 	WHERE
 		email = $1 OR
 		username = $1
@@ -57,9 +66,12 @@ func (l *loginRepo) Login(ctx context.Context, login string) (*repo.LoginRespons
 		&nullAvatar,
 		&responseUser.Coint,
 		&responseUser.Score,
+		&responseUser.LanguageId,
+		&responseUser.LevelId,
 		&responseUser.CreatedAt,
 	)
 	if err != nil {
+		fmt.Println("error 1:", err)
 		log.Println("Eror getting user in postgres method", err.Error())
 		return nil, err
 	}
@@ -72,6 +84,8 @@ func (l *loginRepo) Login(ctx context.Context, login string) (*repo.LoginRespons
 	if nullAvatar.Valid {
 		responseUser.Avatar = nullAvatar.String
 	}
+
+	fmt.Println("ketti:", responseUser)
 
 	return &responseUser, nil
 }
@@ -108,42 +122,58 @@ func (l *loginRepo) SavePassword(ctx context.Context, req *repo.LoginPassword) (
 	return &response, nil
 }
 
-func (l *loginRepo) UpdatePassword(ctx context.Context, req *repo.LoginPassword) (*repo.LoginPassword, error) {
+func (l *loginRepo) ResetPassword(ctx context.Context, req *repo.ResetPassword) (*repo.LoginResponse, error) {
+	pp.Println(req)
 	query := `
 	UPDATE
-		login_passwords
+		users
 	SET
 		password = $1,
 		updated_at = CURRENT_TIMESTAMP
 	WHERE
-		login = $2
+		email = $2
 	AND
 		deleted_at IS NULL
 	RETURNING
-		user_id,
-		role,
-		login,
-		password
+		id, 
+		name, 
+		username,
+		bio, 
+		birth_day, 
+		email,
+		password,
+		avatar, 
+		coint,
+		score,
+		created_at
 	`
 
-	var response repo.LoginPassword
+	var responseUser repo.LoginResponse
+	var nullBio, nullBirthDay, nullAvatar sql.NullString
 	err := l.db.QueryRowContext(
 		ctx,
 		query,
-		req.Password,
-		req.Login,
+		req.NewPassword,
+		req.Email,
 	).Scan(
-		&response.UserId,
-		&response.Role,
-		&response.Login,
-		&response.Password,
+		&responseUser.Id,
+		&responseUser.Name,
+		&responseUser.Username,
+		&nullBio,
+		&nullBirthDay,
+		&responseUser.Email,
+		&responseUser.Password,
+		&nullAvatar,
+		&responseUser.Coint,
+		&responseUser.Score,
+		&responseUser.CreatedAt,
 	)
 	if err != nil {
 		log.Println("Error updating password")
 		return nil, err
 	}
 
-	return &response, nil
+	return &responseUser, nil
 }
 
 // This function gets id and role of user by login

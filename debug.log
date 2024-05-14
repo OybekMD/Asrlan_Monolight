@@ -1,98 +1,514 @@
-2024/05/07 14:06:13 Email already use: offbek5@gmail.com
-2024/05/07 14:06:58 failed to set code to redisdb dial tcp 127.0.0.1:6379: connect: connection refused
-2024/05/07 14:38:47 failed to executing email body template: signup.html:77:63: executing "signup.html" at <.Name>: can't evaluate field Name in type models.EmailData
-2024/05/07 14:38:47 failed to sending email template: signup.html:77:63: executing "signup.html" at <.Name>: can't evaluate field Name in type models.EmailData
-2024/05/07 16:40:33 Error Incorrect password for validation:  password: the length must be between 8 and 30.
-2024/05/07 19:03:48 Error deleting admin pq: relation "admins" does not exist
-2024/05/07 19:03:48 Invalid login or password pq: relation "admins" does not exist
-2024/05/07 19:19:31 Nothing found, Admin
-2024/05/07 19:25:12 failed to check password in loing
-2024/05/07 19:25:48 failed to check password in loing
-2024/05/07 19:32:20 Nothing found, Admin
-2024/05/08 17:46:38 Eror creating badge in postgres method pq: got 5 parameters but the statement requires 4
-2024/05/08 17:46:38 failed to create user pq: got 5 parameters but the statement requires 4
-2024/05/08 17:46:47 Eror creating badge in postgres method pq: got 5 parameters but the statement requires 4
-2024/05/08 17:46:47 failed to create user pq: got 5 parameters but the statement requires 4
-2024/05/08 17:47:28 Eror creating badge in postgres method pq: invalid input syntax for type date: "extra"
-2024/05/08 17:47:28 failed to create user pq: invalid input syntax for type date: "extra"
-2024/05/08 17:47:29 Eror creating badge in postgres method pq: invalid input syntax for type date: "extra"
-2024/05/08 17:47:29 failed to create user pq: invalid input syntax for type date: "extra"
-2024/05/08 17:48:03 Eror creating badge in postgres method pq: invalid input syntax for type date: "month"
-2024/05/08 17:48:03 failed to create user pq: invalid input syntax for type date: "month"
-2024/05/08 17:48:49 Eror creating badge in postgres method pq: invalid input syntax for type date: "month"
-2024/05/08 17:48:49 failed to create user pq: invalid input syntax for type date: "month"
-2024/05/08 17:49:30 Eror creating badge in postgres method pq: invalid input syntax for type date: "month"
-2024/05/08 17:49:30 failed to create user pq: invalid input syntax for type date: "month"
-2024/05/08 17:49:37 Eror creating badge in postgres method pq: invalid input syntax for type date: "month"
-2024/05/08 17:49:37 failed to create user pq: invalid input syntax for type date: "month"
-2024/05/08 17:51:25 Eror creating badge in postgres method pq: invalid input syntax for type date: "month"
-2024/05/08 17:51:25 failed to create user pq: invalid input syntax for type date: "month"
-2024/05/08 17:53:12 Eror creating badge in postgres method pq: invalid input syntax for type date: "month"
-2024/05/08 17:53:12 failed to create user pq: invalid input syntax for type date: "month"
-2024/05/08 17:56:00 Eror creating badge in postgres method pq: invalid input syntax for type date: "month"
-2024/05/08 17:56:00 failed to create user pq: invalid input syntax for type date: "month"
-2024/05/08 17:57:20 Eror updating badge in postgres method pq: got 4 parameters but the statement requires 5
-2024/05/08 17:57:20 failed to update user pq: got 4 parameters but the statement requires 5
-2024/05/08 22:05:03 Error selecting languages with page and limit in postgres pq: syntax error at or near "SELECT"
-2024/05/08 22:05:03 failed to get all users pq: syntax error at or near "SELECT"
-2024/05/08 22:08:49 Error selecting languages with page and limit in postgres pq: syntax error at or near "SELECT"
-2024/05/08 22:08:49 failed to get all users pq: syntax error at or near "SELECT"
-2024/05/08 22:09:26 Error selecting languages with page and limit in postgres pq: column "language_name" does not exist
-2024/05/08 22:09:26 failed to get all users pq: column "language_name" does not exist
-2024/05/09 09:43:15 Eror getting language in postgres method sql: no rows in result set
-2024/05/09 09:43:15 failed to get language sql: no rows in result set
-2024/05/09 09:46:21 Eror creating level in postgres method pq: insert or update on table "levels" violates foreign key constraint "levels_language_id_fkey"
-2024/05/09 09:46:21 failed to create user pq: insert or update on table "levels" violates foreign key constraint "levels_language_id_fkey"
-2024/05/09 09:47:07 Eror creating level in postgres method pq: insert or update on table "levels" violates foreign key constraint "levels_language_id_fkey"
-2024/05/09 09:47:07 failed to create user pq: insert or update on table "levels" violates foreign key constraint "levels_language_id_fkey"
-2024/05/09 09:54:54 Error selecting levels with page and limit in postgres pq: syntax error at or near "."
-2024/05/09 09:54:54 failed to get all users pq: syntax error at or near "."
-2024/05/09 09:56:12 Error scanning level in getall level method of postgres sql: expected 7 destination arguments in Scan, not 6
-2024/05/09 09:56:12 failed to get all users sql: expected 7 destination arguments in Scan, not 6
-2024/05/09 09:56:13 Error scanning level in getall level method of postgres sql: expected 7 destination arguments in Scan, not 6
-2024/05/09 09:56:13 failed to get all users sql: expected 7 destination arguments in Scan, not 6
-2024/05/09 09:58:16 Eror getting level in postgres method pq: syntax error at or near "."
-2024/05/09 09:58:16 failed to get level pq: syntax error at or near "."
-2024/05/09 10:13:16 Eror getting level in postgres method pq: syntax error at or near "."
-2024/05/09 10:13:16 failed to get level pq: syntax error at or near "."
-2024/05/09 10:13:56 Eror getting level in postgres method pq: syntax error at or near "."
-2024/05/09 10:13:56 failed to get level pq: syntax error at or near "."
-2024/05/09 10:14:15 Eror getting level in postgres method pq: syntax error at or near "."
-2024/05/09 10:14:15 failed to get level pq: syntax error at or near "."
-2024/05/09 10:16:37 Error selecting topics with page and limit in postgres pq: syntax error at or near "LIMIT"
-2024/05/09 10:16:37 failed to get all users pq: syntax error at or near "LIMIT"
-2024/05/09 10:16:59 Error selecting topics with page and limit in postgres pq: relation "level" does not exist
-2024/05/09 10:16:59 failed to get all users pq: relation "level" does not exist
-2024/05/09 10:17:15 Error selecting topics with page and limit in postgres pq: column topics.language_id does not exist
-2024/05/09 10:17:15 failed to get all users pq: column topics.language_id does not exist
-2024/05/09 10:17:42 Error selecting topics with page and limit in postgres pq: column topics.language_id does not exist
-2024/05/09 10:17:42 failed to get all users pq: column topics.language_id does not exist
-2024/05/09 10:23:06 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:23:14 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:23:25 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:23:40 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:24:02 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:24:05 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:24:21 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:24:33 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:24:35 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:24:48 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:25:18 failed to run http server: listen tcp :8090: bind: address already in use
-2024/05/09 10:30:30 Nothing updated, User
-2024/05/09 10:30:31 Nothing updated, User
-2024/05/09 10:33:30 Eror getting topic in postgres method sql: no rows in result set
-2024/05/09 10:33:30 failed to get topic sql: no rows in result set
-2024/05/09 10:41:24 Error selecting lessons with page and limit in postgres pq: syntax error at or near "."
-2024/05/09 10:41:24 failed to get all users pq: syntax error at or near "."
-2024/05/09 10:41:40 Error selecting lessons with page and limit in postgres pq: syntax error at or near "AND"
-2024/05/09 10:41:40 failed to get all users pq: syntax error at or near "AND"
-2024/05/09 10:41:49 Error selecting lessons with page and limit in postgres pq: missing FROM-clause entry for table "languages"
-2024/05/09 10:41:49 failed to get all users pq: missing FROM-clause entry for table "languages"
-2024/05/09 10:43:38 Error selecting lessons with page and limit in postgres sql: converting argument $2 type: uint64 values with high bit set are not supported
-2024/05/09 10:43:38 failed to get all users sql: converting argument $2 type: uint64 values with high bit set are not supported
-2024/05/09 17:44:59 Error selecting lessons with page and limit in postgres pq: syntax error at or near "FROM"
-2024/05/09 17:44:59 failed to get all users pq: syntax error at or near "FROM"
-2024/05/09 17:46:29 Not found lessons
-2024/05/09 17:56:57 Not found lessons
-2024/05/09 18:01:05 Error selecting languages with page and limit in postgres pq: syntax error at or near "FROM"
-2024/05/09 18:01:05 failed to get all users pq: syntax error at or near "FROM"
+2024/05/10 19:05:44 Error updating password
+2024/05/10 19:05:44 failed to hashing password sql: no rows in result set
+2024/05/10 19:07:33 Error updating password
+2024/05/10 19:07:33 failed to hashing password sql: no rows in result set
+2024/05/10 19:13:24 failed to set code to redisdb redis: nil
+2024/05/10 19:15:16 Error Unmarshaling value to interface json: cannot unmarshal string into Go value of type models.Reset
+2024/05/10 19:16:55 failed to set code to redisdb redis: nil
+2024/05/10 20:15:33 Nothing found, Admin
+2024/05/10 21:21:20 failed to get all users invalid character ',' after object key
+2024/05/10 21:21:53 failed to get all users invalid character ',' after object key
+2024/05/10 21:21:54 failed to get all users invalid character ',' after object key
+2024/05/10 21:22:59 failed to get all users invalid character ',' after object key
+2024/05/10 21:23:32 failed to get all users invalid character ',' after object key
+2024/05/10 21:23:53 failed to get all users invalid character ',' after object key
+2024/05/10 21:26:26 failed to get all users pq: column "lesson_id" does not exist
+2024/05/10 21:26:56 failed to get all users invalid character ',' after object key
+2024/05/10 21:27:21 failed to get all users invalid character ',' after object key
+2024/05/10 21:28:13 failed to get all users invalid character ',' after object key
+2024/05/10 21:29:27 failed to get all users pq: column "lesson_id" does not exist
+2024/05/10 21:33:26 Not found activitys
+2024/05/10 22:03:30 failed to get all users pq: column "lesson_id" does not exist
+2024/05/10 22:04:00 failed to get all users sql: expected 3 destination arguments in Scan, not 2
+2024/05/10 22:05:14 failed to get all users sql: expected 3 destination arguments in Scan, not 2
+2024/05/10 22:07:23 failed to get all users pq: column "lesson_id" does not exist
+2024/05/10 22:08:44 failed to get all users sql: expected 3 destination arguments in Scan, not 2
+2024/05/10 22:09:10 failed to get all users pq: column "id" does not exist
+2024/05/10 22:09:30 failed to get all users sql: expected 3 destination arguments in Scan, not 2
+2024/05/10 22:09:32 failed to get all users sql: expected 3 destination arguments in Scan, not 2
+2024/05/11 15:26:59 failed to set code to redisdb dial tcp 127.0.0.1:6379: connect: connection refused
+2024/05/11 15:29:15 failed to set code to redisdb dial tcp 127.0.0.1:6379: connect: connection refused
+2024/05/11 15:37:21 failed to set code to redisdb dial tcp 127.0.0.1:6379: connect: connection refused
+2024/05/11 16:01:04 Nothing found, Admin
+2024/05/11 18:39:19 Nothing found, Admin
+2024/05/11 18:39:19 Nothing found, Admin
+2024/05/11 18:40:29 Nothing found, Admin
+2024/05/11 18:49:13 Nothing found, Admin
+2024/05/11 18:49:13 Nothing found, Admin
+2024/05/11 18:59:25 failed to set code to redisdb redis: nil
+2024/05/12 18:37:17 failed to run http server: listen tcp :8080: bind: address already in use
+2024/05/13 12:15:53 Eror getting user in postgres method pq: relation "user_language" does not exist
+2024/05/13 12:15:53 Invalid login or password pq: relation "user_language" does not exist
+2024/05/13 18:09:33 failed to run http server: listen tcp :8080: bind: address already in use
+2024/05/13 21:09:37 failed to run http server: listen tcp :8080: bind: address already in use
+2024/05/13 22:29:28 Not found levels
+2024/05/13 22:30:25 Not found levels
+2024/05/13 22:30:55 Not found levels
+2024/05/13 22:30:56 Not found levels
+2024/05/13 22:31:26 Not found levels
+2024/05/13 22:31:54 Not found levels
+2024/05/13 22:32:19 Not found levels
+2024/05/13 22:38:01 Error scanning count: sql: Scan error on column index 0, name "count": destination not a pointer
+2024/05/13 22:38:01 failed to get all users sql: Scan error on column index 0, name "count": destination not a pointer
+2024/05/13 22:38:53 Error scanning count: sql: Scan error on column index 0, name "count": destination not a pointer
+2024/05/13 22:38:53 failed to get all users sql: Scan error on column index 0, name "count": destination not a pointer
+2024/05/13 22:39:36 Error scanning count: sql: Scan error on column index 0, name "count": destination not a pointer
+2024/05/13 22:39:36 failed to get all users sql: Scan error on column index 0, name "count": destination not a pointer
+2024/05/13 22:41:37 Error scanning count: sql: Scan error on column index 0, name "count": destination not a pointer
+2024/05/13 22:41:37 failed to get all users sql: Scan error on column index 0, name "count": destination not a pointer
+2024/05/13 22:41:52 Error scanning count: pq: count(*) must be used to call a parameterless aggregate function
+2024/05/13 22:41:52 failed to get all users pq: count(*) must be used to call a parameterless aggregate function
+2024/05/13 22:42:05 Error scanning count: sql: Scan error on column index 0, name "count": destination not a pointer
+2024/05/13 22:42:05 failed to get all users sql: Scan error on column index 0, name "count": destination not a pointer
+2024/05/13 22:43:31 Error selecting levels with page and limit in postgres pq: syntax error at or near "("
+2024/05/13 22:43:31 failed to get all users pq: syntax error at or near "("
+2024/05/13 22:43:43 Error selecting levels with page and limit in postgres pq: column "levels.id" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/13 22:43:43 failed to get all users pq: column "levels.id" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/13 22:44:19 Error selecting levels with page and limit in postgres pq: column "levels.id" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/13 22:44:19 failed to get all users pq: column "levels.id" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/13 22:45:19 Error selecting levels with page and limit in postgres pq: syntax error at or near "FROM"
+2024/05/13 22:45:19 failed to get all users pq: syntax error at or near "FROM"
+2024/05/13 22:45:20 Error selecting levels with page and limit in postgres pq: syntax error at or near "FROM"
+2024/05/13 22:45:20 failed to get all users pq: syntax error at or near "FROM"
+2024/05/13 22:45:26 Error scanning level in getall level method of postgres sql: expected 8 destination arguments in Scan, not 9
+2024/05/13 22:45:26 failed to get all users sql: expected 8 destination arguments in Scan, not 9
+2024/05/13 22:47:56 failed to get all users pq: invalid reference to FROM-clause entry for table "levels"
+2024/05/14 10:46:25 Eror getting user in postgres method pq: missing FROM-clause entry for table "u"
+2024/05/14 10:46:25 Invalid login or password pq: missing FROM-clause entry for table "u"
+2024/05/14 10:51:29 failed to set code to redisdb redis: nil
+2024/05/14 10:54:33 failed to set code to redisdb redis: nil
+2024/05/14 10:55:28 Error Replasing statius from false to true userLanguage in postgres pq: syntax error at or near "WHERE"
+2024/05/14 10:55:28 Error while creating userLanguage: pq: syntax error at or near "WHERE"
+2024/05/14 10:57:08 Error Replasing statius from false to true userLanguage in postgres pq: syntax error at or near "WHERE"
+2024/05/14 10:57:08 Error while creating userLanguage: pq: syntax error at or near "WHERE"
+2024/05/14 10:57:45 Eror creating userLevel in postgres method pq: column "level_id" of relation "user_language" does not exist
+2024/05/14 10:57:45 Error while creating userLevel: pq: column "level_id" of relation "user_language" does not exist
+2024/05/14 10:57:52 Eror creating userLevel in postgres method pq: column "level_id" of relation "user_language" does not exist
+2024/05/14 10:57:52 Error while creating userLevel: pq: column "level_id" of relation "user_language" does not exist
+2024/05/14 11:02:59 Eror creating userLevel in postgres method pq: column "level_id" of relation "user_language" does not exist
+2024/05/14 11:02:59 Error while creating userLevel: pq: column "level_id" of relation "user_language" does not exist
+2024/05/14 11:05:03 failed to set code to redisdb redis: nil
+2024/05/14 11:06:08 Email already use: oybekatamatov799@gmail.com
+2024/05/14 11:07:37 Eror creating userLevel in postgres method pq: column "level_id" of relation "user_language" does not exist
+2024/05/14 11:07:37 Error while creating userLevel: pq: column "level_id" of relation "user_language" does not exist
+2024/05/14 11:10:14 failed to set code to redisdb redis: nil
+2024/05/14 11:10:18 Email already use: oybekatamatov799@gmail.com
+2024/05/14 11:10:43 Eror getting user in postgres method pq: missing FROM-clause entry for table "u"
+2024/05/14 11:10:43 Invalid login or password pq: missing FROM-clause entry for table "u"
+2024/05/14 11:11:06 Eror getting user in postgres method pq: missing FROM-clause entry for table "u"
+2024/05/14 11:11:06 Invalid login or password pq: missing FROM-clause entry for table "u"
+2024/05/14 11:14:15 Eror getting user in postgres method pq: missing FROM-clause entry for table "u"
+2024/05/14 11:14:15 Invalid login or password pq: missing FROM-clause entry for table "u"
+2024/05/14 11:16:28 Eror getting user in postgres method pq: missing FROM-clause entry for table "u"
+2024/05/14 11:16:28 Invalid login or password pq: missing FROM-clause entry for table "u"
+2024/05/14 11:19:00 Eror getting user in postgres method pq: missing FROM-clause entry for table "u"
+2024/05/14 11:19:00 Invalid login or password pq: missing FROM-clause entry for table "u"
+2024/05/14 11:19:28 Eror getting user in postgres method pq: missing FROM-clause entry for table "u"
+2024/05/14 11:19:28 Invalid login or password pq: missing FROM-clause entry for table "u"
+2024/05/14 11:20:15 Eror getting user in postgres method pq: missing FROM-clause entry for table "u"
+2024/05/14 11:20:15 Invalid login or password pq: missing FROM-clause entry for table "u"
+2024/05/14 11:20:21 Eror getting user in postgres method pq: missing FROM-clause entry for table "u"
+2024/05/14 11:20:21 Invalid login or password pq: missing FROM-clause entry for table "u"
+2024/05/14 11:20:34 Eror getting user in postgres method pq: operator does not exist: integer = uuid
+2024/05/14 11:20:34 Invalid login or password pq: operator does not exist: integer = uuid
+2024/05/14 11:22:05 Eror getting user in postgres method pq: operator does not exist: integer = uuid
+2024/05/14 11:22:05 Invalid login or password pq: operator does not exist: integer = uuid
+2024/05/14 11:22:13 Eror getting user in postgres method pq: operator does not exist: integer = uuid
+2024/05/14 11:22:13 Invalid login or password pq: operator does not exist: integer = uuid
+2024/05/14 11:22:39 Eror getting user in postgres method pq: operator does not exist: integer = uuid
+2024/05/14 11:22:39 Invalid login or password pq: operator does not exist: integer = uuid
+2024/05/14 11:24:12 Eror getting user in postgres method sql: expected 13 destination arguments in Scan, not 14
+2024/05/14 11:24:12 Invalid login or password sql: expected 13 destination arguments in Scan, not 14
+2024/05/14 11:24:40 Eror getting user in postgres method sql: Scan error on column index 11, name "level_status": converting NULL to int64 is unsupported
+2024/05/14 11:24:40 Invalid login or password sql: Scan error on column index 11, name "level_status": converting NULL to int64 is unsupported
+2024/05/14 11:25:41 Nothing found, Admin
+2024/05/14 11:29:28 Nothing found, Admin
+2024/05/14 17:38:40 failed to run http server: listen tcp :8080: bind: address already in use
+2024/05/14 17:45:24 Nothing found, Admin
+2024/05/14 18:04:10 Error selecting badges with page and limit in postgres pq: table name "t" specified more than once
+2024/05/14 18:04:10 failed to get all users pq: table name "t" specified more than once
+2024/05/14 18:18:57 Error selecting badges with page and limit in postgres pq: column ut.level_id does not exist
+2024/05/14 18:18:57 failed to get all users pq: column ut.level_id does not exist
+2024/05/14 18:19:49 Error selecting badges with page and limit in postgres pq: column ut.level_id does not exist
+2024/05/14 18:19:49 failed to get all users pq: column ut.level_id does not exist
+2024/05/14 18:23:13 Error selecting badges with page and limit in postgres pq: got 2 parameters but the statement requires 3
+2024/05/14 18:23:13 failed to get all users pq: got 2 parameters but the statement requires 3
+2024/05/14 19:30:33 Error selecting badges with page and limit in postgres pq: missing FROM-clause entry for table "ut"
+2024/05/14 19:30:33 failed to get all users pq: missing FROM-clause entry for table "ut"
+2024/05/14 19:30:51 Error scanning Topic rows: sql: expected 2 destination arguments in Scan, not 3
+2024/05/14 19:30:51 Error scanning Topic rows: sql: expected 2 destination arguments in Scan, not 3
+2024/05/14 19:30:51 Error scanning Topic rows: sql: expected 2 destination arguments in Scan, not 3
+2024/05/14 19:30:51 Error scanning Topic rows: sql: expected 2 destination arguments in Scan, not 3
+2024/05/14 19:30:51 Error scanning Topic rows: sql: expected 2 destination arguments in Scan, not 3
+2024/05/14 19:30:51 Error scanning Topic rows: sql: expected 2 destination arguments in Scan, not 3
+2024/05/14 19:30:51 Error scanning Topic rows: sql: expected 2 destination arguments in Scan, not 3
+2024/05/14 19:30:51 Error scanning Topic rows: sql: expected 2 destination arguments in Scan, not 3
+2024/05/14 19:31:17 Error selecting badges with page and limit in postgres pq: table name "t" specified more than once
+2024/05/14 19:31:17 failed to get all users pq: table name "t" specified more than once
+2024/05/14 19:33:08 Error selecting badges with page and limit in postgres pq: missing FROM-clause entry for table "t"
+2024/05/14 19:33:08 failed to get all users pq: missing FROM-clause entry for table "t"
+2024/05/14 19:33:20 Error selecting badges with page and limit in postgres pq: missing FROM-clause entry for table "t"
+2024/05/14 19:33:20 failed to get all users pq: missing FROM-clause entry for table "t"
+2024/05/14 19:33:42 Error selecting badges with page and limit in postgres pq: missing FROM-clause entry for table "t"
+2024/05/14 19:33:42 failed to get all users pq: missing FROM-clause entry for table "t"
+2024/05/14 19:41:06 Error selecting badges with page and limit in postgres pq: syntax error at or near "FROM"
+2024/05/14 19:41:06 failed to get all users pq: syntax error at or near "FROM"
+2024/05/14 19:41:21 Error selecting badges with page and limit in postgres pq: operator does not exist: integer = uuid
+2024/05/14 19:41:21 failed to get all users pq: operator does not exist: integer = uuid
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:40 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:03:58 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:04:27 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:05:46 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:41 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:06:48 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer
+2024/05/14 20:07:26 Error scanning Topic rows: sql: Scan error on column index 2, name "score": destination not a pointer

@@ -15,6 +15,179 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/v1/activity": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This Api for creating a new activity",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "activitys"
+                ],
+                "summary": "Create Activity",
+                "parameters": [
+                    {
+                        "description": "ActivityCreate Model",
+                        "name": "ActivityCreate",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.ActivityCreate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/models.ActivityResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/activitys": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This Api for get all activitys",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "activitys"
+                ],
+                "summary": "ListActivitys",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.ActivityListResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/activitysch": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This Api for get all activitys",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "activitys"
+                ],
+                "summary": "GetAllGroupedByChoice",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.ActivityListResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/badge": {
             "put": {
                 "security": [
@@ -785,6 +958,121 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/dashboardresponse": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This Api for get all Dashboard",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "ListDashboards",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Otp",
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "language_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "level_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.DashboardResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/forgot": {
+            "post": {
+                "description": "This Api for set new password as forgot password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Forgot Password",
+                "parameters": [
+                    {
+                        "description": "Forgot",
+                        "name": "reset",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Forgot"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.AlertMessage"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/imageupload": {
             "post": {
                 "security": [
@@ -1137,6 +1425,58 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/languagesforregister": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This Api for get all languages",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "languages"
+                ],
+                "summary": "ListLanguages",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.LanguageForRegisterResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/lesson": {
             "put": {
                 "security": [
@@ -1390,15 +1730,8 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "Page",
-                        "name": "page",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Limit",
-                        "name": "limit",
+                        "description": "LessonId",
+                        "name": "lesson_id",
                         "in": "query",
                         "required": true
                     }
@@ -1833,6 +2166,64 @@ const docTemplate = `{
                         "description": "Not Found",
                         "schema": {
                             "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/resetpassword": {
+            "post": {
+                "description": "This Api for login users",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Reset Password",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Otp",
+                        "name": "otp",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "email",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "newpassword",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.LoginResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
                         }
                     }
                 }
@@ -2803,6 +3194,54 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "models.ActivityCreate": {
+            "type": "object",
+            "properties": {
+                "day": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lesson_id": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ActivityListResponse": {
+            "type": "object",
+            "properties": {
+                "activitys": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/repo.Activity"
+                        }
+                    }
+                }
+            }
+        },
+        "models.ActivityResponse": {
+            "type": "object",
+            "properties": {
+                "day": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lesson_id": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
         "models.AlertMessage": {
             "type": "object",
             "properties": {
@@ -3016,10 +3455,29 @@ const docTemplate = `{
                 }
             }
         },
+        "models.DashboardResponse": {
+            "type": "object",
+            "properties": {
+                "topics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Topics"
+                    }
+                }
+            }
+        },
         "models.Error": {
             "type": "object",
             "properties": {
                 "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Forgot": {
+            "type": "object",
+            "properties": {
+                "email": {
                     "type": "string"
                 }
             }
@@ -3032,6 +3490,17 @@ const docTemplate = `{
                 },
                 "picture": {
                     "type": "string"
+                }
+            }
+        },
+        "models.LanguageForRegisterResponse": {
+            "type": "object",
+            "properties": {
+                "languages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repo.RegisterLanguage"
+                    }
                 }
             }
         },
@@ -3108,6 +3577,20 @@ const docTemplate = `{
                 },
                 "lesson_name": {
                     "type": "string"
+                }
+            }
+        },
+        "models.Lessons": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "lesson_name": {
+                    "type": "string"
+                },
+                "score": {
+                    "type": "integer"
                 }
             }
         },
@@ -3191,6 +3674,12 @@ const docTemplate = `{
                 "id": {
                     "type": "string"
                 },
+                "language_id": {
+                    "type": "integer"
+                },
+                "level_id": {
+                    "type": "integer"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -3210,6 +3699,12 @@ const docTemplate = `{
             "properties": {
                 "email": {
                     "type": "string"
+                },
+                "language": {
+                    "type": "integer"
+                },
+                "level": {
+                    "type": "integer"
                 },
                 "name": {
                     "type": "string"
@@ -3407,13 +3902,13 @@ const docTemplate = `{
                 "id": {
                     "type": "integer"
                 },
-                "lesson_name": {
-                    "type": "string"
-                },
                 "level_id": {
                     "type": "integer"
                 },
                 "level_name": {
+                    "type": "string"
+                },
+                "topic_name": {
                     "type": "string"
                 },
                 "updated_at": {
@@ -3425,6 +3920,26 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "id": {
+                    "type": "integer"
+                },
+                "topic_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Topics": {
+            "type": "object",
+            "properties": {
+                "lessons": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Lessons"
+                    }
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "topic_id": {
                     "type": "integer"
                 },
                 "topic_name": {
@@ -3529,6 +4044,26 @@ const docTemplate = `{
                 }
             }
         },
+        "repo.Activity": {
+            "type": "object",
+            "properties": {
+                "day": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "lesson_id": {
+                    "type": "integer"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
         "repo.ContentFile": {
             "type": "object",
             "properties": {
@@ -3552,6 +4087,23 @@ const docTemplate = `{
                 },
                 "video_data": {
                     "type": "string"
+                }
+            }
+        },
+        "repo.RegisterLanguage": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "picture": {
+                    "type": "string"
+                },
+                "user_count": {
+                    "type": "integer"
                 }
             }
         }

@@ -16,5 +16,5 @@ type LessonStorageI interface {
 	Update(ctx context.Context, badge *Lesson) (*Lesson, error)
 	Delete(ctx context.Context, id string) (bool, error)
 	Get(ctx context.Context, id string) (*Lesson, error)
-	GetAll(ctx context.Context, page, limit uint64) ([]*Lesson, int64, error)
+	GetAll(ctx context.Context, lesson_id string) ([]*Lesson, error)
 }

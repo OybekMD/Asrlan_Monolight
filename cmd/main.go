@@ -64,7 +64,7 @@ func main() {
 		Storage:  str,
 		Enforcer: casbinEnforcer,
 	})
-
+	fmt.Println("Server runned", cfg.HttpPort)
 	err = apiServer.Run(cfg.HttpPort)
 	if err != nil {
 		log.Fatalf("failed to run http server: %v", err)

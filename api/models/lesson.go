@@ -22,7 +22,6 @@ type (
 
 	LessonListResponse struct {
 		Lessons []*repo.Lesson
-		Count   int64 `json:"count"`
 	}
 
 	LessonUpdate struct {

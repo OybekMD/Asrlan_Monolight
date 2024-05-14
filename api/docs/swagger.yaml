@@ -1,4 +1,35 @@
 definitions:
+  models.ActivityCreate:
+    properties:
+      day:
+        type: string
+      id:
+        type: integer
+      lesson_id:
+        type: integer
+      user_id:
+        type: string
+    type: object
+  models.ActivityListResponse:
+    properties:
+      activitys:
+        additionalProperties:
+          items:
+            $ref: '#/definitions/repo.Activity'
+          type: array
+        type: object
+    type: object
+  models.ActivityResponse:
+    properties:
+      day:
+        type: string
+      id:
+        type: integer
+      lesson_id:
+        type: integer
+      user_id:
+        type: string
+    type: object
   models.AlertMessage:
     properties:
       message:
@@ -138,9 +169,21 @@ definitions:
       title:
         type: string
     type: object
+  models.DashboardResponse:
+    properties:
+      topics:
+        items:
+          $ref: '#/definitions/models.Topics'
+        type: array
+    type: object
   models.Error:
     properties:
       message:
+        type: string
+    type: object
+  models.Forgot:
+    properties:
+      email:
         type: string
     type: object
   models.LanguageCreate:
@@ -149,6 +192,13 @@ definitions:
         type: string
       picture:
         type: string
+    type: object
+  models.LanguageForRegisterResponse:
+    properties:
+      languages:
+        items:
+          $ref: '#/definitions/repo.RegisterLanguage'
+        type: array
     type: object
   models.LanguageResponse:
     properties:
@@ -198,6 +248,15 @@ definitions:
         type: integer
       lesson_name:
         type: string
+    type: object
+  models.Lessons:
+    properties:
+      id:
+        type: integer
+      lesson_name:
+        type: string
+      score:
+        type: integer
     type: object
   models.LevelCreate:
     properties:
@@ -251,6 +310,10 @@ definitions:
         type: string
       id:
         type: string
+      language_id:
+        type: integer
+      level_id:
+        type: integer
       name:
         type: string
       refresh_token:
@@ -264,6 +327,10 @@ definitions:
     properties:
       email:
         type: string
+      language:
+        type: integer
+      level:
+        type: integer
       name:
         type: string
       password:
@@ -393,11 +460,11 @@ definitions:
         type: string
       id:
         type: integer
-      lesson_name:
-        type: string
       level_id:
         type: integer
       level_name:
+        type: string
+      topic_name:
         type: string
       updated_at:
         type: string
@@ -405,6 +472,19 @@ definitions:
   models.TopicUpdate:
     properties:
       id:
+        type: integer
+      topic_name:
+        type: string
+    type: object
+  models.Topics:
+    properties:
+      lessons:
+        items:
+          $ref: '#/definitions/models.Lessons'
+        type: array
+      score:
+        type: integer
+      topic_id:
         type: integer
       topic_name:
         type: string
@@ -472,6 +552,19 @@ definitions:
       otp:
         type: string
     type: object
+  repo.Activity:
+    properties:
+      day:
+        type: string
+      id:
+        type: integer
+      lesson_id:
+        type: integer
+      score:
+        type: integer
+      user_id:
+        type: string
+    type: object
   repo.ContentFile:
     properties:
       content_id:
@@ -489,10 +582,131 @@ definitions:
       video_data:
         type: string
     type: object
+  repo.RegisterLanguage:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      picture:
+        type: string
+      user_count:
+        type: integer
+    type: object
 info:
   contact: {}
   title: Asrlan-Monolithic
 paths:
+  /v1/activity:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new activity
+      parameters:
+      - description: ActivityCreate Model
+        in: body
+        name: ActivityCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.ActivityCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.ActivityResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create Activity
+      tags:
+      - activitys
+  /v1/activitys:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all activitys
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.ActivityListResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListActivitys
+      tags:
+      - activitys
+  /v1/activitysch:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all activitys
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.ActivityListResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: GetAllGroupedByChoice
+      tags:
+      - activitys
   /v1/badge:
     post:
       consumes:
@@ -985,6 +1199,81 @@ paths:
       summary: ListContents
       tags:
       - contents
+  /v1/dashboardresponse:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all Dashboard
+      parameters:
+      - description: Otp
+        in: query
+        name: user_id
+        required: true
+        type: string
+      - description: Email
+        in: query
+        name: language_id
+        required: true
+        type: string
+      - description: Email
+        in: query
+        name: level_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DashboardResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListDashboards
+      tags:
+      - Dashboard
+  /v1/forgot:
+    post:
+      consumes:
+      - application/json
+      description: This Api for set new password as forgot password
+      parameters:
+      - description: Forgot
+        in: body
+        name: reset
+        required: true
+        schema:
+          $ref: '#/definitions/models.Forgot'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.AlertMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Forgot Password
+      tags:
+      - Register
   /v1/imageupload:
     post:
       consumes:
@@ -1210,6 +1499,39 @@ paths:
       summary: ListLanguages
       tags:
       - languages
+  /v1/languagesforregister:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all languages
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LanguageForRegisterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListLanguages
+      tags:
+      - languages
   /v1/lesson:
     post:
       consumes:
@@ -1364,14 +1686,9 @@ paths:
       - application/json
       description: This Api for get all lessons
       parameters:
-      - description: Page
+      - description: LessonId
         in: query
-        name: page
-        required: true
-        type: integer
-      - description: Limit
-        in: query
-        name: limit
+        name: lesson_id
         required: true
         type: integer
       produces:
@@ -1659,6 +1976,45 @@ paths:
       summary: File upload
       tags:
       - file-upload
+  /v1/resetpassword:
+    post:
+      consumes:
+      - application/json
+      description: This Api for login users
+      parameters:
+      - description: Otp
+        in: query
+        name: otp
+        required: true
+        type: string
+      - description: Email
+        in: query
+        name: email
+        required: true
+        type: string
+      - description: Email
+        in: query
+        name: newpassword
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LoginResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      summary: Reset Password
+      tags:
+      - Register
   /v1/signup:
     post:
       consumes:

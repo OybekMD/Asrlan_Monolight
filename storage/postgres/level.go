@@ -25,9 +25,11 @@ func (s *levelRepo) Create(ctx context.Context, level *repo.Level) (*repo.Level,
 	query := `
 	INSERT INTO levels(
 		name,
+		real_level,
+		picture,
 		language_id
 	)
-	VALUES ($1, $2) 
+	VALUES ($1, $2, $3, $4) 
 	RETURNING 
 		id,
 		created_at`
@@ -36,6 +38,8 @@ func (s *levelRepo) Create(ctx context.Context, level *repo.Level) (*repo.Level,
 		ctx,
 		query,
 		level.Name,
+		level.RealLevel,
+		level.Picture,
 		level.LanguageId).Scan(&level.Id, &level.CreatedAt)
 	if err != nil {
 		log.Println("Eror creating level in postgres method", err.Error())
@@ -52,9 +56,11 @@ func (s *levelRepo) Update(ctx context.Context, newLevel *repo.Level) (*repo.Lev
 		levels
 	SET
 		name=$1,
+		real_level=$2,
+		picture=$3,
 		updated_at=CURRENT_TIMESTAMP
 	WHERE
-		id=$2
+		id=$4
 	AND deleted_at IS NULL
 	RETURNING
 		language_id,
@@ -65,6 +71,8 @@ func (s *levelRepo) Update(ctx context.Context, newLevel *repo.Level) (*repo.Lev
 		ctx,
 		query,
 		newLevel.Name,
+		newLevel.RealLevel,
+		newLevel.Picture,
 		newLevel.Id,
 	).Scan(&newLevel.LanguageId, &newLevel.CreatedAt, &newLevel.UpdatedAt)
 	if err != nil {
@@ -99,6 +107,8 @@ func (s *levelRepo) Get(ctx context.Context, id string) (*repo.Level, error) {
 	SELECT 
 		levels.id,
     	levels.name,
+    	levels.real_level,
+    	levels.picture,
     	languages.id,
     	languages.name,
 		levels.created_at,
@@ -116,6 +126,8 @@ func (s *levelRepo) Get(ctx context.Context, id string) (*repo.Level, error) {
 	err := s.db.QueryRowContext(ctx, query, id).Scan(
 		&responseLevel.Id,
 		&responseLevel.Name,
+		&responseLevel.RealLevel,
+		&responseLevel.Picture,
 		&responseLevel.LanguageId,
 		&responseLevel.LanguageName,
 		&responseLevel.CreatedAt,
@@ -131,10 +143,26 @@ func (s *levelRepo) Get(ctx context.Context, id string) (*repo.Level, error) {
 
 // This function get all level with page and limit posgtres
 func (s *levelRepo) GetAll(ctx context.Context, page, limit uint64) ([]*repo.Level, int64, error) {
+	queryss := `
+		SELECT COUNT(l.id)
+		FROM levels l
+		JOIN 
+		languages ON l.language_id = languages.id
+		WHERE l.deleted_at IS NULL
+	`
+
+	var count int
+	err := s.db.QueryRow(queryss).Scan(&count)
+	if err != nil {
+		return nil, 0, err
+	}
+
 	query := `
 	SELECT 
 		levels.id,
 		levels.name,
+		levels.real_level,
+    	levels.picture,
 		languages.id,
 		languages.name,
 		levels.created_at,
@@ -164,6 +192,8 @@ func (s *levelRepo) GetAll(ctx context.Context, page, limit uint64) ([]*repo.Lev
 		err = rows.Scan(
 			&level.Id,
 			&level.Name,
+			&level.RealLevel,
+			&level.Picture,
 			&level.LanguageId,
 			&level.LanguageName,
 			&level.CreatedAt,
@@ -177,7 +207,7 @@ func (s *levelRepo) GetAll(ctx context.Context, page, limit uint64) ([]*repo.Lev
 		responseLevels = append(responseLevels, &level)
 	}
 
-	count := len(responseLevels)
+	// count := len(responseLevels)
 
 	return responseLevels, int64(count), nil
 }

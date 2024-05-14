@@ -145,7 +145,7 @@ func (s *lessonRepo) Get(ctx context.Context, id string) (*repo.Lesson, error) {
 }
 
 // This function get all lesson with page and limit posgtres
-func (s *lessonRepo) GetAll(ctx context.Context, page, limit uint64) ([]*repo.Lesson, int64, error) {
+func (s *lessonRepo) GetAll(ctx context.Context, lesson_id string) ([]*repo.Lesson, error) {
 	query := `
 	SELECT 
 		lessons.id,
@@ -163,19 +163,17 @@ func (s *lessonRepo) GetAll(ctx context.Context, page, limit uint64) ([]*repo.Le
 	JOIN
 		languages ON levels.language_id = languages.id
 	WHERE
-		lessons.deleted_at IS NULL
+		topic_id = $1
+		AND lessons.deleted_at IS NULL
 		AND	topics.deleted_at IS NULL
 		AND levels.deleted_at IS NULL
 		AND languages.deleted_at IS NULL
-	LIMIT $1
-	OFFSET $2
 	`
 
-	offset := limit * (page - 1)
-	rows, err := s.db.QueryContext(ctx, query, limit, offset)
+	rows, err := s.db.QueryContext(ctx, query, lesson_id)
 	if err != nil {
 		log.Println("Error selecting lessons with page and limit in postgres", err.Error())
-		return nil, 0, err
+		return nil, err
 	}
 	defer rows.Close()
 
@@ -192,12 +190,11 @@ func (s *lessonRepo) GetAll(ctx context.Context, page, limit uint64) ([]*repo.Le
 		)
 		if err != nil {
 			log.Println("Error scanning lesson in getall lesson method of postgres", err.Error())
-			return nil, 0, err
+			return nil, err
 		}
 
 		responseLessons = append(responseLessons, &lesson)
 	}
-	count := len(responseLessons)
 
-	return responseLessons, int64(count), nil
+	return responseLessons, nil
 }

@@ -1,0 +1,16 @@
+asrlan.jprq.app/media/mdata/levels/beginner.png
+asrlan.jprq.app/media/mdata/levels/elementary.png
+asrlan.jprq.app/media/mdata/levels/preintermidiet.png
+
+
+INSERT INTO user_lesson (score, user_id, lesson_id)
+VALUES
+    (85, '423e4567-e89b-12d3-a456-426614174004', 1),
+    (92, '423e4567-e89b-12d3-a456-426614174004', 2),
+    (78, '423e4567-e89b-12d3-a456-426614174004', 3),
+    (95, '423e4567-e89b-12d3-a456-426614174004', 4),
+    (88, '423e4567-e89b-12d3-a456-426614174004', 5),
+    (70, '423e4567-e89b-12d3-a456-426614174004', 6),
+    (75, '423e4567-e89b-12d3-a456-426614174004', 7),
+    (82, '423e4567-e89b-12d3-a456-426614174004', 8),
+    (90, '423e4567-e89b-12d3-a456-426614174004', 9);

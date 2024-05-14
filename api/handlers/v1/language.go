@@ -268,3 +268,47 @@ func (h *handlerV1) ListLanguages(ctx *gin.Context) {
 		Count:     count,
 	})
 }
+
+// @Security      BearerAuth
+// @Summary       ListLanguages
+// @Description   This Api for get all languages
+// @Tags          languages
+// @Accept        json
+// @Produce       json
+// @Success 	  200 {object} models.LanguageForRegisterResponse
+// @Failure		  400 {object} models.Error
+// @Failure		  401 {object} models.Error
+// @Failure		  403 {object} models.Error
+// @Failure       500 {object} models.Error
+// @Router        /v1/languagesforregister [GET]
+func (h *handlerV1) LanguagesForRegister(ctx *gin.Context) {
+	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: models.InternalMessage,
+		})
+		log.Println("failed to parse timeout", err.Error())
+		return
+	}
+
+	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
+	defer cancel()
+
+	languages, err := h.storage.Language().GetAllForRegister(ctxTime)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, &models.Error{
+			Message: models.NotFoundMessage,
+		})
+		log.Println("failed to get all users", err.Error())
+		return
+	}
+	if len(languages) == 0 {
+		ctx.JSON(http.StatusOK, nil)
+		log.Println("Not found languages")
+		return
+	}
+
+	ctx.JSON(http.StatusOK, models.LanguageForRegisterResponse{
+		Languages: languages,
+	})
+}

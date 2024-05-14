@@ -5,6 +5,8 @@ import "context"
 type Level struct {
 	Id           int64  `json:"id"`
 	Name         string `json:"name"`
+	RealLevel    int64  `json:"real_level"`
+	Picture      string `json:"picture"`
 	LanguageId   int64  `json:"language_id"`
 	LanguageName string `json:"language_name"`
 	CreatedAt    string `json:"created_at"`

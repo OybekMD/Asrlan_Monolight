@@ -169,3 +169,46 @@ func (s *languageRepo) GetAll(ctx context.Context, page, limit uint64) ([]*repo.
 
 	return responseLanguages, int64(count), nil
 }
+
+func (s *languageRepo) GetAllForRegister(ctx context.Context) ([]*repo.RegisterLanguage, error) {
+	query := `
+	SELECT
+		l.id,
+		l.name,
+		l.picture,
+		COUNT(ul.id) AS learned_users_count
+	FROM
+		languages l
+	LEFT JOIN
+		user_language ul ON l.id = ul.language_id
+	WHERE
+		l.deleted_at IS NULL
+	GROUP BY
+		l.id
+	`
+	rows, err := s.db.QueryContext(ctx, query)
+	if err != nil {
+		log.Println("Error selecting languages with page and limit in postgres", err.Error())
+		return nil, err
+	}
+	defer rows.Close()
+
+	var responseLanguages []*repo.RegisterLanguage
+	for rows.Next() {
+		var language repo.RegisterLanguage
+		err = rows.Scan(
+			&language.Id,
+			&language.Name,
+			&language.Picture,
+			&language.UserCount,
+		)
+		if err != nil {
+			log.Println("Error scanning language in getall language method of postgres", err.Error())
+			return nil, err
+		}
+
+		responseLanguages = append(responseLanguages, &language)
+	}
+
+	return responseLanguages, nil
+}

@@ -14,6 +14,7 @@ type StorageI interface {
 	Social() repo.SocialStorageI
 	Badge() repo.BadgeStorageI
 	UserBadge() repo.UserBadgeStorageI
+	Activity() repo.ActivityStorageI
 	// Couser
 	Language() repo.LanguageStorageI
 	Level() repo.LevelStorageI
@@ -21,37 +22,48 @@ type StorageI interface {
 	Lesson() repo.LessonStorageI
 	Content() repo.ContentStorageI
 	ContentFile() repo.ContentFileStorageI
+	Dashboard() repo.DashboardStorageI
+	UserLanguage() repo.UserLanguageStorageI
+	UserLevel() repo.UserLevelStorageI
 }
 
 type storagePg struct {
-	loginRepo       repo.LoginStorageI
-	userRepo        repo.UserStorageI
-	adminRepo       repo.AdminStorageI
-	socialRepo      repo.SocialStorageI
-	badgeRepo       repo.BadgeStorageI
-	userBadgeRepo   repo.UserBadgeStorageI
-	languageRepo    repo.LanguageStorageI
-	levelRepo       repo.LevelStorageI
-	topicRepo       repo.TopicStorageI
-	lessonRepo      repo.LessonStorageI
-	contentRepo     repo.ContentStorageI
-	contentFileRepo repo.ContentFileStorageI
+	loginRepo        repo.LoginStorageI
+	userRepo         repo.UserStorageI
+	adminRepo        repo.AdminStorageI
+	socialRepo       repo.SocialStorageI
+	badgeRepo        repo.BadgeStorageI
+	userBadgeRepo    repo.UserBadgeStorageI
+	activityRepo     repo.ActivityStorageI
+	languageRepo     repo.LanguageStorageI
+	levelRepo        repo.LevelStorageI
+	topicRepo        repo.TopicStorageI
+	lessonRepo       repo.LessonStorageI
+	contentRepo      repo.ContentStorageI
+	contentFileRepo  repo.ContentFileStorageI
+	dashboardRepo    repo.DashboardStorageI
+	userLanguageRepo repo.UserLanguageStorageI
+	userLevelRepo    repo.UserLevelStorageI
 }
 
 func NewStoragePg(db *sqlx.DB) StorageI {
 	return &storagePg{
-		loginRepo:       postgres.NewLogin(db),
-		userRepo:        postgres.NewUser(db),
-		adminRepo:       postgres.NewAdmin(db),
-		socialRepo:      postgres.NewSocial(db),
-		badgeRepo:       postgres.NewBadge(db),
-		userBadgeRepo:   postgres.NewUserBadge(db),
-		languageRepo:    postgres.NewLanguage(db),
-		levelRepo:       postgres.NewLevel(db),
-		topicRepo:       postgres.NewTopic(db),
-		lessonRepo:      postgres.NewLesson(db),
-		contentRepo:     postgres.NewContent(db),
-		contentFileRepo: postgres.NewContentFile(db),
+		loginRepo:        postgres.NewLogin(db),
+		userRepo:         postgres.NewUser(db),
+		adminRepo:        postgres.NewAdmin(db),
+		socialRepo:       postgres.NewSocial(db),
+		badgeRepo:        postgres.NewBadge(db),
+		userBadgeRepo:    postgres.NewUserBadge(db),
+		activityRepo:     postgres.NewActivity(db),
+		languageRepo:     postgres.NewLanguage(db),
+		levelRepo:        postgres.NewLevel(db),
+		topicRepo:        postgres.NewTopic(db),
+		lessonRepo:       postgres.NewLesson(db),
+		contentRepo:      postgres.NewContent(db),
+		contentFileRepo:  postgres.NewContentFile(db),
+		dashboardRepo:    postgres.NewDashboard(db),
+		userLanguageRepo: postgres.NewUserLanguage(db),
+		userLevelRepo:    postgres.NewUserLevel(db),
 	}
 }
 
@@ -79,6 +91,10 @@ func (s *storagePg) UserBadge() repo.UserBadgeStorageI {
 	return s.userBadgeRepo
 }
 
+func (s *storagePg) Activity() repo.ActivityStorageI {
+	return s.activityRepo
+}
+
 func (s *storagePg) Language() repo.LanguageStorageI {
 	return s.languageRepo
 }
@@ -101,4 +117,16 @@ func (s *storagePg) Content() repo.ContentStorageI {
 
 func (s *storagePg) ContentFile() repo.ContentFileStorageI {
 	return s.contentFileRepo
+}
+
+func (s *storagePg) Dashboard() repo.DashboardStorageI {
+	return s.dashboardRepo
+}
+
+func (s *storagePg) UserLanguage() repo.UserLanguageStorageI {
+	return s.userLanguageRepo
+}
+
+func (s *storagePg) UserLevel() repo.UserLevelStorageI {
+	return s.userLevelRepo
 }

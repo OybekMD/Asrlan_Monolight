@@ -41,13 +41,6 @@ CREATE TABLE socials(
     user_id UUID REFERENCES users(id)
 );
 
-CREATE TABLE activitys (
-    id SERIAL PRIMARY KEY,
-    day DATE,
-    score INTEGER DEFAULT 1,
-    user_id UUID REFERENCES users(id)
-);
-
 CREATE TYPE badgeme AS ENUM ('month', 'extra');
 CREATE TABLE badges(
     id SERIAL PRIMARY KEY,
@@ -65,10 +58,11 @@ CREATE TABLE user_badge(
 
 -- Course
 
+
 CREATE TABLE languages(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(50),
-    picture TEXT,
+    name VARCHAR(50) NOT NULL,
+    picture TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP DEFAULT NULL
@@ -76,7 +70,9 @@ CREATE TABLE languages(
 
 CREATE TABLE levels(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100),
+    name VARCHAR(100) NOT NULL,
+    real_level INT NOT NULL,
+    picture TEXT NOT NULL,
     language_id INT REFERENCES languages(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -85,7 +81,7 @@ CREATE TABLE levels(
 
 CREATE TABLE topics (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100),
+    name VARCHAR(100) NOT NULL,
     level_id INT REFERENCES levels(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -94,7 +90,7 @@ CREATE TABLE topics (
 
 CREATE TABLE lessons (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100),
+    name VARCHAR(100) NOT NULL,
     topic_id INT REFERENCES topics(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -124,4 +120,47 @@ CREATE TABLE content_files (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP DEFAULT NULL
+);
+
+CREATE TABLE user_language (
+    id SERIAL PRIMARY KEY,
+    score INT DEFAULT 0 CHECK(score <= 100),
+    status BOOLEAN DEFAULT TRUE,
+    user_id UUID REFERENCES users(id),
+    language_id INT REFERENCES languages(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user_level (
+    id SERIAL PRIMARY KEY,
+    score INT DEFAULT 0 CHECK(score <= 100),
+    status BOOLEAN DEFAULT TRUE,
+    user_id UUID REFERENCES users(id),
+    level_id INT REFERENCES levels(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user_topic (
+    id SERIAL PRIMARY KEY,
+    score INT DEFAULT 0 CHECK(score <= 100),
+    user_id UUID REFERENCES users(id),
+    topic_id INT REFERENCES topics(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user_lesson (
+    id SERIAL PRIMARY KEY,
+    score INT DEFAULT 0 CHECK(score <= 100),
+    user_id UUID REFERENCES users(id),
+    lesson_id INT REFERENCES lessons(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE activitys (
+    id SERIAL PRIMARY KEY,
+    day DATE,
+    score INTEGER DEFAULT 1,
+    lesson_id INT REFERENCES lessons(id),
+    user_id UUID REFERENCES users(id)
 );
