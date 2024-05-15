@@ -37,6 +37,12 @@ type (
 		BirthDay string `json:"birth_day"`
 		Avatar   string `json:"avatar"`
 	}
+
+	UserUpdatePassword struct {
+		Id          string `json:"id"`
+		OldPassword string `json:"old_password"`
+		NewPassword string `json:"new_password"`
+	}
 )
 
 func (rm *UserUpdate) ValidateEmpity() error {

@@ -1,5 +1,7 @@
 package models
 
+import "asrlan-monolight/storage/repo"
+
 type (
 	// DashboardResponse struct {
 	// 	Topics []*repo.Topic
@@ -14,6 +16,9 @@ type (
 
 	DashboardResponse struct {
 		Topics []Topics `json:"topics"`
+	}
+	LeaderboardResponse struct {
+		Leaders []repo.Leaderboard `json:"leaders"`
 	}
 
 	Topics struct {

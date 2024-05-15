@@ -366,8 +366,6 @@ func (h *handlerV1) Verify(ctx *gin.Context) {
 	})
 	
 	if !userLevel || err != nil {
-		fmt.Println("err:", err)
-		fmt.Println("tf:", userLevel)
 		ctx.JSON(http.StatusInternalServerError, models.Error{
 			Message: "Error while creating userLevel",
 		})
@@ -375,11 +373,15 @@ func (h *handlerV1) Verify(ctx *gin.Context) {
 		return
 	}
 
+	_, err = h.storage.Social().Create(ctxTime, &repo.Social{
+		UserId: id.String(),
+	})
+
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, models.Error{
-			Message: models.NotFoundMessage,
+			Message: err.Error(),
 		})
-		log.Println("failed to get resUser in getinfo api", err.Error())
+		log.Println("failed to CREATE make social:", err.Error())
 		return
 	}
 

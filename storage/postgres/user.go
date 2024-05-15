@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"log"
 
+	hash "asrlan-monolight/api/helper/hashing"
+
 	"github.com/jmoiron/sqlx"
 )
 
@@ -141,6 +143,57 @@ func (s *userRepo) Update(ctx context.Context, newUser *repo.User) (*repo.User, 
 	}
 
 	return &updatedUser, nil
+}
+
+func (s *userRepo) UpdatePassword(ctx context.Context, newUser *repo.UserUpdatePassword) (bool, error) {
+	queryGet := `
+	SELECT
+		password
+	FROM
+		users
+	WHERE
+		id = $1
+	AND
+		deleted_at IS NULL
+	`
+
+	var getPassword string
+	err := s.db.QueryRowContext(ctx, queryGet, newUser.Id).Scan(
+		&getPassword,
+	)
+
+	if err != nil {
+		log.Println("Eror updating user in postgres method", err.Error())
+		return false, err
+	}
+	if !hash.CheckPasswordHash(newUser.OldPassword, getPassword) {
+		return false, nil
+	}
+
+	query := `
+	UPDATE
+		users
+	SET
+		password = $1,
+		updated_at = CURRENT_TIMESTAMP
+	WHERE
+		id = $2
+	AND
+		deleted_at IS NULL
+	`
+
+	newerr := s.db.QueryRowContext(
+		ctx,
+		query,
+		newUser.NewPassword,
+		newUser.Id,
+	)
+	if newerr != nil {
+		log.Println("Eror updating user in postgres method", newerr.Err())
+		return false, newerr.Err()
+	}
+
+	return true, nil
 }
 
 // This function delete user info from postgres

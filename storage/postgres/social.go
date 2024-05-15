@@ -178,7 +178,7 @@ func QueryBuildCreateSocial(reqData *repo.Social) (string, []interface{}) {
 	args = append(args, reqData.UserId)
 	placeholders = append(placeholders, fmt.Sprintf("$%d", len(args)))
 
-	query := fmt.Sprintf("INSERT INTO social (%s) VALUES (%s) RETURNING id",
+	query := fmt.Sprintf("INSERT INTO socials (%s) VALUES (%s) RETURNING user_id",
 		strings.Join(columns, ", "),
 		strings.Join(placeholders, ", "),
 	)
@@ -218,7 +218,7 @@ func QueryBuildUpdateSocial(reqData *repo.Social) (string, []interface{}) {
 	// Always include the user_id for updating the correct record
 	args = append(args, reqData.UserId)
 
-	query := fmt.Sprintf("UPDATE social SET %s WHERE user_id = $%d RETURNING id",
+	query := fmt.Sprintf("UPDATE socials SET %s WHERE user_id = $%d RETURNING user_id",
 		strings.Join(updates, ", "),
 		len(args),
 	)
@@ -236,7 +236,7 @@ func (s *socialRepo) Create(ctx context.Context, social *repo.Social) (*repo.Soc
 		query,
 		args...,
 	).Scan(
-		&social.Id,
+		&social.UserId,
 	)
 	if err != nil {
 		log.Println("Eror creating user in postgres method", err.Error())
@@ -255,7 +255,7 @@ func (s *socialRepo) Update(ctx context.Context, newSocial *repo.Social) (*repo.
 		query,
 		args...,
 	).Scan(
-		&newSocial.Id,
+		&newSocial.UserId,
 	)
 	if err != nil {
 		log.Println("Eror updating social in postgres method", err.Error())
@@ -299,7 +299,6 @@ func (s *socialRepo) Delete(ctx context.Context, userid string) (bool, error) {
 func (s *socialRepo) Get(ctx context.Context, id string) (*repo.Social, error) {
 	query := `
 	SELECT
-		id,
 		location_name,
 		location_url,
 		education_name,
@@ -344,6 +343,7 @@ func (s *socialRepo) Get(ctx context.Context, id string) (*repo.Social, error) {
 		&nullYoutubeName, &nullYoutubeUrl,
 		&nullLinkedinName, &nullLinkedinUrl,
 		&nullWebsiteName, &nullWebsiteUrl,
+		&responseSocial.UserId,
 	)
 	if err != nil {
 		log.Println("Eror getting social in postgres method", err.Error())

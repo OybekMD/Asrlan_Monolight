@@ -3,7 +3,6 @@ package repo
 import "context"
 
 type Social struct {
-	Id            string `json:"id"`
 	LocationName  string `json:"location_name"`
 	LocationUrl   string `json:"location_url"`
 	EducationName string `json:"education_name"`

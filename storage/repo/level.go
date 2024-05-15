@@ -13,10 +13,18 @@ type Level struct {
 	UpdatedAt    string `json:"updated_at"`
 }
 
+type LevelForRegister struct {
+	Id           int64  `json:"id"`
+	Name         string `json:"name"`
+	RealLevel    int64  `json:"real_level"`
+	Picture      string `json:"picture"`
+}
+
 type LevelStorageI interface {
 	Create(ctx context.Context, badge *Level) (*Level, error)
 	Update(ctx context.Context, badge *Level) (*Level, error)
 	Delete(ctx context.Context, id string) (bool, error)
 	Get(ctx context.Context, id string) (*Level, error)
 	GetAll(ctx context.Context, page, limit uint64) ([]*Level, int64, error)
+	GetAllForRegister(ctx context.Context, language_id string) ([]*LevelForRegister, error)
 }

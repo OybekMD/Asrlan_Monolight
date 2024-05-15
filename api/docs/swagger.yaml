@@ -3,9 +3,9 @@ definitions:
     properties:
       day:
         type: string
-      id:
-        type: integer
       lesson_id:
+        type: integer
+      score:
         type: integer
       user_id:
         type: string
@@ -26,6 +26,9 @@ definitions:
       id:
         type: integer
       lesson_id:
+        type: integer
+      score:
+        description: It for user_lesson
         type: integer
       user_id:
         type: string
@@ -222,6 +225,13 @@ definitions:
       picture:
         type: string
     type: object
+  models.LeaderboardResponse:
+    properties:
+      leaders:
+        items:
+          $ref: '#/definitions/repo.Leaderboard'
+        type: array
+    type: object
   models.LessonCreate:
     properties:
       lesson_name:
@@ -336,43 +346,6 @@ definitions:
       password:
         type: string
       username:
-        type: string
-    type: object
-  models.SocialCreate:
-    properties:
-      education_name:
-        type: string
-      education_url:
-        type: string
-      instagram_name:
-        type: string
-      instagram_url:
-        type: string
-      linkedin_name:
-        type: string
-      linkedin_url:
-        type: string
-      location_name:
-        type: string
-      location_url:
-        type: string
-      telegram_name:
-        type: string
-      telegram_url:
-        type: string
-      twitter_name:
-        type: string
-      twitter_url:
-        type: string
-      user_id:
-        type: string
-      website_name:
-        type: string
-      website_url:
-        type: string
-      youtube_name:
-        type: string
-      youtube_url:
         type: string
     type: object
   models.SocialResponse:
@@ -580,6 +553,17 @@ definitions:
       updated_at:
         type: string
       video_data:
+        type: string
+    type: object
+  repo.Leaderboard:
+    properties:
+      avatar:
+        type: string
+      name:
+        type: string
+      score:
+        type: integer
+      username:
         type: string
     type: object
   repo.RegisterLanguage:
@@ -1199,23 +1183,23 @@ paths:
       summary: ListContents
       tags:
       - contents
-  /v1/dashboardresponse:
+  /v1/dashboard:
     get:
       consumes:
       - application/json
       description: This Api for get all Dashboard
       parameters:
-      - description: Otp
+      - description: UserID
         in: query
         name: user_id
         required: true
         type: string
-      - description: Email
+      - description: LanguageId
         in: query
         name: language_id
         required: true
         type: string
-      - description: Email
+      - description: LevelId
         in: query
         name: level_id
         required: true
@@ -1532,6 +1516,55 @@ paths:
       summary: ListLanguages
       tags:
       - languages
+  /v1/leaderboard:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all Leaderboard
+      parameters:
+      - description: UserID
+        in: query
+        name: user_id
+        required: true
+        type: string
+      - description: LanguageId
+        in: query
+        name: language_id
+        required: true
+        type: string
+      - description: LevelId
+        in: query
+        name: level_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LeaderboardResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Leaderboard
+      tags:
+      - Leaderboard
   /v1/lesson:
     post:
       consumes:
@@ -1915,6 +1948,47 @@ paths:
       summary: ListLevels
       tags:
       - levels
+  /v1/levelsforregister:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all levels
+      parameters:
+      - description: LanguageId
+        in: query
+        name: language_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.LevelResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListLevels
+      tags:
+      - levels
   /v1/login:
     post:
       consumes:
@@ -2046,45 +2120,6 @@ paths:
       tags:
       - Register
   /v1/social:
-    post:
-      consumes:
-      - application/json
-      description: This Api for creating a new social
-      parameters:
-      - description: SocialCreate Model
-        in: body
-        name: SocialCreate
-        required: true
-        schema:
-          $ref: '#/definitions/models.SocialCreate'
-      produces:
-      - application/json
-      responses:
-        "201":
-          description: Created
-          schema:
-            $ref: '#/definitions/models.SocialResponse'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/models.Error'
-        "401":
-          description: Unauthorized
-          schema:
-            $ref: '#/definitions/models.Error'
-        "403":
-          description: Forbidden
-          schema:
-            $ref: '#/definitions/models.Error'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/models.Error'
-      security:
-      - BearerAuth: []
-      summary: Create Social
-      tags:
-      - social
     put:
       consumes:
       - application/json
@@ -2569,6 +2604,46 @@ paths:
       summary: Delete UserBadge
       tags:
       - userBadges
+  /v1/userpassword:
+    put:
+      consumes:
+      - application/json
+      description: This Api for updating user
+      parameters:
+      - description: Update User Model
+        in: body
+        name: User
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Update User
+      tags:
+      - users
   /v1/verify:
     post:
       consumes:

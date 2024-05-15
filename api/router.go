@@ -74,60 +74,72 @@ func New(option *Option) *gin.Engine {
 	router.Static("/media", "./media")
 
 	// Dashboard
-	api.GET("/dashboardresponse", handlerV1.GetDashboard)
+	api.GET("/dashboard", handlerV1.GetDashboard)
+	api.GET("/leaderboard", handlerV1.GetLeaderboard)
 
+	// User
+	api.GET("/user/:id", handlerV1.GetUser)
+	api.DELETE("/user/:id", handlerV1.DeleteUser)
+	api.PUT("/user", handlerV1.UpdateUser)
+
+	// ---------Problems!!!!!!!!
 	// Activity
 	api.POST("/activity", handlerV1.CreateActivity)
 	api.GET("/activitys", handlerV1.GetAllGroupedByMonth)
 	api.GET("/activitysch", handlerV1.GetAllGroupedByChoice)
 
+	// Social
+	api.PUT("/social", handlerV1.UpdateSocial)
+	api.GET("/social/:id", handlerV1.GetSocial)
+
 	// Badge
+	api.GET("/badge/:id", handlerV1.GetBadge)
 	api.POST("/badge", handlerV1.CreateBadge)
 	api.PUT("/badge", handlerV1.UpdateBadge)
 	api.DELETE("/badge/:id", handlerV1.DeleteBadge)
-	api.GET("/badge/:id", handlerV1.GetBadge)
 	api.GET("/badges", handlerV1.ListBadges)
 
 	// Language
+	api.GET("/language/:id", handlerV1.GetLanguage)
 	api.POST("/language", handlerV1.CreateLanguage)
 	api.PUT("/language", handlerV1.UpdateLanguage)
 	api.DELETE("/language/:id", handlerV1.DeleteLanguage)
-	api.GET("/language/:id", handlerV1.GetLanguage)
 	api.GET("/languages", handlerV1.ListLanguages)
 	api.GET("/languagesforregister", handlerV1.LanguagesForRegister)
 
 	// Level
+	api.GET("/level/:id", handlerV1.GetLevel)
 	api.POST("/level", handlerV1.CreateLevel)
 	api.PUT("/level", handlerV1.UpdateLevel)
 	api.DELETE("/level/:id", handlerV1.DeleteLevel)
-	api.GET("/level/:id", handlerV1.GetLevel)
 	api.GET("/levels", handlerV1.ListLevels)
+	api.GET("/levelsforregister", handlerV1.LevelsForRegister)
 
 	// Topic
+	api.GET("/topic/:id", handlerV1.GetTopic)
 	api.POST("/topic", handlerV1.CreateTopic)
 	api.PUT("/topic", handlerV1.UpdateTopic)
 	api.DELETE("/topic/:id", handlerV1.DeleteTopic)
-	api.GET("/topic/:id", handlerV1.GetTopic)
 	api.GET("/topics", handlerV1.ListTopics)
 
 	// Lesson
+	api.GET("/lesson/:id", handlerV1.GetLesson)
 	api.POST("/lesson", handlerV1.CreateLesson)
 	api.PUT("/lesson", handlerV1.UpdateLesson)
 	api.DELETE("/lesson/:id", handlerV1.DeleteLesson)
-	api.GET("/lesson/:id", handlerV1.GetLesson)
 	api.GET("/lessons", handlerV1.ListLessons)
 
 	// Content
+	api.GET("/content/:id", handlerV1.GetContent)
 	api.POST("/content", handlerV1.CreateContent)
 	api.PUT("/content", handlerV1.UpdateContent)
 	api.DELETE("/content/:id", handlerV1.DeleteContent)
-	api.GET("/content/:id", handlerV1.GetContent)
 	api.GET("/contents", handlerV1.ListContents)
 	
 	// ContentFile
+	api.GET("/contentfile/:id", handlerV1.GetContentFile)
 	api.POST("/contentfile", handlerV1.CreateContentFile)
 	api.DELETE("/contentfile/:id", handlerV1.DeleteContentFile)
-	api.GET("/contentfile/:id", handlerV1.GetContentFile)
 
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))

@@ -958,7 +958,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/dashboardresponse": {
+        "/v1/dashboard": {
             "get": {
                 "security": [
                     {
@@ -979,21 +979,21 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Otp",
+                        "description": "UserID",
                         "name": "user_id",
                         "in": "query",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Email",
+                        "description": "LanguageId",
                         "name": "language_id",
                         "in": "query",
                         "required": true
                     },
                     {
                         "type": "string",
-                        "description": "Email",
+                        "description": "LevelId",
                         "name": "level_id",
                         "in": "query",
                         "required": true
@@ -1448,6 +1448,81 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.LanguageForRegisterResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/leaderboard": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This Api for get all Leaderboard",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Leaderboard"
+                ],
+                "summary": "Leaderboard",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "UserID",
+                        "name": "user_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "LanguageId",
+                        "name": "language_id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "LevelId",
+                        "name": "level_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.LeaderboardResponse"
                         }
                     },
                     "400": {
@@ -2076,6 +2151,70 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/levelsforregister": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This Api for get all levels",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "levels"
+                ],
+                "summary": "ListLevels",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "LanguageId",
+                        "name": "language_id",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.LevelResponse"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/login": {
             "post": {
                 "description": "This Api for login users login with email and username",
@@ -2307,67 +2446,6 @@ const docTemplate = `{
                 "responses": {
                     "200": {
                         "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.SocialResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/models.Error"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/models.Error"
-                        }
-                    },
-                    "403": {
-                        "description": "Forbidden",
-                        "schema": {
-                            "$ref": "#/definitions/models.Error"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models.Error"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "This Api for creating a new social",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "social"
-                ],
-                "summary": "Create Social",
-                "parameters": [
-                    {
-                        "description": "SocialCreate Model",
-                        "name": "SocialCreate",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.SocialCreate"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created",
                         "schema": {
                             "$ref": "#/definitions/models.SocialResponse"
                         }
@@ -3097,6 +3175,69 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/userpassword": {
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "This Api for updating user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update User",
+                "parameters": [
+                    {
+                        "description": "Update User Model",
+                        "name": "User",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UserUpdate"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.UserResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.Error"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/verify": {
             "post": {
                 "description": "This Api to check OTP",
@@ -3200,10 +3341,10 @@ const docTemplate = `{
                 "day": {
                     "type": "string"
                 },
-                "id": {
+                "lesson_id": {
                     "type": "integer"
                 },
-                "lesson_id": {
+                "score": {
                     "type": "integer"
                 },
                 "user_id": {
@@ -3235,6 +3376,10 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "lesson_id": {
+                    "type": "integer"
+                },
+                "score": {
+                    "description": "It for user_lesson",
                     "type": "integer"
                 },
                 "user_id": {
@@ -3538,6 +3683,17 @@ const docTemplate = `{
                 }
             }
         },
+        "models.LeaderboardResponse": {
+            "type": "object",
+            "properties": {
+                "leaders": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repo.Leaderboard"
+                    }
+                }
+            }
+        },
         "models.LessonCreate": {
             "type": "object",
             "properties": {
@@ -3713,62 +3869,6 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "username": {
-                    "type": "string"
-                }
-            }
-        },
-        "models.SocialCreate": {
-            "type": "object",
-            "properties": {
-                "education_name": {
-                    "type": "string"
-                },
-                "education_url": {
-                    "type": "string"
-                },
-                "instagram_name": {
-                    "type": "string"
-                },
-                "instagram_url": {
-                    "type": "string"
-                },
-                "linkedin_name": {
-                    "type": "string"
-                },
-                "linkedin_url": {
-                    "type": "string"
-                },
-                "location_name": {
-                    "type": "string"
-                },
-                "location_url": {
-                    "type": "string"
-                },
-                "telegram_name": {
-                    "type": "string"
-                },
-                "telegram_url": {
-                    "type": "string"
-                },
-                "twitter_name": {
-                    "type": "string"
-                },
-                "twitter_url": {
-                    "type": "string"
-                },
-                "user_id": {
-                    "type": "string"
-                },
-                "website_name": {
-                    "type": "string"
-                },
-                "website_url": {
-                    "type": "string"
-                },
-                "youtube_name": {
-                    "type": "string"
-                },
-                "youtube_url": {
                     "type": "string"
                 }
             }
@@ -4086,6 +4186,23 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "video_data": {
+                    "type": "string"
+                }
+            }
+        },
+        "repo.Leaderboard": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "username": {
                     "type": "string"
                 }
             }

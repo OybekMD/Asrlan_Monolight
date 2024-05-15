@@ -18,6 +18,12 @@ type User struct {
 	UpdatedAt    string `json:"updated_at"`
 }
 
+type UserUpdatePassword struct {
+	Id          string `json:"id"`
+	OldPassword string `json:"old_password"`
+	NewPassword string `json:"new_password"`
+}
+
 type UserStorageI interface {
 	Create(ctx context.Context, user *User) (*User, error)
 	Update(ctx context.Context, user *User) (*User, error)

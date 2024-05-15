@@ -211,3 +211,49 @@ func (s *levelRepo) GetAll(ctx context.Context, page, limit uint64) ([]*repo.Lev
 
 	return responseLevels, int64(count), nil
 }
+
+func (s *levelRepo) GetAllForRegister(ctx context.Context, language_id string) ([]*repo.LevelForRegister, error) {
+	query := `
+	SELECT 
+		lev.id,
+		lev.name,
+		lev.real_level,
+    	lev.picture
+	FROM 
+		levels lev
+	JOIN 
+		languages lan ON lev.language_id = lan.id
+	WHERE
+		lev.deleted_at IS NULL
+		AND lan.deleted_at IS NULL
+		AND lan.id = $1
+	ORDER BY
+		lev.real_level
+	`
+
+	rows, err := s.db.QueryContext(ctx, query, language_id)
+	if err != nil {
+		log.Println("Error selecting levels with page and limit in postgres", err.Error())
+		return nil, err
+	}
+	defer rows.Close()
+
+	var responseLevels []*repo.LevelForRegister
+	for rows.Next() {
+		var level repo.LevelForRegister
+		err = rows.Scan(
+			&level.Id,
+			&level.Name,
+			&level.RealLevel,
+			&level.Picture,
+		)
+		if err != nil {
+			log.Println("Error scanning level in getallforRegister level method of postgres", err.Error())
+			return nil, err
+		}
+
+		responseLevels = append(responseLevels, &level)
+	}
+
+	return responseLevels, nil
+}

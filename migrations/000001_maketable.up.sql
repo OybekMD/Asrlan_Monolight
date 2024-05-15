@@ -124,7 +124,6 @@ CREATE TABLE content_files (
 
 CREATE TABLE user_language (
     id SERIAL PRIMARY KEY,
-    score INT DEFAULT 0 CHECK(score <= 100),
     status BOOLEAN DEFAULT TRUE,
     user_id UUID REFERENCES users(id),
     language_id INT REFERENCES languages(id),
@@ -156,11 +155,12 @@ CREATE TABLE user_lesson (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE activitys (
     id SERIAL PRIMARY KEY,
     day DATE,
-    score INTEGER DEFAULT 1,
+    score INTEGER DEFAULT 0,
     lesson_id INT REFERENCES lessons(id),
     user_id UUID REFERENCES users(id)
 );
+
+-- Place for certificate

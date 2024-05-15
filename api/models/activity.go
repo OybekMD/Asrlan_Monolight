@@ -4,8 +4,8 @@ import "asrlan-monolight/storage/repo"
 
 type (
 	ActivityCreate struct {
-		Id       int64  `json:"id"`
 		Day      string `json:"day"`
+		Score    int64  `json:"score"`
 		LessonId int64  `json:"lesson_id"`
 		UserId   string `json:"user_id"`
 	}
@@ -17,6 +17,7 @@ type (
 	ActivityResponse struct {
 		Id       int64  `json:"id"`
 		Day      string `json:"day"`
+		Score    int64  `json:"score"` //It for user_lesson
 		LessonId int64  `json:"lesson_id"`
 		UserId   string `json:"user_id"`
 	}

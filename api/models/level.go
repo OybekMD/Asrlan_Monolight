@@ -25,6 +25,10 @@ type (
 		Count  int64 `json:"count"`
 	}
 
+	LevelForRegisterResponse struct {
+		Levels []*repo.LevelForRegister
+	}
+
 	LevelUpdate struct {
 		Id   int64  `json:"id"`
 		Name string `json:"name"`

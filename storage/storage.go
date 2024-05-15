@@ -25,6 +25,8 @@ type StorageI interface {
 	Dashboard() repo.DashboardStorageI
 	UserLanguage() repo.UserLanguageStorageI
 	UserLevel() repo.UserLevelStorageI
+	UserTopic() repo.UserTopicStorageI
+	UserLesson() repo.UserLessonStorageI
 }
 
 type storagePg struct {
@@ -44,6 +46,8 @@ type storagePg struct {
 	dashboardRepo    repo.DashboardStorageI
 	userLanguageRepo repo.UserLanguageStorageI
 	userLevelRepo    repo.UserLevelStorageI
+	userTopicRepo    repo.UserTopicStorageI
+	userLessonRepo   repo.UserLessonStorageI
 }
 
 func NewStoragePg(db *sqlx.DB) StorageI {
@@ -64,6 +68,8 @@ func NewStoragePg(db *sqlx.DB) StorageI {
 		dashboardRepo:    postgres.NewDashboard(db),
 		userLanguageRepo: postgres.NewUserLanguage(db),
 		userLevelRepo:    postgres.NewUserLevel(db),
+		userTopicRepo:    postgres.NewUserTopic(db),
+		userLessonRepo:   postgres.NewUserLesson(db),
 	}
 }
 
@@ -129,4 +135,12 @@ func (s *storagePg) UserLanguage() repo.UserLanguageStorageI {
 
 func (s *storagePg) UserLevel() repo.UserLevelStorageI {
 	return s.userLevelRepo
+}
+
+func (s *storagePg) UserTopic() repo.UserTopicStorageI {
+	return s.userTopicRepo
+}
+
+func (s *storagePg) UserLesson() repo.UserLessonStorageI {
+	return s.userLessonRepo
 }

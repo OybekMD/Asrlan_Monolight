@@ -53,8 +53,9 @@ func (h *handlerV1) CreateActivity(ctx *gin.Context) {
 		ctxTime,
 		&repo.Activity{
 			Day:      body.Day,
+			Score:    body.Score,
 			LessonId: body.LessonId,
-			UserId: body.UserId,
+			UserId:   body.UserId,
 		})
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, &models.Error{
@@ -64,11 +65,26 @@ func (h *handlerV1) CreateActivity(ctx *gin.Context) {
 		return
 	}
 
+	createUserLesson, err := h.storage.UserLesson().Create(ctx, &repo.UserLesson{
+		Score: body.Score,
+		LessonId: body.LessonId,
+		UserId: body.UserId,
+	})
+
+	if !createUserLesson {
+		ctx.JSON(http.StatusInternalServerError, &models.Error{
+			Message: models.NotCreatedMessage,
+		})
+		log.Println("failed to create user_lesson", err.Error())
+		return
+	}
+
 	ctx.JSON(http.StatusCreated, &models.ActivityResponse{
-		Id:        response.Id,
+		Id:       response.Id,
 		Day:      response.Day,
+		Score:      response.Score,
 		LessonId: response.LessonId,
-		UserId: response.UserId,
+		UserId:   response.UserId,
 	})
 }
 

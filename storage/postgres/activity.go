@@ -25,10 +25,11 @@ func (s *activityRepo) Create(ctx context.Context, activity *repo.Activity) (*re
 	query := `
 	INSERT INTO activitys(
 		day,
+		score,
 		lesson_id,
 		user_id
 	)
-	VALUES ($1, $2, $3) 
+	VALUES ($1, $2, $3, $4) 
 	RETURNING 
 		id`
 
@@ -36,6 +37,7 @@ func (s *activityRepo) Create(ctx context.Context, activity *repo.Activity) (*re
 		ctx,
 		query,
 		activity.Day,
+		activity.Score,
 		activity.LessonId,
 		activity.UserId).Scan(&activity.Id)
 	if err != nil {

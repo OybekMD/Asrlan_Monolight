@@ -274,3 +274,50 @@ func (h *handlerV1) ListLevels(ctx *gin.Context) {
 		Count:  count,
 	})
 }
+
+// @Security      BearerAuth
+// @Summary       ListLevels
+// @Description   This Api for get all levels
+// @Tags          levels
+// @Accept        json
+// @Produce       json
+// @Param         language_id query string true "LanguageId"
+// @Success 	  200 {object} []models.LevelResponse
+// @Failure		  400 {object} models.Error
+// @Failure		  401 {object} models.Error
+// @Failure		  403 {object} models.Error
+// @Failure       500 {object} models.Error
+// @Router        /v1/levelsforregister [GET]
+func (h *handlerV1) LevelsForRegister(ctx *gin.Context) {
+	language_id := ctx.Query("language_id")
+
+	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: models.InternalMessage,
+		})
+		log.Println("failed to parse timeout", err.Error())
+		return
+	}
+
+	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
+	defer cancel()
+
+	levels, err := h.storage.Level().GetAllForRegister(ctxTime, language_id)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, &models.Error{
+			Message: models.NotFoundMessage,
+		})
+		log.Println("failed to get all users", err.Error())
+		return
+	}
+	if len(levels) == 0 {
+		ctx.JSON(http.StatusOK, nil)
+		log.Println("Not found levels")
+		return
+	}
+
+	ctx.JSON(http.StatusOK, models.LevelForRegisterResponse{
+		Levels: levels,
+	})
+}
