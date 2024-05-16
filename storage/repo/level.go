@@ -14,10 +14,18 @@ type Level struct {
 }
 
 type LevelForRegister struct {
-	Id           int64  `json:"id"`
-	Name         string `json:"name"`
-	RealLevel    int64  `json:"real_level"`
-	Picture      string `json:"picture"`
+	Id        int64  `json:"id"`
+	Name      string `json:"name"`
+	RealLevel int64  `json:"real_level"`
+	Picture   string `json:"picture"`
+}
+
+type LevelForCourse struct {
+	Id        int64  `json:"id"`
+	Name      string `json:"name"`
+	Score     int64  `json:"score"`
+	RealLevel int64  `json:"real_level"`
+	Picture   string `json:"picture"`
 }
 
 type LevelStorageI interface {
@@ -27,4 +35,5 @@ type LevelStorageI interface {
 	Get(ctx context.Context, id string) (*Level, error)
 	GetAll(ctx context.Context, page, limit uint64) ([]*Level, int64, error)
 	GetAllForRegister(ctx context.Context, language_id string) ([]*LevelForRegister, error)
+	GetAllForCourses(ctx context.Context, user_id, language_id string) ([]*LevelForCourse, error)
 }

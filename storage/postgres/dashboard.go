@@ -23,7 +23,7 @@ func NewDashboard(db *sqlx.DB) repo.DashboardStorageI {
 func (s *dashboardRepo) UpCreateLevel(ctx context.Context, userLevel *repo.UserLevel) (bool, error) {
 	queryExist := `
 	UPDATE
-		user_lesson
+		user_level
 	SET
 		score = $1
 	WHERE
@@ -52,7 +52,7 @@ func (s *dashboardRepo) UpCreateLevel(ctx context.Context, userLevel *repo.UserL
 	}
 
 	query := `
-	INSERT INTO user_topic (
+	INSERT INTO user_level (
 		score,
 		user_id,
 		level_id
@@ -81,7 +81,7 @@ func (s *dashboardRepo) UpCreateLevel(ctx context.Context, userLevel *repo.UserL
 func (s *dashboardRepo) UpCreateTopic(ctx context.Context, userTopic *repo.UserTopic) (bool, error) {
 	queryExist := `
 	UPDATE
-		user_lesson
+		user_topic
 	SET
 		score = $1
 	WHERE
@@ -262,7 +262,12 @@ func (s *dashboardRepo) GetDashboard(ctx context.Context, userId string, languag
 	return &dashboard, nil
 }
 
-func (s *dashboardRepo) GetLeaderboard(ctx context.Context, userId, language_id, level_id string) ([]*repo.Leaderboard, error) {
+func (s *dashboardRepo) GetLeaderboard(ctx context.Context, period, level_id string) ([]*repo.Leaderboard, error) {
+	switch period{
+	case "1":
+		
+	}
+	
 	query := `
 		SELECT
 			u.name,
@@ -272,7 +277,7 @@ func (s *dashboardRepo) GetLeaderboard(ctx context.Context, userId, language_id,
 		FROM
 			users u
 		JOIN
-			user_language ulan ON u.id = ulan.user_id
+			user_level ulan ON u.id = ulan.user_id
 		JOIN
 			user_level ulev ON u.id = ulev.user_id
 		WHERE
@@ -282,7 +287,7 @@ func (s *dashboardRepo) GetLeaderboard(ctx context.Context, userId, language_id,
 			u.score DESC
 	`
 
-	rows, err := s.db.QueryContext(ctx, query, language_id, level_id)
+	rows, err := s.db.QueryContext(ctx, query, level_id)
 	if err != nil {
 		fmt.Println("error 1:", err)
 		log.Println("Error Leaderboard in postgres", err.Error())

@@ -1187,7 +1187,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: This Api for get all Dashboard
+      description: This Api for get all Leaderboard
       parameters:
       - description: UserID
         in: query
@@ -1210,7 +1210,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.DashboardResponse'
+            $ref: '#/definitions/models.LeaderboardResponse'
         "400":
           description: Bad Request
           schema:
@@ -1229,9 +1229,9 @@ paths:
             $ref: '#/definitions/models.Error'
       security:
       - BearerAuth: []
-      summary: ListDashboards
+      summary: Leaderboard
       tags:
-      - Dashboard
+      - Leaderboard
   /v1/forgot:
     post:
       consumes:
@@ -1516,55 +1516,6 @@ paths:
       summary: ListLanguages
       tags:
       - languages
-  /v1/leaderboard:
-    get:
-      consumes:
-      - application/json
-      description: This Api for get all Leaderboard
-      parameters:
-      - description: UserID
-        in: query
-        name: user_id
-        required: true
-        type: string
-      - description: LanguageId
-        in: query
-        name: language_id
-        required: true
-        type: string
-      - description: LevelId
-        in: query
-        name: level_id
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models.LeaderboardResponse'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/models.Error'
-        "401":
-          description: Unauthorized
-          schema:
-            $ref: '#/definitions/models.Error'
-        "403":
-          description: Forbidden
-          schema:
-            $ref: '#/definitions/models.Error'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/models.Error'
-      security:
-      - BearerAuth: []
-      summary: Leaderboard
-      tags:
-      - Leaderboard
   /v1/lesson:
     post:
       consumes:
@@ -1918,6 +1869,52 @@ paths:
         name: limit
         required: true
         type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.LevelResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListLevels
+      tags:
+      - levels
+  /v1/levelsforcourse:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all levels
+      parameters:
+      - description: UserId
+        in: query
+        name: user_id
+        required: true
+        type: string
+      - description: LanguageId
+        in: query
+        name: language_id
+        required: true
+        type: string
       produces:
       - application/json
       responses:

@@ -10,6 +10,7 @@ import (
 	hash "asrlan-monolight/api/helper/hashing"
 
 	"github.com/jmoiron/sqlx"
+	"github.com/k0kubun/pp/v3"
 )
 
 type userRepo struct {
@@ -105,6 +106,8 @@ func (s *userRepo) Update(ctx context.Context, newUser *repo.User) (*repo.User, 
 		updated_at
 	`
 
+	pp.Println(newUser)
+
 	var updatedUser repo.User
 	var nullBio, nullBirthDay, nullAvatar sql.NullString
 	err := s.db.QueryRowContext(
@@ -115,6 +118,7 @@ func (s *userRepo) Update(ctx context.Context, newUser *repo.User) (*repo.User, 
 		newUser.Bio,
 		newUser.BirthDay,
 		newUser.Avatar,
+		newUser.Id,
 	).Scan(
 		&updatedUser.Id,
 		&updatedUser.Name,

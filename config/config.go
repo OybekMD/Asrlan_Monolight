@@ -43,7 +43,7 @@ func Load() Config {
 	c.Environment = getEnv("ENVIRONMENT", "production")
 
 	c.GinMode = getEnv("GIN_MODE", "release")
-	c.HttpPort = getEnv("HTTP_PORT", ":8090")
+	c.HttpPort = getEnv("HTTP_PORT", ":8080")
 	c.CtxTimeout = getEnv("CTX_TIMEOUT", "5s")
 
 	c.PostgresHost = getEnv("POSTGRES_HOST", "localhost")

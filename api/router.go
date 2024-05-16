@@ -114,6 +114,7 @@ func New(option *Option) *gin.Engine {
 	api.DELETE("/level/:id", handlerV1.DeleteLevel)
 	api.GET("/levels", handlerV1.ListLevels)
 	api.GET("/levelsforregister", handlerV1.LevelsForRegister)
+	api.GET("/levelsforcourse", handlerV1.LevelsForCourse)
 
 	// Topic
 	api.GET("/topic/:id", handlerV1.GetTopic)

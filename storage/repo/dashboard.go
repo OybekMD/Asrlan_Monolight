@@ -27,7 +27,7 @@ type Leaderboard struct {
 
 type DashboardStorageI interface {
 	GetDashboard(ctx context.Context, userId string,  language_id, level_id int64) (*Dashboard, error)
-	GetLeaderboard(ctx context.Context, userId, language_id, level_id string) ([]*Leaderboard, error)
+	GetLeaderboard(ctx context.Context, period, level_id string) ([]*Leaderboard, error)
 	UpCreateLevel(ctx context.Context, userLevel *UserLevel) (bool, error)
 	UpCreateTopic(ctx context.Context, userTopic *UserTopic) (bool, error)
 }

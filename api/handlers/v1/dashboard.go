@@ -82,19 +82,16 @@ func (h *handlerV1) GetDashboard(ctx *gin.Context) {
 // @Tags          Leaderboard
 // @Accept        json
 // @Produce       json
-// @Param         user_id query string true "UserID"
-// @Param         language_id query string true "LanguageId"
+// @Param         period query string true "PeriodSelect"
 // @Param         level_id query string true "LevelId"
 // @Success 	  200 {object} models.LeaderboardResponse
 // @Failure		  400 {object} models.Error
 // @Failure		  401 {object} models.Error
 // @Failure		  403 {object} models.Error
 // @Failure       500 {object} models.Error
-// @Router        /v1/dashboard [GET]
+// @Router        /v1/leaderboard [GET]
 func (h *handlerV1) GetLeaderboard(ctx *gin.Context) {
-	fmt.Println("Request  Header:", ctx.GetHeader("Authorization"))
-	user_id := ctx.Query("user_id")
-	language_id := ctx.Query("language_id")
+	period := ctx.Query("period")
 	level_id := ctx.Query("level_id")
 
 	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
@@ -109,7 +106,7 @@ func (h *handlerV1) GetLeaderboard(ctx *gin.Context) {
 	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
 	defer cancel()
 
-	activitys, err := h.storage.Dashboard().GetLeaderboard(ctxTime, user_id, language_id, level_id)
+	activitys, err := h.storage.Dashboard().GetLeaderboard(ctxTime, period, level_id)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, &models.Error{
 			Message: models.NotFoundMessage,

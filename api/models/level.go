@@ -29,6 +29,10 @@ type (
 		Levels []*repo.LevelForRegister
 	}
 
+	LevelForCourseResponse struct {
+		Levels []*repo.LevelForCourse
+	}
+
 	LevelUpdate struct {
 		Id   int64  `json:"id"`
 		Name string `json:"name"`

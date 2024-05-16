@@ -257,3 +257,53 @@ func (s *levelRepo) GetAllForRegister(ctx context.Context, language_id string) (
 
 	return responseLevels, nil
 }
+
+func (s *levelRepo) GetAllForCourses(ctx context.Context, user_id, language_id string) ([]*repo.LevelForCourse, error) {
+	query := `
+	SELECT 
+		lev.id, 
+		lev.name, 
+		COALESCE(ul.score, 0) AS score,
+		lev.real_level, 
+		lev.picture 
+	FROM
+		levels lev
+	JOIN 
+		languages lan ON lev.language_id = lan.id
+	LEFT JOIN 
+		user_level ul ON ul.level_id = lev.id AND ul.user_id = $1
+	WHERE 
+		lev.deleted_at IS NULL
+		AND lan.deleted_at IS NULL
+		AND lan.id = $2
+	ORDER BY 
+		lev.real_level;
+	`
+
+	rows, err := s.db.QueryContext(ctx, query, user_id, language_id)
+	if err != nil {
+		log.Println("Error GetAllForCourses selecting levels with page and limit in postgres", err.Error())
+		return nil, err
+	}
+	defer rows.Close()
+
+	var responseLevels []*repo.LevelForCourse
+	for rows.Next() {
+		var level repo.LevelForCourse
+		err = rows.Scan(
+			&level.Id,
+			&level.Name,
+			&level.Score,
+			&level.RealLevel,
+			&level.Picture,
+		)
+		if err != nil {
+			log.Println("Error GetAllForCourses scanning level method of postgres", err.Error())
+			return nil, err
+		}
+
+		responseLevels = append(responseLevels, &level)
+	}
+
+	return responseLevels, nil
+}
