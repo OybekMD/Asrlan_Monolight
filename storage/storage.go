@@ -27,6 +27,8 @@ type StorageI interface {
 	UserLevel() repo.UserLevelStorageI
 	UserTopic() repo.UserTopicStorageI
 	UserLesson() repo.UserLessonStorageI
+	Book() repo.BookStorageI
+	Profile() repo.ProfileStorageI
 }
 
 type storagePg struct {
@@ -48,6 +50,8 @@ type storagePg struct {
 	userLevelRepo    repo.UserLevelStorageI
 	userTopicRepo    repo.UserTopicStorageI
 	userLessonRepo   repo.UserLessonStorageI
+	bookRepo         repo.BookStorageI
+	profileRepo      repo.ProfileStorageI
 }
 
 func NewStoragePg(db *sqlx.DB) StorageI {
@@ -70,6 +74,8 @@ func NewStoragePg(db *sqlx.DB) StorageI {
 		userLevelRepo:    postgres.NewUserLevel(db),
 		userTopicRepo:    postgres.NewUserTopic(db),
 		userLessonRepo:   postgres.NewUserLesson(db),
+		bookRepo:         postgres.NewBook(db),
+		profileRepo:      postgres.NewProfile(db),
 	}
 }
 
@@ -143,4 +149,12 @@ func (s *storagePg) UserTopic() repo.UserTopicStorageI {
 
 func (s *storagePg) UserLesson() repo.UserLessonStorageI {
 	return s.userLessonRepo
+}
+
+func (s *storagePg) Book() repo.BookStorageI {
+	return s.bookRepo
+}
+
+func (s *storagePg) Profile() repo.ProfileStorageI {
+	return s.profileRepo
 }

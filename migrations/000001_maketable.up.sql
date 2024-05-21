@@ -157,10 +157,30 @@ CREATE TABLE user_lesson (
 
 CREATE TABLE activitys (
     id SERIAL PRIMARY KEY,
-    day DATE,
     score INTEGER DEFAULT 0,
     lesson_id INT REFERENCES lessons(id),
-    user_id UUID REFERENCES users(id)
+    user_id UUID REFERENCES users(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Place for certificate
+
+CREATE TABLE certificates (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    pdfile TEXT NOT NULL,
+    level_id INT REFERENCES levels(id),
+    user_id UUID REFERENCES users(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE books (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(65),
+    picture TEXT,
+    book_file TEXT,
+    level_id INT REFERENCES levels(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT NULL
+);

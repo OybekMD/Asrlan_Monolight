@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS certificates;
 DROP TABLE IF EXISTS activitys;
 DROP TABLE IF EXISTS content_files;
 DROP TABLE IF EXISTS contents;

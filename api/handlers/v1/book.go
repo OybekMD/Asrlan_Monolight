@@ -14,20 +14,20 @@ import (
 )
 
 // @Security      BearerAuth
-// @Summary 	  Update User
-// @Description   This Api for updating user
-// @Tags 		  users
+// @Summary 	  Create Book
+// @Description   This Api for creating a new book
+// @Tags 		  books
 // @Accept 		  json
 // @Produce 	  json
-// @Param 		  User body models.UserUpdate true "Update User Model"
-// @Success 	  200 {object} models.UserResponse
+// @Param 		  BookCreate body models.BookCreate true "BookCreate Model"
+// @Success 	  201 {object} models.BookResponse
 // @Failure 	  400 {object} models.Error
 // @Failure 	  401 {object} models.Error
 // @Failure 	  403 {object} models.Error
 // @Failure 	  500 {object} models.Error
-// @Router 		  /v1/user [PUT]
-func (h *handlerV1) UpdateUser(ctx *gin.Context) {
-	var body models.UserUpdate
+// @Router 		  /v1/book [POST]
+func (h *handlerV1) CreateBook(ctx *gin.Context) {
+	var body models.BookCreate
 
 	err := ctx.ShouldBindJSON(&body)
 	if err != nil {
@@ -50,75 +50,48 @@ func (h *handlerV1) UpdateUser(ctx *gin.Context) {
 	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
 	defer cancel()
 
-	// Validate start
-	err = body.ValidateEmpity()
-	if err != nil {
-		ctx.JSON(http.StatusBadRequest, models.Error{
-			Message: models.WrongInfoMessage,
+	response, err := h.storage.Book().Create(
+		ctxTime,
+		&repo.Book{
+			Name: body.Name,
+			Picture: body.Picture,
+			BookFile: body.BookFile,
+			LevelId: body.LevelId,
 		})
-		log.Println("Error validating user. id or username not given", err.Error())
-		return
-	}
-	// Validate end 
-
-	// Noexistense Start
-
-	responseUsername, err := h.storage.User().CheckUsername(
-		ctxTime, body.Id, body.Username)
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Error while getting exist fild",
-		})
-		log.Println("Error while getting exist fild: ", err.Error())
-		return
-	}
-	if !responseUsername {
-		// 409 it means username already exist
-		ctx.JSON(http.StatusConflict, gin.H{
-			"error": "The username already exists. Please choose a different username.",
-		})
-		log.Println("Username already use:", body.Username)
-		return
-	}
-	// Noexistense End
-
-	userModel := &repo.User{}
-	err = parsing.StructToStruct(&body, userModel)
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, models.Error{
-			Message: models.InternalMessage,
-		})
-		log.Println("Error parsing struct to struct", err.Error())
-		return
-	}
-
-	response, err := h.storage.User().Update(ctxTime, userModel)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, &models.Error{
-			Message: models.NotUpdatedMessage,
+			Message: models.NotCreatedMessage,
 		})
-		log.Println("failed to update user", err.Error())
+		log.Println("failed to create user", err.Error())
 		return
 	}
 
-	ctx.JSON(http.StatusOK, response)
+	ctx.JSON(http.StatusCreated, &models.BookResponse{
+		Id:        response.Id,
+		Name:      response.Name,
+		Picture:   response.Picture,
+		BookFile:   response.BookFile,
+		LevelId:   response.LevelId,
+		CreatedAt: response.CreatedAt,
+		UpdatedAt: response.UpdatedAt,
+	})
 }
 
 // @Security      BearerAuth
-// @Summary 	  Update User
-// @Description   This Api for updating user
-// @Tags 		  users
+// @Summary 	  Update Book
+// @Description   This Api for updating book
+// @Tags 		  books
 // @Accept 		  json
 // @Produce 	  json
-// @Param 		  User body models.UserUpdate true "Update User Model"
-// @Success 	  200 {object} models.UserResponse
+// @Param 		  BookUpdate body models.BookUpdate true "Update BookUpdate Model"
+// @Success 	  200 {object} models.BookResponse
 // @Failure 	  400 {object} models.Error
 // @Failure 	  401 {object} models.Error
 // @Failure 	  403 {object} models.Error
 // @Failure 	  500 {object} models.Error
-// @Router 		  /v1/userpassword [PUT]
-func (h *handlerV1) UpdateUserPassword(ctx *gin.Context) {
-	var body models.UserUpdate
+// @Router 		  /v1/book [PUT]
+func (h *handlerV1) UpdateBook(ctx *gin.Context) {
+	var body models.BookUpdate
 
 	err := ctx.ShouldBindJSON(&body)
 	if err != nil {
@@ -141,39 +114,8 @@ func (h *handlerV1) UpdateUserPassword(ctx *gin.Context) {
 	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
 	defer cancel()
 
-	// Validate start
-	err = body.ValidateEmpity()
-	if err != nil {
-		ctx.JSON(http.StatusBadRequest, models.Error{
-			Message: models.WrongInfoMessage,
-		})
-		log.Println("Error validating user. id or username not given", err.Error())
-		return
-	}
-	// Validate end 
-
-	// Noexistense Start
-
-	responseUsername, err := h.storage.User().CheckField(
-		ctxTime, "username", body.Username)
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Error while getting exist fild",
-		})
-		log.Println("Error while getting exist fild: ", err.Error())
-		return
-	}
-	if responseUsername {
-		ctx.JSON(http.StatusConflict, gin.H{
-			"error": "Username already use",
-		})
-		log.Println("Username already use:", body.Username)
-		return
-	}
-	// Noexistense End
-
-	userModel := &repo.User{}
-	err = parsing.StructToStruct(&body, userModel)
+	bookModel := &repo.Book{}
+	err = parsing.StructToStruct(&body, bookModel)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, models.Error{
 			Message: models.InternalMessage,
@@ -182,7 +124,7 @@ func (h *handlerV1) UpdateUserPassword(ctx *gin.Context) {
 		return
 	}
 
-	response, err := h.storage.User().Update(ctxTime, userModel)
+	response, err := h.storage.Book().Update(ctxTime, bookModel)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, &models.Error{
 			Message: models.NotUpdatedMessage,
@@ -195,9 +137,9 @@ func (h *handlerV1) UpdateUserPassword(ctx *gin.Context) {
 }
 
 // @Security      BearerAuth
-// @Summary 	  Delete User
-// @Description   This Api for deleting user
-// @Tags 		  users
+// @Summary 	  Delete Book
+// @Description   This Api for deleting book
+// @Tags 		  books
 // @Accept 		  json
 // @Produce 	  json
 // @Param         id path string true "ID"
@@ -205,8 +147,8 @@ func (h *handlerV1) UpdateUserPassword(ctx *gin.Context) {
 // @Failure 	  401 {object} models.Error
 // @Failure 	  403 {object} models.Error
 // @Failure 	  500 {object} models.Error
-// @Router 		  /v1/user/{id} [DELETE]
-func (h *handlerV1) DeleteUser(ctx *gin.Context) {
+// @Router 		  /v1/book/{id} [DELETE]
+func (h *handlerV1) DeleteBook(ctx *gin.Context) {
 	id := ctx.Param("id")
 
 	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
@@ -221,7 +163,7 @@ func (h *handlerV1) DeleteUser(ctx *gin.Context) {
 	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
 	defer cancel()
 
-	response, err := h.storage.User().Delete(ctxTime, id)
+	response, err := h.storage.Book().Delete(ctxTime, id)
 	if err != nil || !response {
 		ctx.JSON(http.StatusInternalServerError, &models.Error{
 			Message: models.NotDeletedMessage,
@@ -234,18 +176,18 @@ func (h *handlerV1) DeleteUser(ctx *gin.Context) {
 }
 
 // @Security      BearerAuth
-// @Summary 	  Get User
-// @Description   This Api for get user
-// @Tags 		  users
+// @Summary 	  Get Book
+// @Description   This Api for get book
+// @Tags 		  books
 // @Accept        json
 // @Produce       json
 // @Param         id path string true "ID"
-// @Success 	  200 {object} models.UserResponse
+// @Success 	  200 {object} models.BookResponse
 // @Failure		  401 {object} models.Error
 // @Failure		  403 {object} models.Error
 // @Failure       500 {object} models.Error
-// @Router        /v1/user/{id} [GET]
-func (h *handlerV1) GetUser(ctx *gin.Context) {
+// @Router        /v1/book/{id} [GET]
+func (h *handlerV1) GetBook(ctx *gin.Context) {
 	id := ctx.Param("id")
 
 	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
@@ -260,14 +202,61 @@ func (h *handlerV1) GetUser(ctx *gin.Context) {
 	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
 	defer cancel()
 
-	user, err := h.storage.User().Get(ctxTime, id)
+	book, err := h.storage.Book().Get(ctxTime, id)
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, models.Error{
 			Message: models.NotFoundMessage,
 		})
-		log.Println("failed to get user", err.Error())
+		log.Println("failed to get book", err.Error())
 		return
 	}
 
-	ctx.JSON(http.StatusOK, user)
+	ctx.JSON(http.StatusOK, book)
+}
+
+// @Security      BearerAuth
+// @Summary       ListBooks
+// @Description   This Api for get all books
+// @Tags          books
+// @Accept        json
+// @Produce       json
+// @Param         id path string true "Level Id"
+// @Success 	  200 {object} []models.BookResponse
+// @Failure		  400 {object} models.Error
+// @Failure		  401 {object} models.Error
+// @Failure		  403 {object} models.Error
+// @Failure       500 {object} models.Error
+// @Router        /v1/books/{id} [GET]
+func (h *handlerV1) ListBooks(ctx *gin.Context) {
+	book_id := ctx.Param("id")
+
+	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: models.InternalMessage,
+		})
+		log.Println("failed to parse timeout", err.Error())
+		return
+	}
+
+	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
+	defer cancel()
+
+	books, err := h.storage.Book().GetAll(ctxTime, book_id)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, &models.Error{
+			Message: models.NotFoundMessage,
+		})
+		log.Println("failed to get all users", err.Error())
+		return
+	}
+	if len(books) == 0 {
+		ctx.JSON(http.StatusOK, nil)
+		log.Println("Not found books")
+		return
+	}
+
+	ctx.JSON(http.StatusOK, models.BookListResponse{
+		Books: books,
+	})
 }

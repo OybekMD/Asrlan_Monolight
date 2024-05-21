@@ -164,7 +164,7 @@ INSERT INTO contents (lesson_id, gentype, title) VALUES
     (4, 3, 'To bega misollar');
 
 INSERT INTO content_files (content_id, image_data) VALUES 
-    (41, 'asrlan.jprq.app/media/mdata/989e8d2b-a65c-4a98-b197-3f11e630aecc.jpg');
+    (41, 'asrlan.jprq.app/media/image/bola.jpg');
 
 INSERT INTO contents (lesson_id, gentype, title, text_data) VALUES 
     (4, 1, 'To bega misollar', 'I am a student - Men talabaman\nHe (She) is a student - U talaba\nIt is a cat - U mushuk\nWe are students - Biz talabamiz\nYou are students - Sizlar talabasiz\nThey are students - Ular talaba');
@@ -172,7 +172,7 @@ INSERT INTO contents (lesson_id, gentype, title, text_data) VALUES
 INSERT INTO contents (lesson_id, gentype, title, question, text_data, arr_text, correct_answer) VALUES 
     (5, 5, 'To`g`ri so`zni belgilang', 'u yigit', 'He is', ARRAY['Boy', 'Girl', 'Book'], 1),
     (5, 5, 'To`g`ri so`zni belgilang', 'u mushuk', 'It is', ARRAY['Hat', 'Cat', 'Book'], 2),
-    (5, 5, 'To`g`ri so`zni belgilang', 'u olma', 'It is', ARRAY['Apple', 'Banana', 'Door'], 2);
+    (5, 5, 'To`g`ri so`zni belgilang', 'u olma', 'It is', ARRAY['Apple', 'Banana', 'Door'], 1);
 
 INSERT INTO content_files (content_id, image_data) VALUES
     (43, 'asrlan.jprq.app/media/mdata/objects/man.png'),
@@ -219,13 +219,14 @@ INSERT INTO contents (lesson_id, gentype, title, text_data) VALUES
     (9, 1, 'Biror inson bilan hayirlashganda', 'See you - Ko`rishguncha'),
     (9, 1, 'Kunlidalik so`z', 'Good morning - Xayirli kun'),
     (9, 1, 'Tashakkur bildirish uchun', 'Thank you - Rahmat');
-INSERT INTO contents (lesson_id, gentype, title, arr_text, correct_answer) VALUES 
-    (9, 8, 'Biror inson bilan hayirlashganda', ARRAY['Hello', 'Goodbay', 'Good morning'], 2),
-    (9, 8, 'Biror inson bilan ko`rishganda', ARRAY['Hi', 'See you', 'Good morning'], 1),
-    (9, 8, 'Biror inson bilan ko`rishganda', ARRAY['Goodbay', 'Hello', 'Thank you'], 3);
+INSERT INTO contents (lesson_id, gentype, title, question, arr_text, correct_answer) VALUES 
+    (9, 8, 'To`g`ri javobni belgilang', 'Biror inson bilan hayirlashganda', ARRAY['Hello', 'Goodbay', 'Good morning'], 2),
+    (9, 8, 'To`g`ri javobni belgilang', 'Biror inson bilan ko`rishganda', ARRAY['Hi', 'See you', 'Good morning'], 1),
+    (9, 8, 'To`g`ri javobni belgilang', 'Biror insonga minnatdorchilik bildirilgancda', ARRAY['Goodbay', 'Hello', 'Thank you'], 3);
+
 -- Meeting someone for the first time
 
-
+-- Daily routines
 
 INSERT INTO admins (email) VALUES ('azimjon8253@gmail.com');
 
@@ -281,7 +282,7 @@ INSERT INTO user_level (user_id, level_id) VALUES
     ('8a22ae56-d927-11ee-90e4-d8bbc174b998', 3);
 
 
-INSERT INTO activitys (day, score, user_id) VALUES
+INSERT INTO activitys (created_at, score, user_id) VALUES
     ('2024-01-05', 40, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
     ('2024-01-10', 50, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
     ('2024-01-15', 30, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
@@ -309,11 +310,12 @@ INSERT INTO activitys (day, score, user_id) VALUES
     ('2024-05-05', 40, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
     ('2024-05-10', 40, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
     ('2024-05-15', 90, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
-    ('2024-05-20', 100, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
-    ('2024-05-25', 40, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
-    ('2024-05-30', 40, '8a22ae56-d927-11ee-90e4-d8bbc174b998');
+    ('2024-05-16', 90, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
+    ('2024-05-18', 90, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
+    ('2024-05-19', 90, '8a22ae56-d927-11ee-90e4-d8bbc174b998'),
+    ('2024-05-20', 100, '8a22ae56-d927-11ee-90e4-d8bbc174b998');
     
-INSERT INTO activitys (day, score, user_id) VALUES
+INSERT INTO activitys (created_at, score, user_id) VALUES
     ('2024-02-01', 50, '678e9012-e89b-12d3-a456-426614174006'),
     ('2024-02-05', 20, '678e9012-e89b-12d3-a456-426614174006'),
     ('2024-02-10', 30, '678e9012-e89b-12d3-a456-426614174006'),
@@ -340,7 +342,7 @@ INSERT INTO activitys (day, score, user_id) VALUES
     ('2024-05-25', 40, '678e9012-e89b-12d3-a456-426614174006'),
     ('2024-05-30', 40, '678e9012-e89b-12d3-a456-426614174006');
 
-INSERT INTO activitys (day, score, user_id) VALUES
+INSERT INTO activitys (created_at, score, user_id) VALUES
     ('2024-03-01', 40, '223e4567-e89b-12d3-a456-426614174002'),
     ('2024-03-05', 30, '223e4567-e89b-12d3-a456-426614174002'),
     ('2024-03-10', 50, '223e4567-e89b-12d3-a456-426614174002'),
@@ -361,7 +363,7 @@ INSERT INTO activitys (day, score, user_id) VALUES
     ('2024-05-25', 40, '223e4567-e89b-12d3-a456-426614174002'),
     ('2024-05-30', 40, '223e4567-e89b-12d3-a456-426614174002');
 
-INSERT INTO activitys (day, score, user_id) VALUES
+INSERT INTO activitys (created_at, score, user_id) VALUES
     ('2024-04-05', 30, '423e4567-e89b-12d3-a456-426614174004'),
     ('2024-04-10', 40, '423e4567-e89b-12d3-a456-426614174004'),
     ('2024-04-20', 40, '423e4567-e89b-12d3-a456-426614174004'),
@@ -374,4 +376,8 @@ INSERT INTO activitys (day, score, user_id) VALUES
     ('2024-05-20', 100, '423e4567-e89b-12d3-a456-426614174004'),
     ('2024-05-25', 40, '423e4567-e89b-12d3-a456-426614174004'),
     ('2024-05-30', 40, '423e4567-e89b-12d3-a456-426614174004');
+
+INSERT INTO books (name, picture, book_file, level_id) VALUES
+    ('Free English Grammar', 'asrlan.jprq.app/media/image/75c785e9-369a-4969-ac8f-e3af2ee2832d.png', 'asrlan.jprq.app/media/pdf/Free_English_Grammar_(_PDFDrive_)_(1).pdf', 1)
+
 

@@ -31,4 +31,5 @@ type UserStorageI interface {
 	Get(ctx context.Context, id string) (*User, error)
 	GetAll(ctx context.Context, page, limit uint64) ([]*User, error)
 	CheckField(ctx context.Context, field, value string) (bool, error)
+	CheckUsername(ctx context.Context, id, username string) (bool, error)
 }

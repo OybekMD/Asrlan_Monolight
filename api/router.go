@@ -142,6 +142,16 @@ func New(option *Option) *gin.Engine {
 	api.POST("/contentfile", handlerV1.CreateContentFile)
 	api.DELETE("/contentfile/:id", handlerV1.DeleteContentFile)
 
+	// Book
+	api.GET("/book/:id", handlerV1.GetBook)
+	api.POST("/book", handlerV1.CreateBook)
+	api.PUT("/book", handlerV1.UpdateBook)
+	api.DELETE("/book/:id", handlerV1.DeleteBook)
+	api.GET("/books/:id", handlerV1.ListBooks)
+
+	// Profile
+	api.GET("/profile", handlerV1.Profile)
+
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 

@@ -1,6 +1,8 @@
 package postgres
 
 import (
+	"asrlan-monolight/api/helper/certificate"
+	impemail "asrlan-monolight/api/helper/email"
 	"asrlan-monolight/storage/repo"
 	"context"
 	"database/sql"
@@ -20,6 +22,112 @@ func NewDashboard(db *sqlx.DB) repo.DashboardStorageI {
 	}
 }
 
+// // // What about sending email to user about he/she got a certificate
+func (s *dashboardRepo) CreateCertificate(ctx context.Context, user_id string, level_id int64) (bool, error) {
+	// What is this mean true and false?
+	// true = we should create
+	// false = we alread created or we shouldn't create
+	fmt.Println("user_id:", user_id, "level_id:", level_id)
+	queryExist := `
+		SELECT
+			count(1)
+		FROM
+			certificates
+		WHERE
+			level_id = $1
+			AND user_id = $2`
+
+	var isExists int
+
+	row := s.db.QueryRowContext(ctx, queryExist, level_id, user_id)
+	err := row.Scan(&isExists)
+	if err != nil {
+		fmt.Println("error 1", err)
+		log.Println("Error getting count of number of certificate", err.Error())
+		return false, err
+	}
+
+	if isExists != 0 {
+		fmt.Println("error 2", err)
+		return false, nil
+	}
+	// We need data: name, level, language
+	var name, email, level, language string
+	queryGetNLL := `
+	SELECT
+		u.name AS user_name,
+		u.email AS user_email,
+		l.name AS level_name,
+		lang.name AS language_name
+	FROM
+		users u
+	JOIN
+		user_level ul ON u.id = ul.user_id
+	JOIN
+		levels l ON ul.level_id = l.id
+	JOIN
+		user_language ulang ON u.id = ulang.user_id
+	JOIN
+		languages lang ON ulang.language_id = lang.id
+	WHERE
+		u.id = $1
+		AND ul.level_id = $2
+		AND ulang.status = TRUE
+	ORDER BY
+		u.name;
+	`
+
+	err = s.db.QueryRowContext(ctx, queryGetNLL, user_id, level_id).Scan(&name, &email, &level, &language)
+	if err != nil {
+		fmt.Println("error 3", err)
+		log.Println("Eror creating lesson in postgres method", err.Error())
+		return false, err
+	}
+
+	certificatePath, err := certificate.GenerateCertificate(name, level, language)
+	if err != nil {
+		fmt.Println("error 4", err)
+		log.Println("Error GenerateCertificate:", err.Error())
+		return false, err
+	}
+
+	query := `
+	INSERT INTO certificates (
+		name,
+		pdfile,
+		level_id,
+		user_id
+	)
+	VALUES ($1, $2, $3, $4)
+	`
+	insertName := language+" "+level
+
+	_, err = s.db.ExecContext(
+		ctx,
+		query,
+		insertName,
+		certificatePath,
+		certificatePath,
+		level_id,
+		user_id,
+	)
+
+	if err != nil {
+		fmt.Println("error 5", err)
+		log.Println("Eror creating Certificate in postgres method", err.Error())
+		return false, err
+	}
+
+	body := impemail.EmailCertificate{
+		Name: name,
+		Url:  certificatePath,
+	}
+
+	impemail.SendEmailCertificate([]string{email}, "Asrlan Congratulations\n", "./api/helper/email/certificate.html", body)
+
+	return true, err
+}
+
 func (s *dashboardRepo) UpCreateLevel(ctx context.Context, userLevel *repo.UserLevel) (bool, error) {
 	queryExist := `
 	UPDATE
@@ -30,6 +138,15 @@ func (s *dashboardRepo) UpCreateLevel(ctx context.Context, userLevel *repo.UserL
 		user_id = $2
 		AND level_id = $3
 	`
+	if userLevel.Score == 100 {
+		isHave, err := s.CreateCertificate(ctx, userLevel.UserId, userLevel.LevelId)
+		if err != nil {
+			return false, err
+		}
+		if !isHave {
+			fmt.Println("NOOOOOOOOOOOOOOOO created!")
+		}
+	}
 	result, err := s.db.ExecContext(ctx,
 		queryExist,
 		userLevel.Score,
@@ -247,8 +364,8 @@ func (s *dashboardRepo) GetDashboard(ctx context.Context, userId string, languag
 	}
 
 	status, err := s.UpCreateLevel(ctx, &repo.UserLevel{
-		Score: levelScore,
-		UserId: userId,
+		Score:   levelScore,
+		UserId:  userId,
 		LevelId: level_id,
 	})
 	if !status || err != nil {
@@ -263,31 +380,35 @@ func (s *dashboardRepo) GetDashboard(ctx context.Context, userId string, languag
 }
 
 func (s *dashboardRepo) GetLeaderboard(ctx context.Context, period, level_id string) ([]*repo.Leaderboard, error) {
-	switch period{
-	case "1":
-		
-	}
-	
-	query := `
-		SELECT
-			u.name,
-			u.username,
-			u.avatar,
-			u.score
-		FROM
-			users u
-		JOIN
-			user_level ulan ON u.id = ulan.user_id
-		JOIN
-			user_level ulev ON u.id = ulev.user_id
-		WHERE
-			ulan.language_id = $1
-			AND ulev.level_id = $2
-		ORDER BY
-			u.score DESC
-	`
+	query := fmt.Sprintf(
+		`SELECT
+		u.name,
+		u.username,
+		u.avatar,
+		uscores.total_score
+	FROM
+		users u
+	JOIN
+		(
+			SELECT
+				a.user_id,
+				SUM(a.score) AS total_score
+			FROM
+				activitys a
+			WHERE
+				a.created_at >= CURRENT_DATE - INTERVAL '%s months'
+			GROUP BY
+				a.user_id
+		) uscores ON u.id = uscores.user_id
+	JOIN
+		user_level ulev ON u.id = ulev.user_id
+	WHERE
+		ulev.level_id = %s
+	ORDER BY
+		uscores.total_score DESC;
+	`, period, level_id)
 
-	rows, err := s.db.QueryContext(ctx, query, level_id)
+	rows, err := s.db.QueryContext(ctx, query)
 	if err != nil {
 		fmt.Println("error 1:", err)
 		log.Println("Error Leaderboard in postgres", err.Error())

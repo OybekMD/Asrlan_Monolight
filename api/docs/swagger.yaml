@@ -75,6 +75,47 @@ definitions:
       picture:
         type: string
     type: object
+  models.BookCreate:
+    properties:
+      book_file:
+        type: string
+      level_id:
+        type: integer
+      name:
+        type: string
+      picture:
+        type: string
+    type: object
+  models.BookResponse:
+    properties:
+      book_file:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      lesson_name:
+        type: string
+      level_id:
+        type: integer
+      picture:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.BookUpdate:
+    properties:
+      book_file:
+        type: string
+      id:
+        type: integer
+      level_id:
+        type: integer
+      name:
+        type: string
+      picture:
+        type: string
+    type: object
   models.ContentCreate:
     properties:
       arr_text:
@@ -885,6 +926,195 @@ paths:
       summary: ListBadges
       tags:
       - badges
+  /v1/book:
+    post:
+      consumes:
+      - application/json
+      description: This Api for creating a new book
+      parameters:
+      - description: BookCreate Model
+        in: body
+        name: BookCreate
+        required: true
+        schema:
+          $ref: '#/definitions/models.BookCreate'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.BookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Create Book
+      tags:
+      - books
+    put:
+      consumes:
+      - application/json
+      description: This Api for updating book
+      parameters:
+      - description: Update BookUpdate Model
+        in: body
+        name: BookUpdate
+        required: true
+        schema:
+          $ref: '#/definitions/models.BookUpdate'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.BookResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Update Book
+      tags:
+      - books
+  /v1/book/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: This Api for deleting book
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: boolean
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete Book
+      tags:
+      - books
+    get:
+      consumes:
+      - application/json
+      description: This Api for get book
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.BookResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Get Book
+      tags:
+      - books
+  /v1/books/{id}:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all books
+      parameters:
+      - description: Level Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.BookResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListBooks
+      tags:
+      - books
   /v1/content:
     post:
       consumes:
@@ -1187,7 +1417,7 @@ paths:
     get:
       consumes:
       - application/json
-      description: This Api for get all Leaderboard
+      description: This Api for get all Dashboard
       parameters:
       - description: UserID
         in: query
@@ -1210,7 +1440,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.LeaderboardResponse'
+            $ref: '#/definitions/models.DashboardResponse'
         "400":
           description: Bad Request
           schema:
@@ -1229,9 +1459,9 @@ paths:
             $ref: '#/definitions/models.Error'
       security:
       - BearerAuth: []
-      summary: Leaderboard
+      summary: ListDashboards
       tags:
-      - Leaderboard
+      - Dashboard
   /v1/forgot:
     post:
       consumes:
@@ -1516,6 +1746,50 @@ paths:
       summary: ListLanguages
       tags:
       - languages
+  /v1/leaderboard:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all Leaderboard
+      parameters:
+      - description: PeriodSelect
+        in: query
+        name: period
+        required: true
+        type: string
+      - description: LevelId
+        in: query
+        name: level_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.LeaderboardResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: Leaderboard
+      tags:
+      - Leaderboard
   /v1/lesson:
     post:
       consumes:
@@ -2047,6 +2321,46 @@ paths:
       summary: File upload
       tags:
       - file-upload
+  /v1/profile:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all profiles
+      parameters:
+      - description: Level Id
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Period 1,2,3
+        in: query
+        name: period
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListProfiles
+      tags:
+      - profiles
   /v1/resetpassword:
     post:
       consumes:

@@ -4,6 +4,7 @@ import (
 	"asrlan-monolight/storage/repo"
 	"context"
 	"database/sql"
+	"errors"
 	"fmt"
 	"log"
 
@@ -367,6 +368,38 @@ func (s *userRepo) CheckField(ctx context.Context, field, value string) (bool, e
 	}
 
 	if isExists == 0 {
+		return false, nil
+	}
+
+	return true, nil
+}
+
+func (s *userRepo) CheckUsername(ctx context.Context, id, username string) (bool, error) {
+	query :=
+		`
+		SELECT
+			id
+		FROM 
+			users
+		WHERE username = $1
+		AND deleted_at IS NULL`
+
+	var nullpgetid sql.NullString
+	var pgetid string
+
+	row := s.db.QueryRowContext(ctx, query, username)
+	err := row.Scan(&nullpgetid)
+	if err != nil {
+		return true, nil
+	}
+
+	if nullpgetid.Valid {
+		pgetid = nullpgetid.String
+	} else {
+		return false, errors.New("null Valid is not validated")
+	}
+
+	if pgetid != id {
 		return false, nil
 	}
 

@@ -71,3 +71,176 @@
 2024/05/16 21:55:06 Username already use: Chingiz
 2024/05/16 21:55:28 Username already use: Boy
 2024/05/16 21:55:55 Username already use: Boy
+2024/05/16 22:25:48 Username already use: Sharifboy
+2024/05/16 22:26:42 Username already use: Sharifboy
+2024/05/16 22:27:41 Username already use: Sharifboy
+2024/05/16 22:29:24 Username already use: Sharifboy
+2024/05/16 22:36:50 Nothing found, Admin
+2024/05/16 22:37:22 Username already use: Boy
+2024/05/16 22:38:34 Username already use: Boy
+2024/05/16 22:38:51 Username already use: Boy
+2024/05/17 09:45:42 Username already use: Boy
+2024/05/17 09:46:46 Username already use: Sharifboy
+2024/05/17 09:47:02 Username already use: Sharifboy
+2024/05/17 09:47:08 Username already use: Sharifboy
+2024/05/17 09:47:21 Username already use: Sharifboy
+2024/05/17 09:47:27 Username already use: Sharifboy
+2024/05/17 09:48:16 Username already use: Sharif
+2024/05/17 09:49:22 Username already use: Sharif
+2024/05/17 09:50:10 Username already use: Sharif
+2024/05/17 09:50:40 Username already use: Sharif
+2024/05/17 09:51:02 Username already use: Sharif
+2024/05/17 09:51:29 Username already use: Sharifboy
+2024/05/17 09:51:49 Error validating user. id or username not given username: cannot be blank.
+2024/05/17 09:52:09 failed to bind json invalid character '}' looking for beginning of object key string
+2024/05/17 09:52:12 Username already use: Sharifboy
+2024/05/17 09:56:58 Username already use: Sharifboyd
+2024/05/17 09:58:11 Username already use: Sharifboyd
+2024/05/17 09:59:23 Username already use: Sharifboyd
+2024/05/17 10:00:35 Username already use: Sharifboyd
+2024/05/17 10:46:07 Username already use: Sharif
+2024/05/17 12:10:32 Username already use: davronchik
+2024/05/17 12:11:24 Username already use: tonyme
+2024/05/17 12:13:22 Username already use: tonyme
+2024/05/17 12:13:32 Error while getting exist fild:  sql: no rows in result set
+2024/05/17 12:14:20 Error while getting exist fild:  sql: no rows in result set
+2024/05/17 12:14:34 Error while getting exist fild:  sql: no rows in result set
+2024/05/17 12:15:07 Username already use: tonyme
+2024/05/17 14:43:24 Error Leaderboard in postgres pq: got 1 parameters but the statement requires 0
+2024/05/17 14:43:24 failed to get all users pq: got 1 parameters but the statement requires 0
+2024/05/17 15:02:07 Nothing found, Admin
+2024/05/17 15:02:07 Nothing found, Admin
+2024/05/17 15:03:47 Nothing found, Admin
+2024/05/17 15:03:48 Nothing found, Admin
+2024/05/17 15:05:30 Nothing found, Admin
+2024/05/17 15:05:30 Nothing found, Admin
+2024/05/17 15:27:23 Nothing found, Admin
+2024/05/17 15:27:23 Nothing found, Admin
+2024/05/17 20:18:57 Error getting count of number of certificate pq: invalid input syntax for type uuid: ""
+2024/05/17 20:18:57 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/17 20:19:31 Eror getting user in postgres method sql: no rows in result set
+2024/05/17 20:19:31 failed to get user sql: no rows in result set
+2024/05/17 20:19:31 Eror creating userLevel in postgres method pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/05/17 20:19:31 failed to get all users pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/05/17 20:19:32 Eror creating userLevel in postgres method pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/05/17 20:19:32 failed to get all users pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/05/17 20:20:18 Eror updating social in postgres method sql: no rows in result set
+2024/05/17 20:20:18 failed to update user sql: no rows in result set
+2024/05/17 20:20:38 Eror creating userLevel in postgres method pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/05/17 20:20:38 failed to get all users pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/05/17 20:22:10 Eror getting user in postgres method sql: no rows in result set
+2024/05/17 20:22:10 Invalid login or password sql: no rows in result set
+2024/05/17 20:22:20 Eror getting user in postgres method sql: no rows in result set
+2024/05/17 20:22:20 Invalid login or password sql: no rows in result set
+2024/05/17 20:22:49 Eror getting user in postgres method sql: no rows in result set
+2024/05/17 20:22:49 Invalid login or password sql: no rows in result set
+2024/05/17 20:22:49 Eror getting user in postgres method sql: no rows in result set
+2024/05/17 20:22:49 Invalid login or password sql: no rows in result set
+2024/05/17 20:23:42 failed to set code to redisdb dial tcp 127.0.0.1:6379: connect: connection refused
+2024/05/17 20:26:09 failed to set code to redisdb dial tcp 127.0.0.1:6379: connect: connection refused
+2024/05/17 20:26:22 failed to set code to redisdb dial tcp 127.0.0.1:6379: connect: connection refused
+2024/05/17 20:26:54 Nothing found, Admin
+2024/05/17 20:37:03 Error getting count of number of certificate pq: invalid input syntax for type uuid: ""
+2024/05/17 20:37:03 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/17 20:37:04 Error getting count of number of certificate pq: invalid input syntax for type uuid: ""
+2024/05/17 20:37:04 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/17 20:39:06 Error getting count of number of certificate pq: invalid input syntax for type uuid: ""
+2024/05/17 20:39:06 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/17 20:40:28 Error getting count of number of certificate pq: invalid input syntax for type uuid: ""
+2024/05/17 20:40:28 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/17 20:41:25 Error creating certificate: open ./template.png: no such file or directory
+2024/05/17 20:41:31 Error creating certificate: open ./template.png: no such file or directory
+2024/05/17 20:42:11 Eror getting user in postgres method sql: no rows in result set
+2024/05/17 20:42:11 Invalid login or password sql: no rows in result set
+2024/05/17 20:42:11 Eror getting user in postgres method sql: no rows in result set
+2024/05/17 20:42:11 Invalid login or password sql: no rows in result set
+2024/05/17 20:42:33 Nothing found, Admin
+2024/05/17 20:42:33 Nothing found, Admin
+2024/05/17 20:45:30 Error creating certificate: open ../template.png: no such file or directory
+2024/05/17 20:45:40 Error creating certificate: open ../../template.png: no such file or directory
+2024/05/17 20:46:50 Error creating certificate: open ../../../../media/certificate/ad5735c0-1464-11ef-9787-d8bbc174b998.pdf: no such file or directory
+2024/05/17 20:52:00 Error creating certificate: open ../../../../media/certificate/659f7e7c-1465-11ef-89b4-d8bbc174b998.pdf: no such file or directory
+2024/05/17 20:52:06 Error creating certificate: %v open ../../../../media/certificate/69427f35-1465-11ef-815d-d8bbc174b998.pdf: no such file or directory
+2024/05/17 20:52:06 Error GenerateCertificate: open ../../../../media/certificate/69427f35-1465-11ef-815d-d8bbc174b998.pdf: no such file or directory
+2024/05/17 20:52:06 failed to get all users open ../../../../media/certificate/69427f35-1465-11ef-815d-d8bbc174b998.pdf: no such file or directory
+2024/05/17 20:52:28 Eror creating Certificate in postgres method pq: syntax error at or near ")"
+2024/05/17 20:52:28 failed to get all users pq: syntax error at or near ")"
+2024/05/17 20:56:29 Eror creating Certificate in postgres method pq: syntax error at or near ")"
+2024/05/17 20:56:29 failed to get all users pq: syntax error at or near ")"
+2024/05/18 18:25:08 Eror creating book in postgres method pq: relation "books" does not exist
+2024/05/18 18:25:08 failed to create user pq: relation "books" does not exist
+2024/05/18 18:26:24 Eror creating book in postgres method pq: insert or update on table "books" violates foreign key constraint "books_level_id_fkey"
+2024/05/18 18:26:24 failed to create user pq: insert or update on table "books" violates foreign key constraint "books_level_id_fkey"
+2024/05/18 18:27:13 Eror creating book in postgres method pq: insert or update on table "books" violates foreign key constraint "books_level_id_fkey"
+2024/05/18 18:27:13 failed to create user pq: insert or update on table "books" violates foreign key constraint "books_level_id_fkey"
+2024/05/18 18:40:34 Error selecting books with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/05/18 18:40:34 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/18 18:40:37 Error selecting books with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/05/18 18:40:37 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/18 18:41:11 Error selecting books with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/05/18 18:41:11 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/18 18:41:43 Error selecting books with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/05/18 18:41:43 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/18 18:42:59 Error selecting books with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/05/18 18:42:59 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/18 18:45:09 Eror updating book in postgres method pq: could not determine data type of parameter $5
+2024/05/18 18:45:09 failed to update user pq: could not determine data type of parameter $5
+2024/05/18 18:46:19 Eror getting book in postgres method sql: no rows in result set
+2024/05/18 18:46:19 failed to get book sql: no rows in result set
+2024/05/18 18:46:27 Not found books
+2024/05/18 19:29:19 Error Incorrect password for validation:  password: must be in a valid format.
+2024/05/19 17:04:42 Eror getting user in postgres method sql: no rows in result set
+2024/05/19 17:04:42 Invalid login or password sql: no rows in result set
+2024/05/19 17:06:13 Nothing found, Admin
+2024/05/19 17:13:49 Error while uploading file post Key: 'File.File' Error:Field validation for 'File' failed on the 'required' tag
+2024/05/19 18:44:45 failed to get all users pq: column "activitys.created_at" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/19 18:52:35 failed to get all users pq: column "activitys.created_at" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/19 18:54:29 failed to get all users sql: expected 4 destination arguments in Scan, not 3
+2024/05/19 18:56:00 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/19 18:56:00 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/19 18:56:00 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/19 18:56:00 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/19 18:57:16 Nothing found, Admin
+2024/05/19 18:57:16 Nothing found, Admin
+2024/05/19 18:59:43 failed to get all users pq: column "months.m" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/19 19:00:32 failed to get all users pq: column "months.m" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/19 19:01:28 failed to get all users pq: column "months.m" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/19 19:02:46 failed to get all users pq: column "months.m" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/19 19:03:32 failed to get all users pq: column "months.m" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/19 19:04:30 failed to get all users pq: got 1 parameters but the statement requires 2
+2024/05/19 20:14:28 failed to get all users pq: syntax error at or near "AND"
+2024/05/19 20:22:03 failed to get all users pq: got 2 parameters but the statement requires 0
+2024/05/19 20:22:17 failed to get all users pq: got 2 parameters but the statement requires 0
+2024/05/20 12:12:06 Error scanning badge in getall badge method of postgres sql: expected 5 destination arguments in Scan, not 6
+2024/05/20 12:12:06 failed to get all users sql: expected 5 destination arguments in Scan, not 6
+2024/05/20 13:20:41 Eror getting user in postgres method pq: invalid input syntax for type uuid: "davronchik"
+2024/05/20 13:20:41 failed to get all users pq: invalid input syntax for type uuid: "davronchik"
+2024/05/20 13:47:20 Eror getting certificate in postgres method pq: column "pdfile" does not exist
+2024/05/20 13:47:20 failed to get all users pq: column "pdfile" does not exist
+2024/05/20 13:48:56 Eror getting certificate in postgres method pq: column "pdfile" does not exist
+2024/05/20 13:48:56 failed to get all users pq: column "pdfile" does not exist
+2024/05/20 13:49:11 Eror getting certificate in postgres method pq: column "pdfile" does not exist
+2024/05/20 13:49:11 failed to get all users pq: column "pdfile" does not exist
+2024/05/20 13:49:30 Eror getting certificate in postgres method pq: invalid input syntax for type uuid: "davronchik"
+2024/05/20 13:49:30 failed to get all users pq: invalid input syntax for type uuid: "davronchik"    2024/05/20 13:59:32 failed to bind json invalid character '-' in numeric literal
+2024/05/20 13:59:51 failed to bind json invalid character '-' in numeric literal
+2024/05/20 14:00:41 failed to bind json invalid character '-' in numeric literal
+2024/05/20 14:00:58 failed to bind json invalid character '-' in numeric literal
+2024/05/20 14:42:32 Eror getting user in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/20 14:42:32 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/20 14:43:10 Eror getting user in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/20 14:43:10 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/20 14:43:29 Eror getting user in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/20 14:43:29 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/20 14:44:05 Eror getting user score in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/20 14:44:05 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/21 13:04:24 Eror getting level in postgres method sql: no rows in result set
+2024/05/21 13:04:24 failed to get level sql: no rows in result set
+2024/05/21 13:04:35 Eror getting level in postgres method sql: no rows in result set
+2024/05/21 13:04:35 failed to get level sql: no rows in result set
+2024/05/21 14:04:10 Eror getting user in postgres method sql: no rows in result set
+2024/05/21 14:04:10 Invalid login or password sql: no rows in result set
+2024/05/21 15:16:10 Nothing found, Admin
+2024/05/21 15:16:10 Nothing found, Admin
+2024/05/21 15:32:06 Nothing found, Admin
+2024/05/21 15:32:06 Nothing found, Admin
