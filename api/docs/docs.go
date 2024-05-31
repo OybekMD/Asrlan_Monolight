@@ -2691,8 +2691,15 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "Level Id",
-                        "name": "id",
+                        "description": "Username",
+                        "name": "username",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Year ",
+                        "name": "year",
                         "in": "query",
                         "required": true
                     },
@@ -2705,6 +2712,12 @@ const docTemplate = `{
                     }
                 ],
                 "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Profile"
+                        }
+                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -4335,6 +4348,41 @@ const docTemplate = `{
                 }
             }
         },
+        "models.Profile": {
+            "type": "object",
+            "properties": {
+                "badge": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repo.Badge"
+                    }
+                },
+                "certificate": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repo.Certificate"
+                    }
+                },
+                "statistic": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/repo.Statistic"
+                        }
+                    }
+                },
+                "statisticwmy": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/repo.Statistic"
+                    }
+                },
+                "user": {
+                    "$ref": "#/definitions/repo.ProfileUser"
+                }
+            }
+        },
         "models.Signup": {
             "type": "object",
             "properties": {
@@ -4649,6 +4697,37 @@ const docTemplate = `{
                 }
             }
         },
+        "repo.Badge": {
+            "type": "object",
+            "properties": {
+                "badge_date": {
+                    "type": "string"
+                },
+                "badge_type": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "picture": {
+                    "type": "string"
+                }
+            }
+        },
+        "repo.Certificate": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "pdfile": {
+                    "type": "string"
+                }
+            }
+        },
         "repo.ContentFile": {
             "type": "object",
             "properties": {
@@ -4692,6 +4771,41 @@ const docTemplate = `{
                 }
             }
         },
+        "repo.ProfileUser": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "type": "string"
+                },
+                "bio": {
+                    "type": "string"
+                },
+                "birth_day": {
+                    "type": "string"
+                },
+                "coint": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "rank": {
+                    "type": "integer"
+                },
+                "score": {
+                    "type": "integer"
+                },
+                "streak": {
+                    "type": "integer"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
         "repo.RegisterLanguage": {
             "type": "object",
             "properties": {
@@ -4705,6 +4819,17 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "user_count": {
+                    "type": "integer"
+                }
+            }
+        },
+        "repo.Statistic": {
+            "type": "object",
+            "properties": {
+                "period": {
+                    "type": "string"
+                },
+                "score": {
                     "type": "integer"
                 }
             }

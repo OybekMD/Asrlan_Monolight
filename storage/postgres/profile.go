@@ -8,7 +8,6 @@ import (
 	"log"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/k0kubun/pp/v3"
 )
 
 type profileRepo struct {
@@ -19,6 +18,55 @@ func NewProfile(db *sqlx.DB) repo.ProfileStorageI {
 	return &profileRepo{
 		db: db,
 	}
+}
+
+func (s *profileRepo) GetProfile(ctx context.Context, username, year, period string) (*repo.Profile, error) {
+	var profile repo.Profile
+
+	userProfile, userId, err := s.GetUser(ctx, username)
+	if err != nil {
+		log.Println("Error getting GetUser in postgres method", err.Error())
+		return nil, err
+	}
+
+	statisticYear, err := s.GetStatisticYear(ctx, year, userId)
+	if err != nil {
+		log.Println("Error getting GetStatisticYear in postgres method", err.Error())
+		return nil, err
+	}
+
+	statisticWMY, err := s.GetStatisticWMY(ctx, period, userId)
+	if err != nil {
+		log.Println("Error getting GetStatisticWMY in postgres method", err.Error())
+		return nil, err
+	}
+
+	badge, err := s.GetBadge(ctx, userId)
+	if err != nil {
+		log.Println("Error getting GetBadge in postgres method", err.Error())
+		return nil, err
+	}
+
+	certificate, err := s.GetCertificate(ctx, userId)
+	if err != nil {
+		log.Println("Error getting GetCertificate in postgres method", err.Error())
+		return nil, err
+	}
+
+	// Makes a sertificate
+	err = s.SetLevelBadge(ctx, userId, userProfile.Score)
+	if err != nil {
+		log.Println("Error getting SetLevelBadge in postgres method", err.Error())
+		return nil, err
+	}
+
+	profile.User = *userProfile
+	profile.StatisticYear = statisticYear
+	profile.StatisticWMY = statisticWMY
+	profile.Badge = badge
+	profile.Certificate = certificate
+
+	return &profile, nil
 }
 
 // This function gets profile in postgres
@@ -119,6 +167,39 @@ func (s *profileRepo) GetStatisticYear(ctx context.Context, year, userid string)
             MIN(created_at);
     `
 
+	// query := `
+	// WITH all_dates AS (
+	// 	SELECT 
+	// 		generate_series(
+	// 			'$2-01-01'::date, 
+	// 			'$2-12-31'::date, 
+	// 			'1 day'::interval
+	// 		)::date AS period
+	// ),
+	// daily_scores AS (
+	// 	SELECT
+	// 		DATE(created_at) AS period, 
+	// 		SUM(score) AS score
+	// 	FROM 
+	// 		activitys 
+	// 	WHERE 
+	// 		user_id = $1
+	// 		AND EXTRACT(YEAR FROM created_at) = $2
+	// 	GROUP BY 
+	// 		DATE(created_at)
+	// )
+	// SELECT
+	// 	TO_CHAR(d.period, 'MM') AS month_number, 
+	// 	d.period, 
+	// 	COALESCE(ds.score, 0) AS score
+	// FROM 
+	// 	all_dates d
+	// LEFT JOIN 
+	// 	daily_scores ds ON d.period = ds.period
+	// ORDER BY 
+	// 	d.period;	
+	// `
+
 	rows, err := s.db.QueryContext(ctx, query, userid, year)
 	if err != nil {
 		return nil, err
@@ -149,15 +230,14 @@ func (s *profileRepo) GetStatisticYear(ctx context.Context, year, userid string)
 	return monthlyStatistics, nil
 }
 
-func (s *profileRepo) GetBadge(ctx context.Context, userid string) ([]*repo.Badge, int64, error) {
+func (s *profileRepo) GetBadge(ctx context.Context, userid string) ([]*repo.Badge, error) {
 	query := `
 	SELECT
 		b.id,
 		b.name, 
 		b.badge_date, 
 		b.badge_type, 
-		b.picture,
-		(SELECT COUNT(*) FROM badges) AS total_count
+		b.picture
 	FROM
 		badges b
 	JOIN
@@ -169,12 +249,11 @@ func (s *profileRepo) GetBadge(ctx context.Context, userid string) ([]*repo.Badg
 	rows, err := s.db.QueryContext(ctx, query, userid)
 	if err != nil {
 		log.Println("Error selecting profile badges with in postgres", err.Error())
-		return nil, 0, err
+		return nil, err
 	}
 	defer rows.Close()
 
 	var responseBadges []*repo.Badge
-	var badgeCount int64
 	for rows.Next() {
 		var badge repo.Badge
 		err = rows.Scan(
@@ -183,21 +262,110 @@ func (s *profileRepo) GetBadge(ctx context.Context, userid string) ([]*repo.Badg
 			&badge.BadgeDate,
 			&badge.BadgeType,
 			&badge.Picture,
-			&badgeCount,
 		)
 		if err != nil {
 			log.Println("Error scanning badge in getall badge method of postgres", err.Error())
-			return nil, 0, err
+			return nil, err
 		}
 
 		responseBadges = append(responseBadges, &badge)
 	}
 
-	return responseBadges, badgeCount, nil
+	return responseBadges, nil
 }
 
-func (s *profileRepo) GetUser(ctx context.Context, username string) (*repo.ProfileUser, error) {
-	pp.Println(username)
+func (s *profileRepo) SetLevelBadge(ctx context.Context, userID string, score int64) error {
+	// Determine the level based on score
+	var badgeId int
+	switch {
+	case score >= 5000000:
+		badgeId = 6
+	case score >= 2000000:
+		badgeId = 7
+	case score >= 1000000:
+		badgeId = 8
+	case score >= 500000:
+		badgeId = 9
+	case score >= 250000:
+		badgeId = 10
+	case score >= 100000:
+		badgeId = 11
+	case score >= 50000:
+		badgeId = 12
+	case score >= 10000:
+		badgeId = 13
+	case score >= 1000:
+		badgeId = 14
+	case score >= 100:
+		badgeId = 15
+	default:
+		return nil // No badge for scores less than 1000
+	}
+
+	queryExist := `
+		SELECT
+			badge_id
+		FROM 
+			user_badge ub
+		WHERE
+			ub.user_id = $1 
+			AND badge_id = $2
+		`
+
+	var isExists int
+
+	row := s.db.QueryRowContext(ctx, queryExist, userID, badgeId)
+	err := row.Scan(&isExists)
+	if err != sql.ErrNoRows {
+		return err
+	}
+	if isExists != 0 {
+		return nil // User already has this badge, no need to reassign
+	}
+
+	// // Get the badge ID based on the image link
+	// queryBadgeID := `
+	// 	SELECT
+	// 		id
+	// 	FROM
+	// 		badges
+	// 	WHERE
+	// 		picture = $1`
+
+	// var badgeID int
+
+	// row = s.db.QueryRowContext(ctx, queryBadgeID)
+	// err = row.Scan(&badgeID)
+	// if err != nil {
+	// 	if err == sql.ErrNoRows {
+	// 		log.Println("Badge not found:", err)
+	// 		return err
+	// 	}
+	// 	log.Println("Error fetching badge ID:", err)
+	// 	return err
+	// }
+
+	// var badge_id string
+	// if nullbadge_id.Valid {
+	// 	badge_id = nullbadge_id.String
+	// }
+
+	// Insert into user_badge
+	insertQuery := `
+		INSERT INTO user_badge (user_id, badge_id)
+		VALUES ($1, $2)
+	`
+
+	_, err = s.db.ExecContext(ctx, insertQuery, userID, badgeId)
+	if err != nil {
+		log.Println("Error inserting user badge:", err)
+		return err
+	}
+
+	return nil
+}
+
+func (s *profileRepo) GetUser(ctx context.Context, username string) (*repo.ProfileUser, string, error) {
 	query := `
 	SELECT
 		id,
@@ -229,6 +397,20 @@ func (s *profileRepo) GetUser(ctx context.Context, username string) (*repo.Profi
 		&responseUser.Coint,
 		&responseUser.CreatedAt,
 	)
+	if err != nil {
+		log.Println("Eror getting user in postgres method", err.Error())
+		return nil, "", err
+	}
+
+	if nullBio.Valid {
+		responseUser.Bio = nullBio.String
+	}
+	if nullBirthDay.Valid {
+		responseUser.BirthDay = nullBirthDay.String
+	}
+	if nullAvatar.Valid {
+		responseUser.Avatar = nullAvatar.String
+	}
 
 	queryScore := `
 	SELECT 
@@ -244,16 +426,7 @@ func (s *profileRepo) GetUser(ctx context.Context, username string) (*repo.Profi
 
 	if err != nil {
 		log.Println("Eror getting user score in postgres method", err.Error())
-		return nil, err
-	}
-	if nullBio.Valid {
-		responseUser.Bio = nullBio.String
-	}
-	if nullBirthDay.Valid {
-		responseUser.BirthDay = nullBirthDay.String
-	}
-	if nullAvatar.Valid {
-		responseUser.Avatar = nullAvatar.String
+		return nil, "", err
 	}
 
 	queryStreak := `
@@ -294,9 +467,8 @@ func (s *profileRepo) GetUser(ctx context.Context, username string) (*repo.Profi
 	)
 	if err != nil {
 		log.Println("Eror getting user streak in postgres method", err.Error())
-		return nil, err
+		return nil, "", err
 	}
-
 
 	queryRank := `
 	WITH ranked_scores AS (
@@ -320,10 +492,10 @@ func (s *profileRepo) GetUser(ctx context.Context, username string) (*repo.Profi
 	)
 	if err != nil {
 		log.Println("Eror getting user streak in postgres method", err.Error())
-		return nil, err
+		return nil, "", err
 	}
 
-	return &responseUser, nil
+	return &responseUser, user_id, nil
 }
 
 func (s *profileRepo) GetCertificate(ctx context.Context, user_id string) ([]*repo.Certificate, error) {

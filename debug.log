@@ -244,3 +244,188 @@
 2024/05/21 15:16:10 Nothing found, Admin
 2024/05/21 15:32:06 Nothing found, Admin
 2024/05/21 15:32:06 Nothing found, Admin
+2024/05/21 19:48:04 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/21 19:48:04 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/21 19:48:04 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/21 19:48:04 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/21 19:48:29 Nothing found, Admin
+2024/05/21 19:48:29 Nothing found, Admin
+2024/05/21 19:50:19 Nothing found, Admin
+2024/05/21 19:50:19 Nothing found, Admin
+2024/05/22 12:27:50 Eror getting user score in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/22 12:27:50 Error getting GetUser in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/22 12:27:50 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/22 12:29:08 Eror getting user score in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/22 12:29:08 Error getting GetUser in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/22 12:29:08 failed to get all users pq: invalid input syntax for type uuid: ""
+-----
+2024/05/22 12:31:00 Eror getting user score in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/22 12:31:00 Error getting GetUser in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/22 12:31:00 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/22 12:53:13 Eror creating Certificate in postgres method pq: got 5 parameters but the statement requires 4
+2024/05/22 12:53:13 failed to get all users pq: got 5 parameters but the statement requires 4
+2024/05/22 15:03:16 failed to run http server: listen tcp :8080: bind: address already in use
+2024/05/22 15:03:20 failed to run http server: listen tcp :8080: bind: address already in use
+2024/05/22 17:02:48 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/22 17:02:48 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/22 17:02:48 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/22 17:02:48 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/22 17:04:41 Nothing found, Admin
+2024/05/22 17:04:41 Nothing found, Admin
+2024/05/22 17:06:52 Nothing found, Admin
+2024/05/22 17:06:52 Nothing found, Admin
+2024/05/22 17:37:31 Not found contents
+2024/05/22 19:28:14 Eror getting user in postgres method sql: no rows in result set
+2024/05/22 19:28:14 Invalid login or password sql: no rows in result set
+2024/05/22 19:29:04 Eror getting user in postgres method sql: no rows in result set
+2024/05/22 19:29:04 Invalid login or password sql: no rows in result set
+2024/05/22 19:29:27 Nothing found, Admin
+2024/05/22 19:29:42 Eror getting user in postgres method pq: invalid input syntax for type uuid: "emilyb"
+2024/05/22 19:29:42 failed to get user pq: invalid input syntax for type uuid: "emilyb"
+2024/05/23 09:41:53 Nothing found, Admin
+2024/05/23 09:53:58 Error getting GetStatisticYear in postgres method pq: invalid input syntax for type numeric: "${DateTime.now().year}"
+2024/05/23 09:53:58 failed to get all users pq: invalid input syntax for type numeric: "${DateTime.now().year}"
+2024/05/23 10:15:38 Eror getting user in postgres method sql: no rows in result set
+2024/05/23 10:15:38 Invalid login or password sql: no rows in result set
+2024/05/23 10:15:38 Eror getting user in postgres method sql: no rows in result set
+2024/05/23 10:15:38 Invalid login or password sql: no rows in result set
+2024/05/23 10:16:17 Nothing found, Admin
+2024/05/23 10:16:17 Nothing found, Admin
+2024/05/23 10:16:46 Nothing found, Admin
+2024/05/23 10:16:46 Nothing found, Admin
+2024/05/23 10:44:20 Not found contents
+2024/05/23 11:32:22 Nothing found, Admin
+2024/05/23 11:32:56 Nothing found, Admin
+2024/05/23 11:32:56 Nothing found, Admin
+2024/05/23 11:34:22 Eror getting user in postgres method sql: no rows in result set
+2024/05/23 11:34:22 Invalid login or password sql: no rows in result set
+2024/05/23 11:35:52 Nothing found, Admin
+2024/05/23 11:39:22 Eror getting user in postgres method sql: no rows in result set
+2024/05/23 11:39:22 Invalid login or password sql: no rows in result set
+2024/05/23 19:47:32 Error checking if user already has the badge: pq: column "b.id" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/23 19:47:32 Error getting SetLevelBadge in postgres method pq: column "b.id" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/23 19:47:32 failed to get all users pq: column "b.id" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/23 19:48:59 Error checking if user already has the badge: pq: column "b.id" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/23 19:48:59 Error getting SetLevelBadge in postgres method pq: column "b.id" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/23 19:48:59 failed to get all users pq: column "b.id" must appear in the GROUP BY clause or be used in an aggregate function
+2024/05/23 19:52:42 Error checking if user already has the badge: sql: no rows in result set
+2024/05/23 19:52:42 Error getting SetLevelBadge in postgres method sql: no rows in result set
+2024/05/23 19:52:42 failed to get all users sql: no rows in result set
+----------------
+2024/05/23 19:53:14 Error checking if user already has the badge: sql: no rows in result set
+2024/05/23 19:53:14 Error getting SetLevelBadge in postgres method sql: no rows in result set
+2024/05/23 19:53:14 failed to get all users sql: no rows in result set
+2024/05/23 19:54:48 Error checking if user already has the badge: sql: no rows in result set
+2024/05/23 19:54:48 Error getting SetLevelBadge in postgres method sql: no rows in result set
+2024/05/23 19:54:48 failed to get all users sql: no rows in result set
+2024/05/23 19:55:50 Error inserting user badge: pq: invalid input syntax for type integer: ""
+2024/05/23 19:55:50 Error getting SetLevelBadge in postgres method pq: invalid input syntax for type integer: ""
+2024/05/23 19:55:50 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/23 19:56:30 Error inserting user badge: pq: invalid input syntax for type integer: ""
+2024/05/23 19:56:30 Error getting SetLevelBadge in postgres method pq: invalid input syntax for type integer: ""
+2024/05/23 19:56:30 failed  to get all users pq: invalid input syntax for type integer: ""
+------------
+2024/05/23 19:56:43 Error inserting user badge: pq: invalid input syntax for type integer: ""
+2024/05/23 19:56:43 Error getting SetLevelBadge in postgres method pq: invalid input syntax for type integer: ""
+2024/05/23 19:56:43 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/23 20:02:48 Error inserting user badge: pq: invalid input syntax for type integer: ""
+2024/05/23 20:02:48 Error getting SetLevelBadge in postgres method pq: invalid input syntax for type integer: ""
+2024/05/23 20:02:48 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/23 20:03:34 Error inserting user badge: pq: invalid input syntax for type integer: ""
+2024/05/23 20:03:34 Error getting SetLevelBadge in postgres method pq: invalid input syntax for type integer: ""
+2024/05/23 20:03:34 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/23 20:04:14 Error inserting user badge: pq: invalid input syntax for type integer: ""
+2024/05/23 20:04:14 Error getting SetLevelBadge in postgres method pq: invalid input syntax for type integer: ""
+2024/05/23 20:04:14 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/23 20:04:25 Nothing found, Admin
+2024/05/23 20:04:47 Error inserting user badge: pq: invalid input syntax for type integer: ""
+2024/05/23 20:04:47 Error getting SetLevelBadge in postgres method pq: invalid input syntax for type integer: ""
+2024/05/23 20:04:47 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/23 20:04:56 Error inserting user badge: pq: invalid input syntax for type integer: ""
+2024/05/23 20:04:56 Error getting SetLevelBadge in postgres method pq: invalid input syntax for type integer: ""
+2024/05/23 20:04:56 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/23 20:15:52 Error inserting user badge: pq: invalid input syntax for type integer: ""
+2024/05/23 20:15:52 Error getting SetLevelBadge in postgres method pq: invalid input syntax for type integer: ""
+2024/05/23 20:15:52 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/23 20:19:05 Error inserting user badge: pq: invalid input syntax for type integer: ""
+2024/05/23 20:19:05 Error getting SetLevelBadge in postgres method pq: invalid input syntax for type integer: ""
+2024/05/23 20:19:05 failed to get all users pq: invalid input syntax for type integer: ""
+2024/05/23 20:35:25 Error getting SetLevelBadge in postgres method pq: column "id" does not exist
+2024/05/23 20:35:25 failed to get all users pq: column "id" does not exist
+2024/05/23 20:35:59 Error getting SetLevelBadge in postgres method pq: got 1 parameters but the statement requires 2
+2024/05/23 20:35:59 failed to get all users pq: got 1 parameters but the statement requires 2
+2024/05/23 20:47:08 Nothing found, Admin
+2024/05/23 20:47:08 Nothing found, Admin
+2024/05/23 20:59:09 Eror getting user in postgres method pq: invalid input syntax for type uuid: "423e4567-e89b-12d3-a456-42661417400"
+2024/05/23 20:59:09 failed to get user pq: invalid input syntax for type uuid: "423e4567-e89b-12d3-a456-42661417400"
+2024/05/24 08:25:45 Eror getting user in postgres method pq: invalid input syntax for type uuid: "423e4567-e89b-12d3-a456-42661417400"
+2024/05/24 08:25:45 failed to get user pq: invalid input syntax for type uuid: "423e4567-e89b-12d3-a456-42661417400"
+2024/05/24 20:31:01 Nothing found, Admin
+2024/05/24 20:36:29 Eror updating social in postgres method pq: invalid input syntax for type uuid: ""
+2024/05/24 20:36:29 failed to update user pq: invalid input syntax for type uuid: ""
+2024/05/26 21:00:31 Eror getting user in postgres method sql: no rows in result set
+2024/05/26 21:00:31 Error getting GetUser in postgres method sql: no rows in result set
+2024/05/26 21:00:31 failed to get all users sql: no rows in result set
+2024/05/27 19:35:59 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/27 19:35:59 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/27 19:35:59 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/27 19:35:59 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/27 19:36:16 Nothing found, Admin
+2024/05/27 19:36:16 Nothing found, Admin
+2024/05/27 19:37:49 Nothing found, Admin
+2024/05/27 19:37:49 Nothing found, Admin
+2024/05/27 19:37:58 Nothing found, Admin
+2024/05/27 19:37:58 Nothing found, Admin
+2024/05/30 19:24:54 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 19:24:54 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 19:24:54 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 19:24:54 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 19:28:20 Nothing found, Admin
+2024/05/30 19:28:20 Nothing found, Admin
+2024/05/30 19:33:43 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 19:33:43 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 19:33:43 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 19:33:43 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 19:33:48 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 19:33:48 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 19:35:58 Nothing found, Admin
+2024/05/30 19:37:28 Nothing found, Admin
+2024/05/30 19:37:28 Nothing found, Admin
+2024/05/30 19:39:17 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 19:39:17 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 19:39:17 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 19:39:17 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 19:39:20 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 19:39:20 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 19:41:02 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 19:41:02 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 19:41:02 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 19:41:02 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 19:42:26 Nothing found, Admin
+2024/05/30 19:42:26 Nothing found, Admin
+2024/05/30 20:20:39 Nothing found, Admin
+2024/05/30 20:20:39 Nothing found, Admin
+2024/05/30 20:21:31 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 20:21:31 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 20:21:31 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 20:21:31 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 20:22:31 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 20:22:31 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 20:22:31 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 20:22:31 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 20:24:14 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 20:24:14 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 20:24:14 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 20:24:14 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 20:24:18 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 20:24:18 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 20:25:20 Nothing found, Admin
+2024/05/30 20:25:20 Nothing found, Admin
+2024/05/30 20:26:28 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 20:26:28 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 20:26:28 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/05/30 20:26:28 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/05/30 20:26:41 Nothing found, Admin
+2024/05/30 20:26:41 Nothing found, Admin
+2024/05/30 20:27:48 Nothing found, Admin
+2024/05/30 20:27:48 Nothing found, Admin

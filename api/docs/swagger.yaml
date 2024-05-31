@@ -374,6 +374,29 @@ definitions:
       username:
         type: string
     type: object
+  models.Profile:
+    properties:
+      badge:
+        items:
+          $ref: '#/definitions/repo.Badge'
+        type: array
+      certificate:
+        items:
+          $ref: '#/definitions/repo.Certificate'
+        type: array
+      statistic:
+        additionalProperties:
+          items:
+            $ref: '#/definitions/repo.Statistic'
+          type: array
+        type: object
+      statisticwmy:
+        items:
+          $ref: '#/definitions/repo.Statistic'
+        type: array
+      user:
+        $ref: '#/definitions/repo.ProfileUser'
+    type: object
   models.Signup:
     properties:
       email:
@@ -579,6 +602,26 @@ definitions:
       user_id:
         type: string
     type: object
+  repo.Badge:
+    properties:
+      badge_date:
+        type: string
+      badge_type:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      picture:
+        type: string
+    type: object
+  repo.Certificate:
+    properties:
+      name:
+        type: string
+      pdfile:
+        type: string
+    type: object
   repo.ContentFile:
     properties:
       content_id:
@@ -607,6 +650,29 @@ definitions:
       username:
         type: string
     type: object
+  repo.ProfileUser:
+    properties:
+      avatar:
+        type: string
+      bio:
+        type: string
+      birth_day:
+        type: string
+      coint:
+        type: integer
+      created_at:
+        type: string
+      name:
+        type: string
+      rank:
+        type: integer
+      score:
+        type: integer
+      streak:
+        type: integer
+      username:
+        type: string
+    type: object
   repo.RegisterLanguage:
     properties:
       id:
@@ -616,6 +682,13 @@ definitions:
       picture:
         type: string
       user_count:
+        type: integer
+    type: object
+  repo.Statistic:
+    properties:
+      period:
+        type: string
+      score:
         type: integer
     type: object
 info:
@@ -2327,9 +2400,14 @@ paths:
       - application/json
       description: This Api for get all profiles
       parameters:
-      - description: Level Id
+      - description: Username
         in: query
-        name: id
+        name: username
+        required: true
+        type: string
+      - description: 'Year '
+        in: query
+        name: year
         required: true
         type: string
       - description: Period 1,2,3
@@ -2340,6 +2418,10 @@ paths:
       produces:
       - application/json
       responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Profile'
         "400":
           description: Bad Request
           schema:

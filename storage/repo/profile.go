@@ -13,7 +13,6 @@ type ProfileUser struct {
 	Rank      int64  `json:"rank"`
 	Streak    int64  `json:"streak"`
 	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at"`
 }
 
 // Statistic start
@@ -29,11 +28,11 @@ type StatisticMonth struct {
 // Statistic end
 
 type Profile struct {
-	User        ProfileUser  `json:"user"`
-	Social      Social       `json:"social"`
-	Certificate []*string    `json:"certificate"`
-	Badge       []*Badge     `json:"badge"`
-	Statistic   []*Statistic `json:"statistic"`
+	User          ProfileUser            `json:"user"`
+	StatisticYear map[string][]Statistic `json:"statistic"`
+	StatisticWMY  []*Statistic           `json:"statisticwmy"`
+	Badge         []*Badge               `json:"badge"`
+	Certificate   []*Certificate         `json:"certificate"`
 }
 
 type Certificate struct {
@@ -42,9 +41,11 @@ type Certificate struct {
 }
 
 type ProfileStorageI interface {
+	GetProfile(ctx context.Context, username, year, period string) (*Profile, error)
+	GetUser(ctx context.Context, username string) (*ProfileUser, string, error)
 	GetStatisticYear(ctx context.Context, year, userid string) (map[string][]Statistic, error)
 	GetStatisticWMY(ctx context.Context, period, userid string) ([]*Statistic, error)
-	GetBadge(ctx context.Context, userid string) ([]*Badge, int64, error)
-	GetUser(ctx context.Context, username string) (*ProfileUser, error)
+	GetBadge(ctx context.Context, userid string) ([]*Badge, error)
+	SetLevelBadge(ctx context.Context, userID string, score int64) error
 	GetCertificate(ctx context.Context, user_id string) ([]*Certificate, error)
 }

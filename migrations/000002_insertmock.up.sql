@@ -1,5 +1,7 @@
 
 INSERT INTO languages (name, picture) VALUES ('English', 'asrlan.jprq.app/media/mdata/languages/us.png');
+INSERT INTO languages (name, picture) VALUES ('Russian', 'asrlan.jprq.app/media/mdata/languages/ru.png');
+INSERT INTO languages (name, picture) VALUES ('Arabic', 'asrlan.jprq.app/media/mdata/languages/sa.png');
 
 INSERT INTO levels (name, real_level, picture, language_id) VALUES ('Beginner', 1, 'asrlan.jprq.app/media/mdata/levels/beginner.png', 1);
 INSERT INTO levels (name, real_level, picture, language_id) VALUES ('Elementary', 2, 'asrlan.jprq.app/media/mdata/levels/elementary.png', 1);
@@ -244,6 +246,19 @@ INSERT INTO badges (name, badge_date, badge_type, picture) VALUES
     ('Innovator of the Month', '2024-03-05', 'month', 'asrlan.jprq.app/media/images/4a053a83-7cfc-4d53-916b-0e3033eaa056.png'),
     ('Super User', '2024-02-01', 'extra', 'asrlan.jprq.app/media/images/9142cfd4-be08-4ec1-a50e-e1cb58fbdf90.png'),
     ('Top Supporter', '2024-01-10', 'month', 'asrlan.jprq.app/media/images/91614e50-baf2-4c0d-b1a7-456718e7d34c.png');
+
+INSERT INTO badges (name, badge_date, badge_type, picture) VALUES
+    ('Legend', '2024-01-10', 'extra', 'asrlan.jprq.app/media/mdata/rankbadge/legend.png'),
+    ('Hero', '2024-01-10', 'extra', 'asrlan.jprq.app/media/mdata/rankbadge/hero.png'),
+    ('Master', '2024-01-10', 'extra', 'asrlan.jprq.app/media/mdata/rankbadge/master.png'),
+    ('Experts', '2024-01-10', 'extra', 'asrlan.jprq.app/media/mdata/rankbadge/experts.png'),
+    ('Ninja', '2024-01-10', 'extra', 'asrlan.jprq.app/media/mdata/rankbadge/ninja.png'),
+    ('Knight', '2024-01-10', 'extra', 'asrlan.jprq.app/media/mdata/rankbadge/knight.png'),
+    ('Gladiator', '2024-01-10', 'extra', 'asrlan.jprq.app/media/mdata/rankbadge/gladiator.png'),
+    ('Warrior', '2024-01-10', 'extra', 'asrlan.jprq.app/media/mdata/rankbadge/warrior.png'),
+    ('Solider', '2024-01-10', 'extra', 'asrlan.jprq.app/media/mdata/rankbadge/solider.png'),
+    ('Starter', '2024-01-10', 'extra', 'asrlan.jprq.app/media/mdata/rankbadge/starter.png');
+
 
 INSERT INTO user_badge (user_id, badge_id) VALUES
     ('8a22ae56-d927-11ee-90e4-d8bbc174b998', 1),
