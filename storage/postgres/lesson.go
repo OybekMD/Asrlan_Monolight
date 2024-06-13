@@ -23,9 +23,10 @@ func (s *lessonRepo) Create(ctx context.Context, lesson *repo.Lesson) (*repo.Les
 	query := `
 	INSERT INTO lessons(
 		name,
+		lesson_type,
 		topic_id
 	)
-	VALUES ($1, $2) 
+	VALUES ($1, $2, $3) 
 	RETURNING 
 		id,
 		created_at`
@@ -34,6 +35,7 @@ func (s *lessonRepo) Create(ctx context.Context, lesson *repo.Lesson) (*repo.Les
 		ctx,
 		query,
 		lesson.Name,
+		lesson.LessonType,
 		lesson.TopicId).Scan(&lesson.Id, &lesson.CreatedAt)
 	if err != nil {
 		log.Println("Eror creating lesson in postgres method", err.Error())
@@ -50,6 +52,7 @@ func (s *lessonRepo) Update(ctx context.Context, newLesson *repo.Lesson) (*repo.
 		lessons
 	SET
 		name=$1,
+		lesson_type=$2,
 		updated_at=CURRENT_TIMESTAMP
 	WHERE
 		id=$2
@@ -62,6 +65,7 @@ func (s *lessonRepo) Update(ctx context.Context, newLesson *repo.Lesson) (*repo.
 		ctx,
 		query,
 		newLesson.Name,
+		newLesson.LessonType,
 		newLesson.Id,
 	).Scan(&newLesson.CreatedAt, &newLesson.UpdatedAt)
 	if err != nil {
@@ -108,6 +112,7 @@ func (s *lessonRepo) Get(ctx context.Context, id string) (*repo.Lesson, error) {
 	SELECT 
 		lessons.id,
     	lessons.name,
+		lessons.lesson_type,
     	topics.id,
     	topics.name,
 		lessons.created_at,
@@ -131,6 +136,7 @@ func (s *lessonRepo) Get(ctx context.Context, id string) (*repo.Lesson, error) {
 	err := s.db.QueryRowContext(ctx, query, id).Scan(
 		&responseLesson.Id,
 		&responseLesson.Name,
+		&responseLesson.LessonType,
 		&responseLesson.TopicId,
 		&responseLesson.TopicName,
 		&responseLesson.CreatedAt,
@@ -150,6 +156,7 @@ func (s *lessonRepo) GetAll(ctx context.Context, lesson_id string) ([]*repo.Less
 	SELECT 
 		lessons.id,
 		lessons.name,
+		lessons.lesson_type,
 		topics.id,
 		topics.name,
 		lessons.created_at,
@@ -183,6 +190,7 @@ func (s *lessonRepo) GetAll(ctx context.Context, lesson_id string) ([]*repo.Less
 		err = rows.Scan(
 			&lesson.Id,
 			&lesson.Name,
+			&lesson.LessonType,
 			&lesson.TopicId,
 			&lesson.TopicName,
 			&lesson.CreatedAt,

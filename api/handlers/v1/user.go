@@ -59,7 +59,7 @@ func (h *handlerV1) UpdateUser(ctx *gin.Context) {
 		log.Println("Error validating user. id or username not given", err.Error())
 		return
 	}
-	// Validate end 
+	// Validate end
 
 	// Noexistense Start
 
@@ -110,15 +110,15 @@ func (h *handlerV1) UpdateUser(ctx *gin.Context) {
 // @Tags 		  users
 // @Accept 		  json
 // @Produce 	  json
-// @Param 		  User body models.UserUpdate true "Update User Model"
-// @Success 	  200 {object} models.UserResponse
+// @Param 		  User body models.UserUpdatePassword true "Update User Model"
+// @Success 	  200 {object} bool
 // @Failure 	  400 {object} models.Error
 // @Failure 	  401 {object} models.Error
 // @Failure 	  403 {object} models.Error
 // @Failure 	  500 {object} models.Error
 // @Router 		  /v1/userpassword [PUT]
 func (h *handlerV1) UpdateUserPassword(ctx *gin.Context) {
-	var body models.UserUpdate
+	var body models.UserUpdatePassword
 
 	err := ctx.ShouldBindJSON(&body)
 	if err != nil {
@@ -141,21 +141,14 @@ func (h *handlerV1) UpdateUserPassword(ctx *gin.Context) {
 	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
 	defer cancel()
 
-	// Validate start
-	err = body.ValidateEmpity()
-	if err != nil {
-		ctx.JSON(http.StatusBadRequest, models.Error{
-			Message: models.WrongInfoMessage,
-		})
-		log.Println("Error validating user. id or username not given", err.Error())
-		return
-	}
-	// Validate end 
-
 	// Noexistense Start
 
-	responseUsername, err := h.storage.User().CheckField(
-		ctxTime, "username", body.Username)
+	responseUsername, err := h.storage.User().UpdatePassword(
+		ctxTime, &repo.UserUpdatePassword{
+			Id:          body.Id,
+			OldPassword: body.OldPassword,
+			NewPassword: body.NewPassword,
+		})
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{
 			"error": "Error while getting exist fild",
@@ -163,35 +156,15 @@ func (h *handlerV1) UpdateUserPassword(ctx *gin.Context) {
 		log.Println("Error while getting exist fild: ", err.Error())
 		return
 	}
-	if responseUsername {
-		ctx.JSON(http.StatusConflict, gin.H{
-			"error": "Username already use",
+	if responseUsername == false {
+		ctx.JSON(http.StatusUnauthorized, gin.H{
+			"error": "Incorrect password or id",
 		})
-		log.Println("Username already use:", body.Username)
-		return
-	}
-	// Noexistense End
-
-	userModel := &repo.User{}
-	err = parsing.StructToStruct(&body, userModel)
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, models.Error{
-			Message: models.InternalMessage,
-		})
-		log.Println("Error parsing struct to struct", err.Error())
+		log.Println("Incorrect password or id", err.Error())
 		return
 	}
 
-	response, err := h.storage.User().Update(ctxTime, userModel)
-	if err != nil {
-		ctx.JSON(http.StatusInternalServerError, &models.Error{
-			Message: models.NotUpdatedMessage,
-		})
-		log.Println("failed to update user", err.Error())
-		return
-	}
-
-	ctx.JSON(http.StatusOK, response)
+	ctx.JSON(http.StatusOK, responseUsername)
 }
 
 // @Security      BearerAuth

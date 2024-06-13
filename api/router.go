@@ -74,6 +74,7 @@ func New(option *Option) *gin.Engine {
 	router.Static("/media", "./media")
 
 	// Dashboard
+	api.GET("/navbar", handlerV1.GetNavbar)
 	api.GET("/dashboard", handlerV1.GetDashboard)
 	api.GET("/leaderboard", handlerV1.GetLeaderboard)
 
@@ -81,6 +82,7 @@ func New(option *Option) *gin.Engine {
 	api.GET("/user/:id", handlerV1.GetUser)
 	api.DELETE("/user/:id", handlerV1.DeleteUser)
 	api.PUT("/user", handlerV1.UpdateUser)
+	api.PUT("/userpassword", handlerV1.UpdateUserPassword)
 
 	// ---------Problems!!!!!!!!
 	// Activity

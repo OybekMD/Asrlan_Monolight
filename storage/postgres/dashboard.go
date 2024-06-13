@@ -10,6 +10,7 @@ import (
 	"log"
 
 	"github.com/jmoiron/sqlx"
+	"github.com/k0kubun/pp/v3"
 )
 
 type dashboardRepo struct {
@@ -107,7 +108,6 @@ func (s *dashboardRepo) CreateCertificate(ctx context.Context, user_id string, l
 		query,
 		insertName,
 		certificatePath,
-		certificatePath,
 		level_id,
 		user_id,
 	)
@@ -129,6 +129,7 @@ func (s *dashboardRepo) CreateCertificate(ctx context.Context, user_id string, l
 }
 
 func (s *dashboardRepo) UpCreateLevel(ctx context.Context, userLevel *repo.UserLevel) (bool, error) {
+	pp.Println(userLevel)
 	queryExist := `
 	UPDATE
 		user_level
@@ -138,7 +139,7 @@ func (s *dashboardRepo) UpCreateLevel(ctx context.Context, userLevel *repo.UserL
 		user_id = $2
 		AND level_id = $3
 	`
-	if userLevel.Score == 100 {
+	if userLevel.Score >= 80 {
 		isHave, err := s.CreateCertificate(ctx, userLevel.UserId, userLevel.LevelId)
 		if err != nil {
 			return false, err
@@ -252,6 +253,7 @@ func (s *dashboardRepo) UpCreateTopic(ctx context.Context, userTopic *repo.UserT
 }
 
 func (s *dashboardRepo) GetDashboard(ctx context.Context, userId string, language_id, level_id int64) (*repo.Dashboard, error) {
+	pp.Println(userId, level_id, language_id)
 	queryTopic := `
 		SELECT
 			t.id,
@@ -353,6 +355,7 @@ func (s *dashboardRepo) GetDashboard(ctx context.Context, userId string, languag
 			}
 		}
 	}
+
 	if err := rows.Err(); err != nil {
 		log.Println("Error iterating through rows:", err)
 		return nil, err
@@ -377,6 +380,110 @@ func (s *dashboardRepo) GetDashboard(ctx context.Context, userId string, languag
 	dashboard.Topics = topics
 
 	return &dashboard, nil
+}
+
+func (s *dashboardRepo) GetNavbar(ctx context.Context, userId string) (*repo.Navbar, error) {
+	var navbar repo.Navbar
+	queryScore := `
+	SELECT 
+		SUM(score) AS total_score
+	FROM 
+		activitys
+	WHERE 
+		user_id = $1
+	`
+
+	err := s.db.QueryRowContext(ctx, queryScore, userId).Scan(
+		&navbar.Score,
+	)
+
+	if err != nil {
+		log.Println("Eror getting user score in postgres method", err.Error())
+		return nil, err
+	}
+
+	queryStreak := `
+	WITH activity_dates AS (
+		SELECT DISTINCT DATE(created_at) AS activity_date
+		FROM activitys
+		WHERE user_id = $1
+	),
+	ranked_dates AS (
+		SELECT 
+			activity_date,
+			RANK() OVER (ORDER BY activity_date) AS rank_date
+		FROM activity_dates
+	),
+	streaks AS (
+		SELECT 
+			activity_date,
+			rank_date,
+			activity_date - INTERVAL '1 day' * (rank_date - 1) AS streak_group
+		FROM ranked_dates
+	),
+	current_streak AS (
+		SELECT 
+			COUNT(*) AS streak_length
+		FROM streaks
+		WHERE streak_group = (
+			SELECT streak_group
+			FROM streaks
+			ORDER BY activity_date DESC
+			LIMIT 1
+		)
+	)
+	SELECT streak_length
+	FROM current_streak;
+	`
+
+	err = s.db.QueryRowContext(ctx, queryStreak, userId).Scan(
+		&navbar.Streak,
+	)
+	if err != nil {
+		log.Println("Eror getting user streak in postgres method", err.Error())
+		return nil, err
+	}
+
+	queryLanguages := `
+	SELECT 
+		l.id, 
+		l.name, 
+		l.picture
+	FROM 
+		languages l
+	JOIN
+		user_language ul ON l.id = ul.language_id
+	WHERE
+		ul.user_id = $1 AND
+		l.deleted_at IS NULL
+	`
+
+	rows, err := s.db.QueryContext(ctx, queryLanguages, userId)
+	if err != nil {
+		log.Println("Error selecting books with page and limit in postgres", err.Error())
+		return nil, err
+	}
+	defer rows.Close()
+
+	var userLanguages []*repo.Language
+	for rows.Next() {
+		var language repo.Language
+		err = rows.Scan(
+			&language.Id,
+			&language.Name,
+			&language.Picture,
+		)
+		if err != nil {
+			log.Println("Error scanning language in getall language method of postgres", err.Error())
+			return nil, err
+		}
+
+		userLanguages = append(userLanguages, &language)
+	}
+
+	navbar.ActiveLanguages = userLanguages
+
+	return &navbar, nil
 }
 
 func (s *dashboardRepo) GetLeaderboard(ctx context.Context, period, level_id string) ([]*repo.Leaderboard, error) {

@@ -9,7 +9,6 @@ import (
 	"asrlan-monolight/storage/repo"
 	"context"
 	"encoding/json"
-	"fmt"
 
 	// "asrlan-monolight/storage/repo"
 	// "encoding/json"
@@ -68,7 +67,6 @@ func (h *handlerV1) Login(ctx *gin.Context) {
 	}
 	check := hashing.CheckPasswordHash(body.Password, response.Password)
 	pp.Println(body.Password, response.Password)
-	fmt.Println("adasdadsadsadsadsadadadasdasdasdas:", check)
 	if !check {
 		ctx.JSON(http.StatusBadRequest, models.Error{
 			Message: models.WrongLoginOrPassword,
@@ -364,7 +362,7 @@ func (h *handlerV1) Verify(ctx *gin.Context) {
 		UserId:  id.String(),
 		LevelId: redisUser.Level,
 	})
-	
+
 	if !userLevel || err != nil {
 		ctx.JSON(http.StatusInternalServerError, models.Error{
 			Message: "Error while creating userLevel",

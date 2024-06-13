@@ -91,6 +91,7 @@ CREATE TABLE topics (
 CREATE TABLE lessons (
     id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
+    lesson_type VARCHAR(1) NOT NULL,
     topic_id INT REFERENCES topics(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -180,6 +181,17 @@ CREATE TABLE books (
     picture TEXT,
     book_file TEXT,
     level_id INT REFERENCES levels(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT NULL
+);
+
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    writer_id UUID REFERENCES users(id),
+    lesson_id INT ,
+    to_whom TEXT NOT NULL,
+    message VARCHAR(65) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP DEFAULT NULL

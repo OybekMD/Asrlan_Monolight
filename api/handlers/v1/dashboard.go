@@ -77,6 +77,47 @@ func (h *handlerV1) GetDashboard(ctx *gin.Context) {
 }
 
 // @Security      BearerAuth
+// @Summary       ListDashboards
+// @Description   This Api for get all Dashboard
+// @Tags          Dashboard
+// @Accept        json
+// @Produce       json
+// @Param         user_id query string true "UserID"
+// @Success 	  200 {object} models.DashboardResponse
+// @Failure		  400 {object} models.Error
+// @Failure		  401 {object} models.Error
+// @Failure		  403 {object} models.Error
+// @Failure       500 {object} models.Error
+// @Router        /v1/navbar [GET]
+func (h *handlerV1) GetNavbar(ctx *gin.Context) {
+	fmt.Println("Request  Header:", ctx.GetHeader("Authorization"))
+	user_id := ctx.Query("user_id")
+
+	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, models.Error{
+			Message: models.InternalMessage,
+		})
+		log.Println("failed to parse timeout", err.Error())
+		return
+	}
+
+	ctxTime, cancel := context.WithTimeout(context.Background(), duration)
+	defer cancel()
+
+	navbar, err := h.storage.Dashboard().GetNavbar(ctxTime, user_id)
+	if err != nil {
+		ctx.JSON(http.StatusInternalServerError, &models.Error{
+			Message: models.NotFoundMessage,
+		})
+		log.Println("failed to get all users", err.Error())
+		return
+	}
+
+	ctx.JSON(http.StatusOK, navbar)
+}
+
+// @Security      BearerAuth
 // @Summary       Leaderboard
 // @Description   This Api for get all Leaderboard
 // @Tags          Leaderboard

@@ -150,7 +150,8 @@ func (s *userRepo) Update(ctx context.Context, newUser *repo.User) (*repo.User, 
 	return &updatedUser, nil
 }
 
-func (s *userRepo) UpdatePassword(ctx context.Context, newUser *repo.UserUpdatePassword) (bool, error) {
+func (s *userRepo) UpdatePassword(ctx context.Context, newPassword *repo.UserUpdatePassword) (bool, error) {
+	pp.Println(newPassword)
 	queryGet := `
 	SELECT
 		password
@@ -163,16 +164,24 @@ func (s *userRepo) UpdatePassword(ctx context.Context, newUser *repo.UserUpdateP
 	`
 
 	var getPassword string
-	err := s.db.QueryRowContext(ctx, queryGet, newUser.Id).Scan(
+	err := s.db.QueryRowContext(ctx, queryGet, newPassword.Id).Scan(
 		&getPassword,
 	)
+
+	fmt.Println("\x1b[32m", getPassword,"\x1b[0m")
+
 
 	if err != nil {
 		log.Println("Eror updating user in postgres method", err.Error())
 		return false, err
 	}
-	if !hash.CheckPasswordHash(newUser.OldPassword, getPassword) {
+	if !hash.CheckPasswordHash(newPassword.OldPassword, getPassword) {
 		return false, nil
+	}
+
+	hashedPassword,err := hash.HashPassword(newPassword.NewPassword)
+	if err != nil {
+		return false, err
 	}
 
 	query := `
@@ -186,16 +195,15 @@ func (s *userRepo) UpdatePassword(ctx context.Context, newUser *repo.UserUpdateP
 	AND
 		deleted_at IS NULL
 	`
-
-	newerr := s.db.QueryRowContext(
+	_, err = s.db.ExecContext(
 		ctx,
 		query,
-		newUser.NewPassword,
-		newUser.Id,
+		hashedPassword,
+		newPassword.Id,
 	)
-	if newerr != nil {
-		log.Println("Eror updating user in postgres method", newerr.Err())
-		return false, newerr.Err()
+	if err != nil {
+		log.Println("Eror updating user in postgres method", err)
+		return false, err
 	}
 
 	return true, nil

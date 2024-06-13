@@ -429,3 +429,172 @@
 2024/05/30 20:26:41 Nothing found, Admin
 2024/05/30 20:27:48 Nothing found, Admin
 2024/05/30 20:27:48 Nothing found, Admin
+2024/05/31 15:01:12 Nothing found, Admin
+2024/05/31 15:01:12 Nothing found, Admin
+2024/06/01 18:42:25 Eror creating userLevel in postgres method pq: insert or update on table "user_level" violates foreign key constraint "user_level_level_id_fkey"
+2024/06/01 18:42:25 failed to get all users pq: insert or update on table "user_level" violates foreign key constraint "user_level_level_id_fkey"
+2024/06/01 18:44:26 Not found contents
+2024/06/01 19:57:28 Not found contents
+2024/06/01 20:32:08 Nothing found, Admin
+2024/06/01 20:32:08 Nothing found, Admin
+2024/06/02 16:18:30 Nothing found, Admin
+2024/06/02 16:19:40 Eror updating user in postgres method <nil>
+2024/06/02 18:52:40 Eror updating user in postgres method pq: invalid input syntax for type uuid: "string"
+2024/06/02 18:52:40 Error while getting exist fild:  pq: invalid input syntax for type uuid: "string"
+------2024/06/02 19:31:30 Eror updating user in postgres method <nil>
+2024/06/02 19:35:53 Nothing found, Admin
+2024/06/02 19:36:36 Nothing found, Admin
+2024/06/02 22:45:10 Eror getting user in postgres method sql: no rows in result set
+2024/06/02 22:45:10 Invalid login or password sql: no rows in result set
+2024/06/03 10:06:05 Nothing found, Admin
+2024/06/03 10:25:08 failed to run http server: listen tcp :8080: bind: address already in use
+2024/06/03 10:25:20 failed to run http server: listen tcp :8080: bind: address already in use
+2024/06/03 10:47:32 Eror creating Certificate in postgres method pq: got 5 parameters but the statement requires 4
+2024/06/03 10:47:32 failed to get all users pq: got 5 parameters but the statement requires 4
+2024/06/03 10:49:30 Eror creating Certificate in postgres method pq: got 5 parameters but the statement requires 4
+2024/06/03 10:49:30 failed to get all users pq: got 5 parameters but the statement requires 4
+2024/06/03 10:52:51 Nothing found, Admin
+2024/06/03 10:52:51 Nothing found, Admin
+2024/06/03 10:58:17 Eror updating user in postgres method pq: invalid input syntax for type uuid: "string"
+2024/06/03 10:58:17 Error while getting exist fild:  pq: invalid input syntax for type uuid: "string"
+2024/06/03 10:59:12 failed to bind json EOF
+2024/06/03 11:15:59 Nothing found, Admin
+2024/06/03 11:15:59 Nothing found, Admin
+2024/06/03 12:25:33 Not found contents
+2024/06/03 12:25:43 Not found contents
+2024/06/03 12:47:15 Not found contents
+2024/06/03 12:50:58 Not found contents
+2024/06/03 14:29:15 Error Leaderboard in postgres pq: timestamp out of range
+2024/06/03 14:29:15 failed to get all users pq: timestamp out of range
+2024/06/03 14:51:21 failed to set code to redisdb dial tcp 127.0.0.1:6379: connect: connection refused
+2024/06/03 14:53:41 failed to set code to redisdb dial tcp 127.0.0.1:6379: connect: connection refused
+2024/06/03 14:59:19 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:19 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:19 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:19 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:28 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:28 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:28 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:28 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:47 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:47 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:47 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:47 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:49 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:49 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:50 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:50 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:50 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:50 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:50 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:50 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:50 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:50 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:50 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:50 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:50 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:50 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:51 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:51 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:51 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:51 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:51 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:51 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:51 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:51 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:51 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:51 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:51 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:51 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:52 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:52 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:52 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:52 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:52 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:52 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:52 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:52 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:52 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:52 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:52 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:52 Invalid login or password sql: no rows in result set
+2024/06/03 14:59:53 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 14:59:53 Invalid login or password sql: no rows in result set
+2024/06/03 15:10:56 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 15:10:56 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 15:10:56 Invalid login or password sql: no rows in result set
+2024/06/03 15:10:56 Invalid login or password sql: no rows in result set
+2024/06/03 15:11:18 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 15:11:18 Invalid login or password sql: no rows in result set
+2024/06/03 15:11:19 Eror getting user in postgres method sql: no rows in result set
+2024/06/03 15:11:19 Invalid login or password sql: no rows in result set
+2024/06/03 15:12:30 Nothing found, Admin
+2024/06/03 15:12:50 Nothing found, Admin
+2024/06/03 15:12:50 Nothing found, Admin
+2024/06/03 15:14:13 Nothing found, Admin
+2024/06/03 15:14:13 Nothing found, Admin
+2024/06/03 15:14:16 failed to set code to redisdb dial tcp 127.0.0.1:6379: connect: connection refused
+2024/06/03 15:15:13 Nothing found, Admin
+2024/06/03 15:15:14 Nothing found, Admin
+2024/06/03 15:22:45 Not found contents
+2024/06/03 15:22:51 Not found contents
+2024/06/03 15:46:12 Nothing found, Admin
+2024/06/03 15:46:12 Nothing found, Admin
+2024/06/04 02:11:39 Eror creating userLevel in postgres method pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/06/04 02:11:39 failed to get all users pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/06/04 02:36:41 Eror creating userLevel in postgres method pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/06/04 02:36:41 failed to get all users pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/06/04 02:37:22 Eror creating userLevel in postgres method pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/06/04 02:37:22 failed to get all users pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/06/04 02:40:03 Eror creating userLevel in postgres method pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/06/04 02:40:03 failed to get all users pq: insert or update on table "user_level" violates foreign key constraint "user_level_user_id_fkey"
+2024/06/04 02:42:18 Not found contents
+2024/06/04 13:48:12 Not found contents
+2024/06/04 13:48:17 Not found contents
+2024/06/04 13:48:19 Not found contents
+2024/06/04 13:48:20 Not found contents
+2024/06/04 13:48:21 Not found contents
+2024/06/04 13:48:24 Not found contents
+2024/06/04 13:48:26 Not found contents
+2024/06/04 13:48:28 Not found contents
+2024/06/04 13:48:29 Not found contents
+2024/06/04 13:48:30 Not found contents
+2024/06/04 13:48:32 Not found contents
+2024/06/04 13:54:19 Not found contents
+2024/06/04 13:54:33 Not found contents
+2024/06/04 14:03:26 Not found contents
+2024/06/04 14:03:28 Not found contents
+2024/06/04 14:03:31 Not found contents
+2024/06/04 14:03:33 Not found contents
+2024/06/04 14:03:35 Not found contents
+2024/06/04 14:03:38 Not found contents
+2024/06/04 14:03:39 Not found contents
+2024/06/04 14:03:41 Not found contents
+2024/06/04 14:03:42 Not found contents
+2024/06/04 14:03:44 Not found contents
+2024/06/04 14:03:46 Not found contents
+2024/06/04 14:03:47 Not found contents
+2024/06/04 14:03:49 Not found contents
+2024/06/04 14:03:51 Not found contents
+2024/06/04 14:03:52 Not found contents
+2024/06/04 14:03:54 Not found contents
+2024/06/04 14:03:55 Not found contents
+2024/06/04 21:51:08 failed to get number in lanuage_id: strconv.Atoi: parsing "": invalid syntax
+2024/06/04 21:51:55 failed to get number in lanuage_id: strconv.Atoi: parsing "": invalid syntax
+2024/06/04 21:51:59 failed to get number in lanuage_id: strconv.Atoi: parsing "": invalid syntax
+2024/06/07 15:15:44 Not found contents
+2024/06/07 15:15:47 Not found contents
+2024/06/07 15:15:49 Not found contents
+2024/06/07 15:15:50 Not found contents
+2024/06/07 15:15:59 Not found contents
+2024/06/07 15:16:01 Not found contents
+2024/06/07 15:16:02 Not found contents
+2024/06/07 15:16:04 Not found contents
+2024/06/07 15:16:05 Not found contents
+2024/06/07 15:16:07 Not found contents
+2024/06/07 15:16:08 Not found contents
+2024/06/07 15:16:11 Not found contents
+2024/06/07 15:16:12 Not found contents
+2024/06/07 15:16:16 Not found contents
+2024/06/07 15:16:18 Not found contents
+2024/06/07 16:44:09 Not found contents

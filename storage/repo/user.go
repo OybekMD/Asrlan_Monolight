@@ -32,4 +32,5 @@ type UserStorageI interface {
 	GetAll(ctx context.Context, page, limit uint64) ([]*User, error)
 	CheckField(ctx context.Context, field, value string) (bool, error)
 	CheckUsername(ctx context.Context, id, username string) (bool, error)
+	UpdatePassword(ctx context.Context, newUser *UserUpdatePassword) (bool, error)
 }

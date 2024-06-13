@@ -584,6 +584,15 @@ definitions:
       username:
         type: string
     type: object
+  models.UserUpdatePassword:
+    properties:
+      id:
+        type: string
+      new_password:
+        type: string
+      old_password:
+        type: string
+    type: object
   models.VerifyRequest:
     properties:
       otp:
@@ -2363,6 +2372,45 @@ paths:
       summary: Login
       tags:
       - Register
+  /v1/navbar:
+    get:
+      consumes:
+      - application/json
+      description: This Api for get all Dashboard
+      parameters:
+      - description: UserID
+        in: query
+        name: user_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DashboardResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/models.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/models.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Error'
+      security:
+      - BearerAuth: []
+      summary: ListDashboards
+      tags:
+      - Dashboard
   /v1/pdfupload:
     post:
       consumes:
@@ -3008,14 +3056,14 @@ paths:
         name: User
         required: true
         schema:
-          $ref: '#/definitions/models.UserUpdate'
+          $ref: '#/definitions/models.UserUpdatePassword'
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.UserResponse'
+            type: boolean
         "400":
           description: Bad Request
           schema:
