@@ -814,6 +814,37 @@ paths:
       summary: GetAllGroupedByChoice
       tags:
       - activitys
+  /v1/avatarupload:
+    post:
+      consumes:
+      - application/json
+      description: File upload
+      parameters:
+      - description: File
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: File upload
+      tags:
+      - file-upload
   /v1/badge:
     post:
       consumes:
@@ -1008,6 +1039,42 @@ paths:
       summary: ListBadges
       tags:
       - badges
+  /v1/badgeupload:
+    post:
+      consumes:
+      - application/json
+      description: File upload
+      parameters:
+      - description: File
+        in: formData
+        name: file
+        required: true
+        type: file
+      - description: File Name
+        in: query
+        name: img_name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: File upload
+      tags:
+      - file-upload
   /v1/book:
     post:
       consumes:
@@ -1570,37 +1637,6 @@ paths:
       summary: Forgot Password
       tags:
       - Register
-  /v1/imageupload:
-    post:
-      consumes:
-      - application/json
-      description: File upload
-      parameters:
-      - description: File
-        in: formData
-        name: file
-        required: true
-        type: file
-      produces:
-      - application/json
-      responses:
-        "201":
-          description: Created
-          schema:
-            type: string
-        "400":
-          description: Bad Request
-          schema:
-            type: string
-        "404":
-          description: Not Found
-          schema:
-            type: string
-      security:
-      - BearerAuth: []
-      summary: File upload
-      tags:
-      - file-upload
   /v1/language:
     post:
       consumes:

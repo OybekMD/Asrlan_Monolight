@@ -68,7 +68,8 @@ func New(option *Option) *gin.Engine {
 
 	// Fileup
 	api.POST("/pdfupload", handlerV1.UploadPDFFile)
-	api.POST("/imageupload", handlerV1.UploadImageFile)
+	api.POST("/badgeupload", handlerV1.BadgeImageFile)
+	api.POST("/avatarupload", handlerV1.AvatarImageFile)
 	api.POST("/soundupload", handlerV1.UploadSoundFile)
 	api.POST("/videoupload", handlerV1.UploadVideoFile)
 	router.Static("/media", "./media")

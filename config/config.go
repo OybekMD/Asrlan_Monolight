@@ -46,12 +46,14 @@ func Load() Config {
 	c.HttpPort = getEnv("HTTP_PORT", ":8080")
 	c.CtxTimeout = getEnv("CTX_TIMEOUT", "5s")
 
+	// c.PostgresHost = getEnv("POSTGRES_HOST", "localhost")
 	c.PostgresHost = getEnv("POSTGRES_HOST", "postgres")
 	c.PostgresPort = getEnv("POSTGRES_PORT", "5432")
 	c.PostgresDatabase = getEnv("POSTGRES_DATABASE", "asrlanmono")
 	c.PostgresUser = getEnv("POSTGRES_USER", "postgres")
 	c.PostgresPassword = getEnv("POSTGRES_PASSWORD", "ebot")
 
+	// c.RedisHost = getEnv("REDIS_HOST", "localhost")
 	c.RedisHost = getEnv("REDIS_HOST", "redisdb")
 	c.RedisPort = getEnv("REDIS_PORT", ":6379")
 	c.RedisDatabase = getEnv("REDIS_DATABASE", "0")
