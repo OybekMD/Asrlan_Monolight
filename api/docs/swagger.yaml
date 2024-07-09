@@ -275,7 +275,7 @@ definitions:
     type: object
   models.LessonCreate:
     properties:
-      lesson_name:
+      lesson_type:
         type: string
     type: object
   models.LessonResponse:

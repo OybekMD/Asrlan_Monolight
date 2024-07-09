@@ -3,6 +3,7 @@ package v1
 import (
 	"asrlan-monolight/api/helper/parsing"
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"time"
@@ -53,7 +54,7 @@ func (h *handlerV1) CreateLesson(ctx *gin.Context) {
 	response, err := h.storage.Lesson().Create(
 		ctxTime,
 		&repo.Lesson{
-			Name: body.Name,
+			LessonType: body.LessonType,
 		})
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, &models.Error{
@@ -64,10 +65,10 @@ func (h *handlerV1) CreateLesson(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusCreated, &models.LessonResponse{
-		Id:        response.Id,
-		Name:      response.Name,
-		CreatedAt: response.CreatedAt,
-		UpdatedAt: response.UpdatedAt,
+		Id:         response.Id,
+		LessonType: response.LessonType,
+		CreatedAt:  response.CreatedAt,
+		UpdatedAt:  response.UpdatedAt,
 	})
 }
 
@@ -214,7 +215,7 @@ func (h *handlerV1) GetLesson(ctx *gin.Context) {
 // @Tags          lessons
 // @Accept        json
 // @Produce       json
-// @Param         lesson_id query uint64 true "LessonId"
+// @Param         lesson_id query int64 true "LessonId"
 // @Success 	  200 {object} []models.LessonResponse
 // @Failure		  400 {object} models.Error
 // @Failure		  401 {object} models.Error
@@ -222,7 +223,8 @@ func (h *handlerV1) GetLesson(ctx *gin.Context) {
 // @Failure       500 {object} models.Error
 // @Router        /v1/lessons [GET]
 func (h *handlerV1) ListLessons(ctx *gin.Context) {
-	lesson_id := ctx.Param("lesson_id")
+	lesson_id := ctx.Query("lesson_id")
+	fmt.Println("Mountan:", lesson_id)
 
 	duration, err := time.ParseDuration(h.cfg.CtxTimeout)
 	if err != nil {

@@ -598,3 +598,79 @@
 2024/06/07 15:16:16 Not found contents
 2024/06/07 15:16:18 Not found contents
 2024/06/07 16:44:09 Not found contents
+2024/06/25 19:33:14 Nothing found, Admin
+2024/06/25 19:53:07 Error Leaderboard in postgres pq: syntax error at or near "ORDER"
+2024/06/25 19:53:07 failed to get all users pq: syntax error at or near "ORDER"
+2024/06/25 19:53:07 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:53:07 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:53:07 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:53:07 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:17 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:17 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:17 Error Leaderboard in postgres pq: syntax error at or near "ORDER"
+2024/06/25 19:54:17 failed to get all users pq: syntax error at or near "ORDER"
+2024/06/25 19:54:17 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:17 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:25 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:25 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:25 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:25 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:25 Error Leaderboard in postgres pq: syntax error at or near "ORDER"
+2024/06/25 19:54:25 failed to get all users pq: syntax error at or near "ORDER"
+2024/06/25 19:54:26 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:26 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:26 Error Leaderboard in postgres pq: syntax error at or near "ORDER"
+2024/06/25 19:54:26 failed to get all users pq: syntax error at or near "ORDER"
+2024/06/25 19:54:27 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:27 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:27 Error Leaderboard in postgres pq: syntax error at or near "ORDER"
+2024/06/25 19:54:27 failed to get all users pq: syntax error at or near "ORDER"
+2024/06/25 19:54:28 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:28 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:28 Error Leaderboard in postgres pq: syntax error at or near "ORDER"
+2024/06/25 19:54:28 failed to get all users pq: syntax error at or near "ORDER"
+2024/06/25 19:54:28 Error Leaderboard in postgres pq: syntax error at or near "ORDER"
+2024/06/25 19:54:28 failed to get all users pq: syntax error at or near "ORDER"
+2024/06/25 19:54:28 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:28 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:32 Error Leaderboard in postgres pq: syntax error at or near "ORDER"
+2024/06/25 19:54:32 failed to get all users pq: syntax error at or near "ORDER"
+2024/06/25 19:54:32 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:32 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:32 Error selecting badges with page and limit in postgres pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:32 failed to get all users pq: invalid input syntax for type uuid: ""
+2024/06/25 19:54:59 Nothing found, Admin
+2024/06/25 19:54:59 Nothing found, Admin
+2024/06/25 20:35:23 failed to run http server: listen tcp :8080: bind: address already in use
+2024/06/25 20:35:59 Error creating certificate: %v open qrcode.png: no such file or directory
+2024/06/25 20:35:59 Error GenerateCertificate: open qrcode.png: no such file or directory
+2024/06/25 20:35:59 failed to get all users open qrcode.png: no such file or directory
+2024/06/25 20:36:09 Error deleting user context deadline exceeded
+2024/06/25 20:36:09 failed to get all users context deadline exceeded
+2024/06/25 20:53:08 Not found contents
+2024/06/25 20:53:12 Not found contents
+2024/06/25 20:53:16 Not found contents
+2024/06/25 20:53:25 Not found contents
+2024/06/25 20:53:27 Not found contents
+2024/06/30 12:21:36 Error selecting lessons with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/06/30 12:21:36 failed to get all users pq: invalid input syntax for type integer: ""
+2024/07/09 11:29:16 Error selecting lessons with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/07/09 11:29:16 failed to get all users pq: invalid input syntax for type integer: ""
+2024/07/09 11:32:14 Error selecting lessons with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/07/09 11:32:14 failed to get all users pq: invalid input syntax for type integer: ""
+2024/07/09 11:32:28 Error selecting lessons with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/07/09 11:32:28 failed to get all users pq: invalid input syntax for type integer: ""
+2024/07/09 11:32:41 Error selecting lessons with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/07/09 11:32:41 failed to get all users pq: invalid input syntax for type integer: ""
+2024/07/09 11:34:11 Error selecting lessons with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/07/09 11:34:11 failed to get all users pq: invalid input syntax for type integer: ""
+2024/07/09 11:34:35 Error selecting lessons with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/07/09 11:34:35 failed to get all users pq: invalid input syntax for type integer: ""
+2024/07/09 11:36:18 Error selecting lessons with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/07/09 11:36:18 failed to get all users pq: invalid input syntax for type integer: ""
+2024/07/09 11:36:40 Error selecting lessons with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/07/09 11:36:40 failed to get all users pq: invalid input syntax for type integer: ""
+2024/07/09 11:36:54 Error selecting lessons with page and limit in postgres pq: invalid input syntax for type integer: ""
+2024/07/09 11:36:54 failed to get all users pq: invalid input syntax for type integer: ""
+2024/07/09 11:37:57 Error selecting badges with page and limit in postgres pq: column l.name does not exist
+2024/07/09 11:37:57 failed to get all users pq: column l.name does not exist

@@ -21,7 +21,7 @@ type Topics struct {
 }
 type Lessons struct {
 	LessonId    int64  `json:"id"`
-	LessonName  string `json:"lesson_name"`
+	LessonType  string `json:"lesson_type"`
 	LessonScore int64  `json:"score"`
 }
 

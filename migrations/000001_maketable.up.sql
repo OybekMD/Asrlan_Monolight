@@ -90,7 +90,6 @@ CREATE TABLE topics (
 
 CREATE TABLE lessons (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
     lesson_type VARCHAR(1) NOT NULL,
     topic_id INT REFERENCES topics(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -186,13 +185,24 @@ CREATE TABLE books (
     deleted_at TIMESTAMP DEFAULT NULL
 );
 
-CREATE TABLE messages (
+
+CREATE TABLE user_messages (
     id SERIAL PRIMARY KEY,
-    writer_id UUID REFERENCES users(id),
-    lesson_id INT ,
-    to_whom TEXT NOT NULL,
-    message VARCHAR(65) NOT NULL,
+    user_id UUID REFERENCES users(id),
+    content TEXT NOT NULL, -- end of content we should add where is form // Language -> Level -> Topic -> Lesson
+    status BOOLEAN, --default false
+    comment TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT NULL
+);
+
+
+CREATE TABLE admin_messages (
+    id SERIAL PRIMARY KEY,
+    user_id UUID REFERENCES users(id),
+    content TEXT NOT NULL, -- end of content we should add where is form // Language -> Level -> Topic -> Lesson
+    status BOOLEAN, --default false
+    comment TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP DEFAULT NULL
 );

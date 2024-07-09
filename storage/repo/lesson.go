@@ -4,7 +4,6 @@ import "context"
 
 type Lesson struct {
 	Id         int64  `json:"id"`
-	Name       string `json:"lesson_name"`
 	LessonType string `json:"lesson_type"`
 	TopicId    int64  `json:"topic_id"`
 	TopicName  string `json:"topic_name"`

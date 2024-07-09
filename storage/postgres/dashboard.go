@@ -295,7 +295,7 @@ func (s *dashboardRepo) GetDashboard(ctx context.Context, userId string, languag
 		queryLesson := `
 		SELECT
 			l.id,
-			l.name,
+			l.lesson_type,
 			COALESCE(ul.score, 0) AS score
 		FROM
 			lessons l
@@ -313,11 +313,11 @@ func (s *dashboardRepo) GetDashboard(ctx context.Context, userId string, languag
 		var overAllLessonScore int64
 		for lessonRows.Next() {
 			var lessonId int64
-			var lessonName string
+			var lessonType string
 			var lessonScore int64
 
 			// Scan requires pointers to the destination variables
-			err := lessonRows.Scan(&lessonId, &lessonName, &lessonScore)
+			err := lessonRows.Scan(&lessonId, &lessonType, &lessonScore)
 			if err != nil {
 				log.Println("Error scanning lesson rows:", err)
 				return nil, err
@@ -325,7 +325,7 @@ func (s *dashboardRepo) GetDashboard(ctx context.Context, userId string, languag
 
 			lessons = append(lessons, repo.Lessons{
 				LessonId:    lessonId,
-				LessonName:  lessonName,
+				LessonType:  lessonType,
 				LessonScore: lessonScore,
 			})
 			overAllLessonScore += lessonScore

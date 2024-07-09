@@ -74,19 +74,40 @@ func (s *profileRepo) GetStatisticWMY(ctx context.Context, period, userid string
 	var query string
 	switch period {
 	case "1": // Week
+	// SELECT 
+    //             DATE(created_at) AS period, 
+    //             SUM(score) AS score 
+    //         FROM 
+    //             activitys 
+    //         WHERE
+    //             user_id = $1
+    //             AND DATE_TRUNC('week', created_at) = DATE_TRUNC('week', CURRENT_DATE)
+    //         GROUP BY 
+    //             DATE(created_at)
+    //         ORDER BY 
+    //             period
 		query = `
-            SELECT 
-                DATE(created_at) AS period, 
-                SUM(score) AS score 
-            FROM 
-                activitys 
-            WHERE
-                user_id = $1
-                AND DATE_TRUNC('week', created_at) = DATE_TRUNC('week', CURRENT_DATE)
-            GROUP BY 
-                DATE(created_at)
-            ORDER BY 
-                period
+			WITH week_dates AS (
+				SELECT generate_series(
+					date_trunc('week', CURRENT_DATE),
+					date_trunc('week', CURRENT_DATE) + '6 days'::interval,
+					'1 day'::interval
+				) AS period
+			)
+			SELECT 
+				wd.period AS period, 
+				COALESCE(SUM(a.score), 0) AS score 
+			FROM 
+				week_dates wd
+			LEFT JOIN 
+				activitys a
+			ON 
+				DATE(a.created_at) = wd.period
+				AND a.user_id = $1
+			GROUP BY 
+				wd.period
+			ORDER BY 
+				wd.period;
         `
 	case "2": // Month
 		query = `

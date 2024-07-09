@@ -4256,7 +4256,7 @@ const docTemplate = `{
         "models.LessonCreate": {
             "type": "object",
             "properties": {
-                "lesson_name": {
+                "lesson_type": {
                     "type": "string"
                 }
             }

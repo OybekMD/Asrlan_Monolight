@@ -3,6 +3,7 @@ package postgres
 import (
 	"asrlan-monolight/storage/repo"
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/jmoiron/sqlx"
@@ -22,11 +23,10 @@ func NewLesson(db *sqlx.DB) repo.LessonStorageI {
 func (s *lessonRepo) Create(ctx context.Context, lesson *repo.Lesson) (*repo.Lesson, error) {
 	query := `
 	INSERT INTO lessons(
-		name,
 		lesson_type,
 		topic_id
 	)
-	VALUES ($1, $2, $3) 
+	VALUES ($1, $2) 
 	RETURNING 
 		id,
 		created_at`
@@ -34,7 +34,6 @@ func (s *lessonRepo) Create(ctx context.Context, lesson *repo.Lesson) (*repo.Les
 	err := s.db.QueryRowContext(
 		ctx,
 		query,
-		lesson.Name,
 		lesson.LessonType,
 		lesson.TopicId).Scan(&lesson.Id, &lesson.CreatedAt)
 	if err != nil {
@@ -51,8 +50,7 @@ func (s *lessonRepo) Update(ctx context.Context, newLesson *repo.Lesson) (*repo.
 	UPDATE
 		lessons
 	SET
-		name=$1,
-		lesson_type=$2,
+		lesson_type=$1,
 		updated_at=CURRENT_TIMESTAMP
 	WHERE
 		id=$2
@@ -64,7 +62,6 @@ func (s *lessonRepo) Update(ctx context.Context, newLesson *repo.Lesson) (*repo.
 	err := s.db.QueryRowContext(
 		ctx,
 		query,
-		newLesson.Name,
 		newLesson.LessonType,
 		newLesson.Id,
 	).Scan(&newLesson.CreatedAt, &newLesson.UpdatedAt)
@@ -111,7 +108,6 @@ func (s *lessonRepo) Get(ctx context.Context, id string) (*repo.Lesson, error) {
 	query := `
 	SELECT 
 		lessons.id,
-    	lessons.name,
 		lessons.lesson_type,
     	topics.id,
     	topics.name,
@@ -135,7 +131,6 @@ func (s *lessonRepo) Get(ctx context.Context, id string) (*repo.Lesson, error) {
 	var responseLesson repo.Lesson
 	err := s.db.QueryRowContext(ctx, query, id).Scan(
 		&responseLesson.Id,
-		&responseLesson.Name,
 		&responseLesson.LessonType,
 		&responseLesson.TopicId,
 		&responseLesson.TopicName,
@@ -152,10 +147,10 @@ func (s *lessonRepo) Get(ctx context.Context, id string) (*repo.Lesson, error) {
 
 // This function get all lesson with page and limit posgtres
 func (s *lessonRepo) GetAll(ctx context.Context, lesson_id string) ([]*repo.Lesson, error) {
+	fmt.Println("asdsadsad: ", lesson_id)
 	query := `
 	SELECT 
 		lessons.id,
-		lessons.name,
 		lessons.lesson_type,
 		topics.id,
 		topics.name,
@@ -179,6 +174,8 @@ func (s *lessonRepo) GetAll(ctx context.Context, lesson_id string) ([]*repo.Less
 
 	rows, err := s.db.QueryContext(ctx, query, lesson_id)
 	if err != nil {
+		fmt.Println("\x1b[32m 1", err,"\x1b[0m")
+
 		log.Println("Error selecting lessons with page and limit in postgres", err.Error())
 		return nil, err
 	}
@@ -189,7 +186,6 @@ func (s *lessonRepo) GetAll(ctx context.Context, lesson_id string) ([]*repo.Less
 		var lesson repo.Lesson
 		err = rows.Scan(
 			&lesson.Id,
-			&lesson.Name,
 			&lesson.LessonType,
 			&lesson.TopicId,
 			&lesson.TopicName,
@@ -197,6 +193,7 @@ func (s *lessonRepo) GetAll(ctx context.Context, lesson_id string) ([]*repo.Less
 			&lesson.UpdatedAt,
 		)
 		if err != nil {
+			fmt.Println("\x1b[32m 2", err,"\x1b[0m")
 			log.Println("Error scanning lesson in getall lesson method of postgres", err.Error())
 			return nil, err
 		}

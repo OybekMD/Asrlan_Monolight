@@ -269,3 +269,20 @@ WHERE
     AND ules.created_at >= CURRENT_DATE - INTERVAL '1 months'
 ORDER BY                     
     u.score DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO user_lesson (score, user_id, lesson_id, created_at)
+VALUES
+    (20, '8a22ae56-d927-11ee-90e4-d8bbc174b998', 10, '2024-06-24' ),
+    (90, '8a22ae56-d927-11ee-90e4-d8bbc174b998', 11, '2024-06-25' ),
+    (70, '8a22ae56-d927-11ee-90e4-d8bbc174b998', 12, '2024-06-25');

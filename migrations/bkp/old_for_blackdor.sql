@@ -172,9 +172,9 @@ INSERT INTO contents (lesson_id, gentype, title, text_data) VALUES
     (4, 1, 'To bega misollar', 'I am a student - Men talabaman\nHe (She) is a student - U talaba\nIt is a cat - U mushuk\nWe are students - Biz talabamiz\nYou are students - Sizlar talabasiz\nThey are students - Ular talaba');
 
 INSERT INTO contents (lesson_id, gentype, title, question, text_data, arr_text, correct_answer) VALUES 
-    (5, 5, 'To`g`ri so`zni belgilang', 'u yigit', 'He is', ARRAY['Boy', 'Girl', 'Book'], 1),
-    (5, 5, 'To`g`ri so`zni belgilang', 'u mushuk', 'It is', ARRAY['Hat', 'Cat', 'Book'], 2),
-    (5, 5, 'To`g`ri so`zni belgilang', 'u olma', 'It is', ARRAY['Apple', 'Banana', 'Door'], 1);
+    (5, 5, 'To`g`ri so`zni belgilang', 'u yigit', 'He is @@@', ARRAY['Boy', 'Girl', 'Book'], 1),
+    (5, 5, 'To`g`ri so`zni belgilang', 'u mushuk', 'It is @@@', ARRAY['Hat', 'Cat', 'Book'], 2),
+    (5, 5, 'To`g`ri so`zni belgilang', 'u olma', 'It is @@@', ARRAY['Apple', 'Banana', 'Door'], 1);
 
 INSERT INTO content_files (content_id, image_data) VALUES
     (43, 'asrlan.jprq.app/media/mdata/objects/man.png'),
@@ -396,3 +396,30 @@ INSERT INTO books (name, picture, book_file, level_id) VALUES
     ('Free English Grammar', 'asrlan.jprq.app/media/image/75c785e9-369a-4969-ac8f-e3af2ee2832d.png', 'asrlan.jprq.app/media/pdf/Free_English_Grammar_(_PDFDrive_)_(1).pdf', 1)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------
+
+---------------------------------------------
